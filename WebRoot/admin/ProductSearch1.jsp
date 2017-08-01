@@ -57,7 +57,7 @@
 								String preStr="";
 								for(int j=1;j<grade;j++)
 								{
-									preStr+="----";
+									preStr+="------";
 								}
 						%>
 							<option value="<%= c.getId() %>"><%= preStr+c.getName() %></option>
