@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <servlet>
+    <description>ServletToJSPsendRedirect</description>
+    <display-name>ServletToJSP</display-name>
+    <servlet-name>Person</servlet-name>
+    <servlet-class>com.xm.servlet.Person</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>FileUpload</description>
+    <display-name>FileUpload</display-name>
+    <servlet-name>FileUpload</servlet-name>
+    <servlet-class>util.servlet.FileUpload</servlet-class>
+    <init-param>
+    	<param-name>uploadPath</param-name>
+    	<param-value>	
+    		E:\\3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目\\source\\Gouwu\\WebRoot\\images\\product\\
+    	</param-value>
+    </init-param>
+  </servlet>
+  
+
+
+  <servlet-mapping>
+    <servlet-name>Person</servlet-name>
+    <url-pattern>/Person</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>FileUpload</servlet-name>
+    <url-pattern>/servlet/FileUpload</url-pattern>
+  </servlet-mapping>
+  
+
+</web-app>
