@@ -3,7 +3,34 @@
 
 <%
 	request.setCharacterEncoding("utf8");
-	List<Category> categories=CategoryService.getInstance().getCategories();
+    int pageNo=1;
+    final int pageSize=5;
+    String strPageNo=request.getParameter("pageNo");
+    if(strPageNo !=null && !strPageNo.trim().equals(""))
+    {
+    	try
+		{
+			pageNo=Integer.parseInt(strPageNo);
+		}
+		catch(NumberFormatException e)
+		{
+			pageNo=1;
+		}
+    }
+    if(pageNo<=0)
+    {
+    	pageNo=1;
+    }
+	
+    
+    List<Category> categories=new ArrayList();
+	int totalRecords=CategoryService.getInstance().getCategories(categories,pageNo,pageSize);
+	int totalPages=(totalRecords-1)/pageSize+1;
+	if(pageNo>totalPages)
+	{
+		pageNo=totalPages;
+	}
+	
 %>
 
 <!DOCTYPE html>
@@ -27,7 +54,7 @@
 		<div style="text-align:center">
 			<span><a href="CategoryAdd1.jsp" target="detail" >添加根类别</a></span>
 		</div>
-		<table width=100% style="border:3px solid #fff1cc;border-collapse:collapse; ">
+		<table  style="border:3px solid #fff1cc;border-collapse:collapse;width:100% ">
 			<tr style="background-color:#fff1cc;" >
 				<th>类别编号</th>
 				<th>类别名称</th>
@@ -70,6 +97,22 @@
 			}
 		%>	
 		</table>
+		<form name="form1" method=post action="CategoryList1.jsp" style="float:left" >
+			<select name="pageNo" onchange="document.form1.submit()" >
+				<% 
+					for(int i=1;i<=totalPages;i++)
+					{
+				%>
+					<option value=<%=i%> <%=(pageNo==i)?"selected":""%> >第<%=i%>页</option>
+				<%
+					}
+				%>
+			</select>
+		</form>
+		<form name="form2" method=post action="CategoryList1.jsp" style="float:right" >
+			<input type="text" name="pageNo" value="<%= pageNo %>" size=6 />
+			<input type="submit" name="submit" value="提交" />
+		</form>	
 	</body>
 </html>
 

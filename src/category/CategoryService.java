@@ -85,6 +85,41 @@ public class CategoryService {
 		return categories;
 	}
 	
+	public int getCategories(List<Category>categories,int pageNo,int pageSize)
+	{		
+		int totalRecords = -1;
+		Connection conn=DB.getConn();
+		String sql="select * from category limit "+(pageNo-1)*pageSize+","+pageSize;
+		Statement stmt=DB.getStmt(conn);
+		Statement stmtCount=DB.getStmt(conn);
+
+		ResultSet rs=DB.getRs(stmt, sql);
+		ResultSet rsCount=DB.getRs(stmtCount, "select count(*) from category");
+		
+		try
+		{
+			rsCount.next();
+			totalRecords=rsCount.getInt(1);		
+			while(rs.next())
+			{
+				Category c=this.getCategoryFromRs(rs);
+				categories.add(c);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(rsCount);
+			DB.close(stmtCount);
+			DB.close(conn);
+		}
+		return totalRecords;
+	}
 	
 	private Category getCategoryFromRs(ResultSet rs) 
 	{

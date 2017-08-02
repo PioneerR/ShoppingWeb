@@ -4,7 +4,34 @@
 
 <%
 	request.setCharacterEncoding("utf8");
-	List<Product> products=ProductMgr.getInstance().getProducts();	
+	final int pageSize=5;
+	int pageNo=1;
+	String strPageNo=request.getParameter("pageNo");
+	if(strPageNo !=null && !strPageNo.trim().equals(""))
+	{
+		try
+		{
+			pageNo=Integer.parseInt(strPageNo);
+		}
+		catch(NumberFormatException e)
+		{
+			pageNo=1;
+		}
+	}
+	if(pageNo<0)
+	{
+		pageNo=1;
+	}
+	
+
+	List<Product> products=new ArrayList();
+	int totalRecords=ProductMgr.getInstance().getProducts(products,pageNo,pageSize);	
+	int totalPages=(totalRecords-1)/pageSize+1;
+	if(pageNo>totalPages)
+	{
+		pageNo=totalPages;
+	}
+	
 %>
 
 <!DOCTYPE html>
@@ -111,6 +138,22 @@
 			</td>			
 		</tr>
 		</table>
+		<form name="form1" action="ProductList1.jsp" method="post" style="float:left;">
+			<select name="pageNo" onchange="document.form1.submit()"><!-- 别忘了onchange -->
+		<%
+			for(int i=1;i<=totalPages;i++)
+			{
+		%>	
+			<option value="<%= i %>" <%= pageNo==i?"selected":"" %>>第<%= i %>页</option>
+		<%
+			}
+		%>	
+			</select>
+		</form>
+		<form name="form2" action="ProductList1.jsp" method="post" style="float:right;">
+			<input type="text" name="pageNo" value="<%= pageNo %>" style="width:50px;"/>
+			<input type="submit" name="submit" value="提交">
+		</form>
 	</body>
 </html>
 

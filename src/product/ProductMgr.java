@@ -15,6 +15,8 @@ import util.DB;
 
 public class ProductMgr {
 
+	
+	ProductDAO dao=new ProductMySQLDAO();
 	//单例设计模式
 	private ProductMgr(){}
 	private static ProductMgr mgr=null;
@@ -26,6 +28,21 @@ public class ProductMgr {
 		}
 		return mgr;//静态函数下只能使用静态变量
 	}
+	
+	
+	public int find(List<Product> products, int pageNo, int pageSize, int categoryId) {
+		String queryStr = " where p.categoryid = " + categoryId;
+		return dao.find(products, pageNo, pageSize, queryStr);
+	}
+	public int find(List<Product>products,int pageNo,int pageSize,String keyword)
+	{
+		String queryStr=" where p.name like '%"+keyword+"%' or p.descr like '%"+keyword
+					+"%' or p.id like '%"+keyword+"%' or p.normalprice like '%"+keyword
+					+"%' or p.memberprice like '%"+keyword+"%' or p.categoryid like '%"+keyword
+					+"%' or c.name like '%"+keyword+"%' or c.descr like '%"+keyword+"%'";
+		return dao.find(products,pageNo,pageSize,queryStr);
+	}
+	
 	
 	public void add(Product p)
 	{
@@ -93,6 +110,50 @@ public class ProductMgr {
 		}
 		return products;
 	}
+	public int getProducts(List<Product>products,int pageNo,int pageSize)
+	{
+		int totalRecords=-1;
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		Statement stmtCount=DB.getStmt(conn);
+		String sql="select * from product limit "+(pageNo-1)*pageSize+","+pageSize;
+		ResultSet rs=DB.getRs(stmt, sql);
+		ResultSet rsCount=DB.getRs(stmtCount, "select count(*) from product");
+		
+		try
+		{
+			rsCount.next();
+			totalRecords=rsCount.getInt(1);
+			
+			while(rs.next())
+			{
+				Product p=new Product();
+				p.setId(rs.getInt("id"));
+				p.setName(rs.getString("name"));
+				p.setDescribe(rs.getString("descr"));
+				p.setNormalPrice(rs.getInt("normalprice"));
+				p.setMemberPrice(rs.getInt("memberprice"));
+				p.setDate(rs.getTimestamp("pdate"));
+				p.setCategoryId(rs.getInt("categoryid"));
+				
+				products.add(p);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(rsCount);
+			DB.close(stmt);
+			DB.close(stmtCount);
+			DB.close(conn);
+		}
+		return totalRecords;
+	}
+	
 	
 	
 	public Category getCategory(int id)

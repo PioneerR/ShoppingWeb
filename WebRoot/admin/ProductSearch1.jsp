@@ -27,17 +27,17 @@
 		</style>
 	</head>
 	<body>
-		<form action="ProductSearch1.jsp" method="post" target="detail" style="margin-bottom:0px">
+		<form action="SearchResult1.jsp" method="post" style="margin-bottom:0px" name="simple">
 			<input type="hidden" name="search" value="simplesearch" />
 			<table style="border-collapse: collapse;border:3px #fff1cc;" width=100%>
 				<th style="background-color:#fff1cc;">简单搜索</th>
 				<tr style="text-align:center;">
-					<td><input type="text" name="simple" size=50 style="margin-right:0px;"/>
+					<td><input type="text" name="keyword" size=50 style="margin-right:0px;"/>
 					<input type="submit" value="搜索"  ></td>
 				</tr>	
 			</table>
 		</form>
-		<form action="ProductSearch1.jsp" method="post" target="detail" >
+		<form action="ComplexSearchResult1.jsp" method="post" name="complex">
 			<input type="hidden" name="search" value="complexsearch" />
 			<table  style="border-collapse: collapse;border:3px #fff1cc;" width=100% >
 				<th style="background-color:#fff1cc;" colspan=2>
@@ -73,18 +73,24 @@
 				</tr>
 				<tr>
 					<td>市场价格：</td>
-					<td>From：<input type="text" name="lowprice"/>To：<input type="text" name="highprice"/></td>
+					<td>From：<input type="text" name="lowNormalPrice"/>
+					      To：<input type="text" name="highNormalPrice"/>
+					</td>
 				</tr>
 				<tr>
 					<td>会员价格：</td>
-					<td>From：<input type="text" name="mlowprice"/>To：<input type="text" name="mhighprice"/></td>
+					<td>From：<input type="text" name="lowMemberPrice"/>
+					      To：<input type="text" name="highMemberPrice"/>
+					</td>
 				</tr>
 				<tr>
 					<td>日期时间：</td>
-					<td>From：<input type="text" name="date1"/>To：<input type="text" name="date2"/></td>
+					<td>From：<input type="text" name="date1"/>
+					      To：<input type="text" name="date2"/>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;" >
+					<td colspan="2" style="padding-left: 200px;" >
 						<input type="submit" value="搜索" style="margin-right: 100px"/>
 						<input type="reset" value="重置" />					
 					</td>
