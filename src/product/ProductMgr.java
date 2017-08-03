@@ -150,6 +150,42 @@ public class ProductMgr {
 		}
 		return products;
 	}
+	public List<Product> getProducts(int categoryId)
+	{
+		List<Product> products=new ArrayList<Product>();
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		String sql="select * from product where categoryid="+categoryId;
+		ResultSet rs=DB.getRs(stmt, sql);
+		
+		try
+		{
+			while(rs.next())
+			{
+				Product p=new Product();
+				p.setId(rs.getInt("id"));
+				p.setName(rs.getString("name"));
+				p.setDescribe(rs.getString("descr"));
+				p.setNormalPrice(rs.getInt("normalprice"));
+				p.setMemberPrice(rs.getInt("memberprice"));
+				p.setDate(rs.getTimestamp("pdate"));
+				p.setCategoryId(rs.getInt("categoryid"));
+				
+				products.add(p);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(conn);
+		}
+		return products;
+	}
 	public int getProducts(List<Product>products,int pageNo,int pageSize)
 	{
 		int totalRecords=-1;
