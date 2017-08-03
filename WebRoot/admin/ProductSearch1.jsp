@@ -85,8 +85,8 @@
 				</tr>
 				<tr>
 					<td>日期时间：</td>
-					<td>From：<input type="text" name="date1"/>
-					      To：<input type="text" name="date2"/>
+					<td>From：<input type="text" name="startDate"/>
+					      To：<input type="text" name="endDate"/>
 					</td>
 				</tr>
 				<tr>

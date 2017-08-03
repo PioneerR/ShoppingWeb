@@ -45,7 +45,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>搜索结果</title>
+		<title>简单搜索结果</title>
 		<style type="text/css">
 			td{
 				text-align:center;

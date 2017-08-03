@@ -42,6 +42,46 @@ public class ProductMgr {
 					+"%' or c.name like '%"+keyword+"%' or c.descr like '%"+keyword+"%'";
 		return dao.find(products,pageNo,pageSize,queryStr);
 	}
+	public int find(List<Product>products,int pageNo,int pageSize,PruductSearchFormBean bean)
+	{
+		String queryStr=" where 1=1 ";
+		if(bean.getCategoryId()!=-1)
+		{
+			queryStr+=" and p.categoryid="+bean.getCategoryId();
+		}
+//		else if(bean.getCategoryId()==-1)
+//		{
+//			queryStr+=" and p.categoryid !=-1";//由于是取交集，所以当id值为-1时，就是取得所有的产品类型
+//		}									   //写这句就多此一举
+		
+		if(bean.getName() !=null && !bean.getName().trim().equals(""))
+		{
+			queryStr+=" and p.name like '%"+bean.getName()+"%'";
+		}
+		if(bean.getLowNormalPrice() > 0.0)
+		{
+			queryStr += " and p.normalprice >= "+bean.getLowNormalPrice();
+		}
+		if(bean.getHighNormalPrice() > 0.0) {
+			queryStr += " and p.normalprice <= " + bean.getHighNormalPrice();
+		}
+		if(bean.getLowMemberPrice() > 0.0) {
+			queryStr += " and p.memberprice >= " + bean.getLowMemberPrice();
+		}
+		if(bean.getHighMemberPrice() > 0.0) {
+			queryStr += " and p.memberprice <= " + bean.getHighMemberPrice();
+		}
+		if(bean.getStartDate() != null && bean.getStartDate().trim().equals("") )
+		{
+			queryStr += " and p.pdate >= '"+bean.getStartDate()+" 00:00:00'";//这是什么写法？
+		}
+		if(bean.getEndDate() != null && bean.getEndDate().trim().equals("") )
+		{
+			queryStr += " and p.pdate <= '"+bean.getEndDate()+" 00:00:00'";//这是什么写法？
+		}
+		return dao.find(products, pageNo, pageSize, queryStr);
+	}
+	
 	
 	
 	public void add(Product p)
