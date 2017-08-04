@@ -65,6 +65,8 @@
 		</style>
 	</head>
 	<body>
+		<form action="Buy1.jsp" method="post">
+		<input type="hidden" name="action" value="update"/>
 		<table style="border:3px solid #fff1cc;border-collapse:collapse;width:50% ">
 			<tr style="background-color:#fff1cc;">
 				<th>产品Id</th>
@@ -98,9 +100,10 @@
 			<tr>
 				<td colspan="6">
 					<a href="Confirm1.jsp" style="margin-right:100px;">确认订单</a>
-					<a href="" >修改订单</a>
+					<a href="javascript:document.forms[0].submit()" >修改订单</a>
 				</td>
 			</tr>
 		</table>
+		</form>
 	</body>
 </html>

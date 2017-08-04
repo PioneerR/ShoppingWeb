@@ -1,17 +1,21 @@
 package user;
 
+import client.Cart;
+import client.CartItem;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.Date;
-
-import util.DB;
-
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import order.SalesItem;
+import order.SalesOrder;
+import util.DB;
 
 
 public class User {
@@ -45,7 +49,7 @@ public class User {
 	{
 		this.password=password;
 	}
-	public String getPasswor()
+	public String getPassword()
 	{
 		return password;
 	}
@@ -211,8 +215,71 @@ public class User {
 		return b;
 	}
 	
-	
-	
+	public static User check(String username,String password)
+			throws UserNotFoundException,PasswordNotCorrectException
+	{
+		User u=null;
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		String sql="select * from user where username ='"+username+"'";
+		ResultSet rs=DB.getRs(stmt, sql);
+		
+		try
+		{
+			if(!rs.next())
+			{
+				throw new UserNotFoundException("用户不存在，请重新输入！");
+			}
+			else
+			{
+				if(!password.equals(rs.getString("password")))
+				{
+					throw new PasswordNotCorrectException("密码不正确，请重新输入！");
+				}
+				u=new User();
+				u.setId(rs.getInt("id"));
+				u.setUsername(rs.getString("username"));
+				u.setPassword(rs.getString("password"));
+				u.setPhone(rs.getString("phone"));
+				u.setAddress(rs.getString("addr"));
+				u.setDate(rs.getTimestamp("rdate"));
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally 
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(conn);
+		}
+		return u;
+	}
+	 public int buy(Cart c)
+	 {
+		SalesOrder so=new SalesOrder(); 
+		so.setUser(this);
+		so.setAddr(this.getAddress());
+		so.setStatus(0);
+		so.setODate(new Date());
+		
+		List<SalesItem> salesItems=new ArrayList<SalesItem>();
+		List<CartItem> cartItems=c.getItems();
+		for(int i=0;i<cartItems.size();i++)
+		{
+			SalesItem si=new SalesItem();
+			CartItem ci=cartItems.get(i);
+			
+			si.setProduct(ci.getProduct());
+			si.setCount(ci.getCount());
+			si.setUnitPrice(ci.getProduct().getMemberPrice());
+			salesItems.add(si);
+			
+		}
+		return OrderMgr.getInstance().add(so);		 
+	 }
 	
 	
 	
