@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import order.OrderMgr;
 import order.SalesItem;
 import order.SalesOrder;
 import util.DB;
@@ -280,11 +281,4 @@ public class User {
 		}
 		return OrderMgr.getInstance().add(so);		 
 	 }
-	
-	
-	
-	
-	
-	
-	
 }

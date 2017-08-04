@@ -68,6 +68,8 @@ public class SalesOrder {
 		this.user = user;
 	}
 	
-		
-	
+	public void updateStatus()
+	{
+		OrderMgr.getInstance().updateStatus(this);
+	}
 }
