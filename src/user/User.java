@@ -277,8 +277,8 @@ public class User {
 			si.setCount(ci.getCount());
 			si.setUnitPrice(ci.getProduct().getMemberPrice());
 			salesItems.add(si);
-			
 		}
+		so.setItems(salesItems);
 		return OrderMgr.getInstance().add(so);		 
 	 }
 }

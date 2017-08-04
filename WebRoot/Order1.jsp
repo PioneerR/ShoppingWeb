@@ -18,8 +18,9 @@
 	}
 	
 	int orderId=u.buy(c);
+	//买完之后，返回订单号。购买的过程中，将cartItems集合中的多个CartItem传递给商家变成SalesItem
+	//组成集合List<SalesItem> salesItems，将这个集合存入订单SalesOrder对象中，返回订单号
 	session.removeAttribute("cart");
-	
 %>
 
 
