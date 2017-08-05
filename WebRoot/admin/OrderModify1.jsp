@@ -26,7 +26,6 @@
 	}
 %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -34,12 +33,13 @@
 		<title>订单修改</title>
 	</head>
 	<body>
-		<span style="margin-right:25px;">OrderId:<%= so.getId() %></span>
-		<span>用户姓名：<%= u.getUsername() %></span>
-		<form action="OrderModify1.jsp" method="post">
+		<span style="margin-right:25px;float:left;">订单号：<%= so.getId() %></span><br>
+		<span style="float:left;">用户名：<%= u.getUsername() %></span><br>
+		<span style="float:left;">订单状态：</span>
+		<form action="OrderModify1.jsp" method="post" style="float:left;">
 			<input type="hidden" name="action" value="modify"/>
 			<input type="hidden" name="id" value="<%= orderid %>"/>
-			<select name="status">
+			<select name="status" style="float:inherit;">
 				<option value="0" <%= (status==0)?"selected":"" %>>待发货</option>
 				<option value="1" <%= (status==1)?"selected":"" %>>已发货</option>
 				<option value="2" <%= (status==2)?"selected":"" %>>订单取消</option>
