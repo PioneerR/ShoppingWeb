@@ -279,9 +279,21 @@ public class OrderMySQLDAO implements OrderDAO {
 	}
 
 	@Override
-	public void updateStatus(SalesOrder order) {
-		// TODO Auto-generated method stub
-
+	public void updateStatus(SalesOrder order)
+	{
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		
+		try
+		{
+			String sql="update salesorder set status="+order.getStatus()
+					  +" where id="+order.getId();
+			DB.executeUpdate(stmt, sql);
+		}
+		finally
+		{
+			DB.close(stmt);
+			DB.close(conn);
+		}
 	}
-
 }

@@ -69,6 +69,8 @@
 				<th>处理</th>
 			</tr>
 		<%
+			String [] arr={"待发货","已发货","订单取消"};
+		
 			for(int i=0;i< orders.size();i++)
 			{
 				SalesOrder so = orders.get(i);
@@ -78,7 +80,7 @@
 				<td><%= so.getUser().getUsername() %></td>
 				<td><%= so.getAddress() %></td>
 				<td><%= so.getODate() %></td>
-				<td><%= so.getStatus() %></td>
+				<td><%= arr[so.getStatus()] %></td>
 				<td>
 					<a target="detail" href="OrderDetailShow1.jsp?id=<%=so.getId()%>" 
 					   style="margin-right:20px;">订单明细</a>

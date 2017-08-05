@@ -4,16 +4,12 @@
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <%
 	request.setCharacterEncoding("utf8");
 	int orderId=Integer.parseInt(request.getParameter("id"));
 	SalesOrder so=OrderMgr.getInstance().loadById(orderId);
 	List<SalesItem> items=OrderMgr.getInstance().getSalesItems(so);
-
 %>
-
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,25 +44,32 @@
 		<span>收货地址：<%= so.getAddress() %></span>
 		<table border=1 width=100% >
 			<tr style="background-color:#fff1cc">
-				<th id="productInfo" >商品名称</th>
+				<th>商品名称</th>
 				<th>会员价格</th>
 				<th>购买数量</th>
 				<th>订单总价</th>
+				<th>订单状态</th>
 			</tr>
 			<%
+				String arr[]={"待发货","已发货","订单取消"};
 				for(int i=0;i<items.size();i++)
 				{
 					SalesItem si=items.get(i);
 			%>
 			<tr>
-				<td onmouseover="showProductInfo('<%=si.getProduct().getDescribe()%>')"><%= si.getProduct().getName() %></td>
+				<td onmouseover="showProductInfo('<%=si.getProduct().getDescribe()%>')">
+					<%= si.getProduct().getName() %>
+				</td>
 				<td><%= si.getUnitPrice() %></td><!-- unitprice就是会员价格 -->
 				<td><%= si.getCount() %></td>
 				<td><%= si.getUnitPrice()*si.getCount() %></td>
+				<td><%= arr[so.getStatus()] %></td>
 			</tr>
 			<%
 				}
 			%>
 		</table>
+		<div id="productInfo" >
+		</div>
 	</body>
 </html>
