@@ -80,7 +80,8 @@
 				<td><%= so.getODate() %></td>
 				<td><%= so.getStatus() %></td>
 				<td>
-					<a target="detail" href="OrderDetailShow1.jsp?id=<%=so.getId()%>">订单明细</a>
+					<a target="detail" href="OrderDetailShow1.jsp?id=<%=so.getId()%>" 
+					   style="margin-right:20px;">订单明细</a>
 					<a target="detail" href="OrderModify1.jsp?id=<%=so.getId()%>">订单修改</a>
 				</td>
 			</tr>

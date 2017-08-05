@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import product.Product;
 import user.User;
 import util.DB;
 
@@ -90,15 +92,74 @@ public class OrderMySQLDAO implements OrderDAO {
 
 
 	@Override
-	public List<SalesOrder> getOrders() {
-		// TODO Auto-generated method stub
+	public List<SalesOrder> getOrders() 
+	{
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return null;
 	}
 
 	@Override
-	public int getOrders(List<SalesOrder> orders, int pageNo, int pageSize) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getOrders(List<SalesOrder> orders, int pageNo, int pageSize)
+	{
+		int totalRecords=-1;
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		String sql="select salesorder.id,salesorder.userid,salesorder.odate,salesorder.addr,"
+				+ "salesorder.status,user.id uid,user.username,user.password,user.addr uaddr,"
+				+ "user.phone,user.rdate from salesorder left join user on "
+				+ "salesorder.userid=user.id"+ " limit "+(pageNo-1)*pageSize+","+pageSize;
+		ResultSet rs=DB.getRs(stmt, sql);
+		
+		Statement stmtCount=DB.getStmt(conn);
+		ResultSet rsCount=DB.getRs(stmtCount, "select count(*) from salesorder");
+		
+		try
+		{
+			rsCount.next();
+			totalRecords=rsCount.getInt(1);
+			
+			while(rs.next())
+			{
+				User u=new User();
+				u.setId(rs.getInt("uid"));
+				u.setAddress(rs.getString("uaddr"));
+				u.setUsername(rs.getString("username"));
+				u.setPassword(rs.getString("password"));
+				u.setPhone(rs.getString("phone"));
+				u.setDate(rs.getTimestamp("rdate"));
+				
+				SalesOrder so=new SalesOrder();
+				so.setId(rs.getInt("id"));
+				so.setAddress(rs.getString("addr"));
+				so.setODate(rs.getTimestamp("odate"));
+				so.setStatus(rs.getInt("status"));
+				so.setUser(u);
+				
+				orders.add(so);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();			
+		}
+		finally
+		{
+			DB.close(stmt);
+			DB.close(stmtCount);
+			DB.close(rs);
+			DB.close(rsCount);
+			DB.close(conn);
+		}
+		return totalRecords;
 	}
 
 	@Override
@@ -108,9 +169,51 @@ public class OrderMySQLDAO implements OrderDAO {
 	}
 
 	@Override
-	public SalesOrder loadById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public SalesOrder loadById(int id) 
+	{
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		ResultSet rs=null;
+		SalesOrder so=null;
+		try
+		{
+			String sql = "select salesorder.id, salesorder.userid, salesorder.odate, "
+					+ "salesorder.addr, salesorder.status , " +
+		 			 " user.id uid, user.username, user.password, user.addr uaddr, "
+		 			 + "user.phone, user.rdate from salesorder " +
+		 			 " join user on (salesorder.userid = user.id) where salesorder.id = " + id; 
+			
+			rs=DB.getRs(stmt, sql);
+			while(rs.next())
+			{
+				User u=new User();
+				u.setId(rs.getInt("uid"));
+				u.setAddress(rs.getString("uaddr"));
+				u.setUsername(rs.getString("username"));
+				u.setPassword(rs.getString("password"));
+				u.setPhone(rs.getString("phone"));
+				u.setDate(rs.getTimestamp("rdate"));			
+				
+				so=new SalesOrder();
+				so.setId(rs.getInt("id"));
+				so.setAddress(rs.getString("addr"));
+				so.setStatus(rs.getInt("status"));
+				so.setODate(rs.getTimestamp("odate"));
+				so.setUser(u);
+				
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(conn);
+		}
+		return so;
 	}
 
 	@Override
@@ -127,9 +230,52 @@ public class OrderMySQLDAO implements OrderDAO {
 	}
 
 	@Override
-	public List<SalesItem> getSalesItems(int orderId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<SalesItem> getSalesItems(int orderId) 
+	{
+		List<SalesItem> items=new ArrayList<SalesItem>();
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		String sql="select salesorder.id,salesorder.userid,salesorder.odate,salesorder.addr,salesorder.status,"
+				+ "salesitem.id itemid,salesitem.productid,salesitem.unitprice,salesitem.pcount,"
+				+ "salesitem.orderid,product.id pid,product.name pname,product.descr pdescr,"
+				+ "product.normalprice,product.memberprice,product.pdate,product.categoryid "
+				+ " from salesorder join salesitem on salesorder.id=salesitem.orderid join "
+				+ " product on salesitem.productid=product.id where salesorder.id= "+orderId;
+		ResultSet rs=DB.getRs(stmt, sql);
+		
+		try
+		{
+			while(rs.next())
+			{
+				Product p=new Product();
+				p.setId(rs.getInt("pid"));
+				p.setCategoryId(rs.getInt("categoryid"));
+				p.setName(rs.getString("pname"));
+				p.setDescribe(rs.getString("pdescr"));
+				p.setDate(rs.getTimestamp("pdate"));
+				p.setNormalPrice(rs.getDouble("normalprice"));
+				p.setMemberPrice(rs.getDouble("memberprice"));
+				
+				SalesItem si=new SalesItem();
+				si.setId(rs.getInt("itemid"));
+				si.setUnitPrice(rs.getDouble("unitprice"));
+				si.setCount(rs.getInt("pcount"));
+				si.setProduct(p);
+				
+				items.add(si);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();			
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(conn);			
+		}	
+		return items;
 	}
 
 	@Override
