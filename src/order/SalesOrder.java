@@ -1,5 +1,7 @@
 package order;
 
+
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +12,7 @@ public class SalesOrder {
 	private int id;
 	private User user;
 	private String address;
-	private Date oDate;
+	private Date odate;
 	private int status;
 	private List<SalesItem> items;
 	
@@ -18,7 +20,7 @@ public class SalesOrder {
 	{
 		return address;
 	}
-	public void setAddr(String address) 
+	public void setAddress(String address) 
 	{
 		this.address = address;
 	}
@@ -43,11 +45,11 @@ public class SalesOrder {
 
 	public Date getODate() 
 	{
-		return oDate;
+		return odate;
 	}
-	public void setODate(Date oDate) 
+	public void setODate(Date odate) 
 	{
-		oDate = oDate;
+		this.odate = odate;
 	}
 
 	public int getStatus() 

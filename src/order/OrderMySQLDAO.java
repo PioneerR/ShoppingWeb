@@ -24,14 +24,16 @@ public class OrderMySQLDAO implements OrderDAO {
 	public int add(SalesOrder so) 
 	{
 		int orderId=-1;
+		//System.out.println(orderId);
 		Connection conn=DB.getConn();
 		String sql="insert into salesorder values(null,?,?,?,?)";
 		PreparedStatement pstmt=DB.getPstmt(conn, sql,Statement.RETURN_GENERATED_KEYS);
 		ResultSet rsKey =null;
 		User u=so.getUser();
-
-		String sqlDtail="insert into salesitem values(null,?,?,?,?)";
-		PreparedStatement pstmtDetail=DB.getPstmt(conn, sqlDtail);
+		//System.out.println("yonghu"+u.getAddress());
+		
+		String sqlDetail="insert into salesitem values(null,?,?,?,?)";
+		PreparedStatement pstmtDetail=DB.getPstmt(conn, sqlDetail);
 		
 		try
 		{
@@ -45,6 +47,7 @@ public class OrderMySQLDAO implements OrderDAO {
 			rsKey=pstmt.getGeneratedKeys();
 			rsKey.next();
 			orderId=rsKey.getInt(1);
+			//System.out.println(orderId);
 			
 			List<SalesItem> items=so.getItems();
 			Iterator<SalesItem> it=items.iterator();
@@ -81,8 +84,10 @@ public class OrderMySQLDAO implements OrderDAO {
 			DB.close(pstmt);
 			DB.close(conn);
 		}
+		//System.out.println("orderId"+orderId);
 		return orderId;
 	}
+
 
 	@Override
 	public List<SalesOrder> getOrders() {

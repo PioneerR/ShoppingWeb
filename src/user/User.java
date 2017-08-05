@@ -262,7 +262,7 @@ public class User {
 	 {
 		SalesOrder so=new SalesOrder(); 
 		so.setUser(this);
-		so.setAddr(this.getAddress());
+		so.setAddress(this.getAddress());
 		so.setStatus(0);
 		so.setODate(new Date());
 		
@@ -272,11 +272,12 @@ public class User {
 		{
 			SalesItem si=new SalesItem();
 			CartItem ci=cartItems.get(i);
-			
+			//System.out.println(ci.getCount());
 			si.setProduct(ci.getProduct());
 			si.setCount(ci.getCount());
 			si.setUnitPrice(ci.getProduct().getMemberPrice());
 			salesItems.add(si);
+			//System.out.println("shuliang"+salesItems.size());
 		}
 		so.setItems(salesItems);
 		return OrderMgr.getInstance().add(so);		 
