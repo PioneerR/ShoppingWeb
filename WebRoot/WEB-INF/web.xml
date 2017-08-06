@@ -27,6 +27,13 @@
     <display-name>Statistics</display-name>
     <servlet-name>SalesCountServlet</servlet-name>
     <servlet-class>stat.SalesCountServlet</servlet-class>
+    <init-param>
+    	<param-name>statImagePath</param-name>
+    	<param-value>
+    	E:\\3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目\\source\\Gouwu\\WebRoot\\admin\\images\\stat\\
+    	</param-value>
+    </init-param>
+    
   </servlet>
 
   

@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +16,26 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import util.PropertyMgr;
              
 public class SalesCountServlet extends HttpServlet {
 
 	public SalesCountServlet() {
 		super();
 	}
-
+	
+	
+	//1、创建私有变量
+	private ServletConfig config=null;
+	@Override
+	//2、重写init方法，获得config对象，从而获取配置信息中的参数
+	public void init(ServletConfig config) throws ServletException 
+	{
+		super.init(config);
+		this.config=config;
+	}
+	
+	
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -30,7 +43,7 @@ public class SalesCountServlet extends HttpServlet {
 		response.setContentType("text/html;chaset=UTF-8");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		
-		System.out.println("ok");
+//System.out.println("ok");
 		CategoryDataset dataset = getDataSet();
 		String fileName = "SalesCount.jpg";
 		JFreeChart chart = ChartFactory.createBarChart3D("产品销量图", // 图表标题
@@ -46,8 +59,9 @@ public class SalesCountServlet extends HttpServlet {
 		FileOutputStream fos_jpg = null;
 		try {
 
-			fos_jpg = new FileOutputStream(PropertyMgr.getProperty("statImagePath") + fileName);
-			//System.out.println(PropertyMgr.getProperty("statImagePath"));
+String path=this.config.getInitParameter("statImagePath");
+			fos_jpg = new FileOutputStream(path + fileName);
+
 
 			ChartUtilities.writeChartAsJPEG(fos_jpg, 0.5f, chart, 400, 300, null);
 		} 
@@ -62,12 +76,17 @@ public class SalesCountServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
-		request.setAttribute("imgName", fileName);
+		System.out.println("111");
+		request.setAttribute("imgName", fileName);//servlet中并没有session对象，只有在jsp中有session对象
+		String name=(String)request.getAttribute("imgName");
+		//System.out.println("aaa"+name);
+		
+		//response.sendRedirect("/Gouwu/admin/SalesCount1.jsp");
+		//根目录WebRoot不必写，因为整个项目Gouwu就代表了根目录
 		this.getServletContext().getRequestDispatcher("/admin/SalesCount1.jsp").forward(request, response);
 	
 	}
-
+	
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -88,5 +107,5 @@ public class SalesCountServlet extends HttpServlet {
 		}
 		return dataset;
 	}
-
+	
 }
