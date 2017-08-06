@@ -26,7 +26,7 @@
     <description>Statistics about products</description>
     <display-name>Statistics</display-name>
     <servlet-name>SalesCountServlet</servlet-name>
-    <servlet-class>util.servlet.SalesCountServlet</servlet-class>
+    <servlet-class>stat.SalesCountServlet</servlet-class>
   </servlet>
 
   

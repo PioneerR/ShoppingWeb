@@ -2,14 +2,34 @@ package stat;
 
 public class ProductStatItem {
 
-	public Number getTotalSalesCount() {
-		// TODO Auto-generated method stub
-		return null;
+	private int productId;
+	private String productName;
+	private int totalSalesCount;
+	
+	public void setProductId(int productId)
+	{
+		this.productId=productId;
 	}
-
-	public Comparable getProductName() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setProductName(String productName)
+	{
+		this.productName=productName;
 	}
-
+	public void setTotalSalesCount(int totalSalesCount)
+	{
+		this.totalSalesCount=totalSalesCount;
+	}
+	
+	public int getProductId()
+	{
+		return productId;
+	}
+	public String getProductName()
+	{
+		return productName;
+	}
+	public int getTotalSalesCount()
+	{
+		return totalSalesCount;
+	}	
+	
 }
