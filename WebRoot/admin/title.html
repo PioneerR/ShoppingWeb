@@ -1,46 +1,50 @@
-<HTML><HEAD><TITLE></TITLE>
-<META http-equiv=Content-Type content="text/html; charset=gb2312">
-<LINK href="script/style.css" type=text/css rel=stylesheet>
-<SCRIPT LANGUAGE="JavaScript">
-function frameCtrl(para){
-	parent.parent.content.rows=para;
-}
-function dispmenu()
-{
-	if(parent.menuState == 1)
-	{
-		parent.menuState = 0;
-		parent.document.getElementById("menu").width="15%";
-		//Firefox无法用getElementByName()进行操作
-	}
-	else
-	{
-		parent.menuState = 1;	
-	}
-	parent.mtitle.location.reload();
-}
-</script>
-<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
-<BODY bgColor=#fff1cc leftMargin=0 topMargin=0 marginwidth="0" marginheight="0">
-<table cellspacing=0 cellpadding=0 width="100%" border=0 class="header" height="20">
-  <tbody> 
-  <tr bgcolor="#fff1cc"> 
-    <td valign=middle noWrap width="98%" bgcolor="#fff1cc">&nbsp;
-			<script>
-			if(parent.menuState==1){
-				document.write("<a href=\"#\" onclick=\"dispmenu()\"><img src=\"images/righticon.gif\" border =0 alt=\"显示菜单列表\"></a>");
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>鎸囩ず鏍�</title>
+		<meta http-equiv=Content-Type content="text/html; charset=utf8">
+		<meta content="MSHTML 6.00.2600.0" name=GENERATOR>
+		<script type="text/JavaScript">
+			function frameCtrl(para)
+			{
+				parent.parent.content.rows=para;
 			}
-			</script>
-    </td>
-    <td valign=middle noWrap width="2%" bgcolor="#fff1cc">
-    	<a href="#" onclick="frameCtrl('20,*,100%')"><img src="images/upcoin.gif" border=0 alt="全屏显示上半部分"></a>
-    	&nbsp;
-    	<a href="#" onclick="frameCtrl('20,100%,*')"><img src="images/downcoin.gif" border=0 alt="全屏显示下半部分"></a>
-    	&nbsp;
-    	<a href="#" onclick="frameCtrl('20,50%,*')"><img src="images/splitcoin.gif" border=0 alt="分屏显示"></a>
-    	&nbsp;
-    </td>
-  </tr>
-  </tbody> 
-</table>
-</BODY></HTML>
+			function dispmenu()
+			{
+				if(parent.menuState == 1)
+				{
+					parent.menuState = 0;
+					parent.document.getElementById("menu").width="15%";
+					//Firefox鏃犳硶鐢╣etElementByName()杩涜鎿嶄綔
+				}
+				else
+				{
+					parent.menuState = 1;	
+				}
+				parent.mtitle.location.reload();
+			}
+		</script>
+	</head>
+	<body bgColor=#fff1cc leftMargin=0 topMargin=0 marginwidth="0" marginheight="0">
+		<table cellspacing=0 cellpadding=0 width="100%" border=0 class="header" height="20"> 
+		  <tr bgcolor="#fff1cc"> 
+		    <td valign=middle noWrap width="98%" bgcolor="#fff1cc">&nbsp;
+				<script>
+					if(parent.menuState==1)
+					{
+						document.write("<a href=\"#\" onclick=\"dispmenu()\"><img src=\"images/righticon.gif\" border =0 alt=\"鏄剧ず鑿滃崟鍒楄〃\"></a>");
+					}
+				</script>
+		    </td>
+		    <td valign=middle noWrap width="2%" bgcolor="#fff1cc">
+		    	<a href="#" onclick="frameCtrl('20,*,100%')"><img src="images/upcoin.gif" border=0 alt="鍏ㄥ睆鏄剧ず涓婂崐閮ㄥ垎"></a>
+		    	&nbsp;
+		    	<a href="#" onclick="frameCtrl('20,100%,*')"><img src="images/downcoin.gif" border=0 alt="鍏ㄥ睆鏄剧ず涓嬪崐閮ㄥ垎"></a>
+		    	&nbsp;
+		    	<a href="#" onclick="frameCtrl('20,50%,*')"><img src="images/splitcoin.gif" border=0 alt="鍒嗗睆鏄剧ず"></a>
+		    	&nbsp;
+		    </td>
+		  </tr>
+		</table>
+	</body>
+</html>

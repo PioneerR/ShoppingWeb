@@ -1,0 +1,71 @@
+@charset "UTF-8";
+@import url("section.css");
+@import url("container.css");
+@import url("position.css");
+@import url("button.css");
+/*
+在该文件中导入其他css文件
+*/
+      div{
+        color: #000;
+        font-size: 30px;
+        font-weight: 100;
+      }
+      body{
+        margin: 0;
+      }
+      .title{
+        text-shadow:10px 10px 20px #373638;
+        font-size: 55px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .text-title-mid{
+        font-size:30px;
+        color: #03a9f4;
+        text-align: center;
+      }
+      .text-title-left{
+        font-size:30px;
+        color: #03a9f4;
+        text-align:left;
+      }
+      .text-title-bottom{
+        font-size:30px;
+        color:#03a9f4;
+        text-align:right;
+      }
+      .text-page{
+        padding: 10%;
+        color:#fff;
+        text-align: center;
+        font-family: STXihei;
+        font-size: 20px;
+      }
+      .header-filter{
+        background-color:rgba(0,0,0,0.3);
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top:0;
+        left:0;
+        z-index:1;
+      }
+      .header{
+        background:url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2bd499yqj31jk18g7gr.jpg")no-repeat;
+        background-position: 70% 40%;
+
+        position: absolute;
+        top:0;
+        left:0;
+
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      .title-text{
+        color: #fff;
+        font-size: 21px;
+        text-align: center;
+      }

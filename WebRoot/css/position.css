@@ -1,0 +1,17 @@
+@charset "utf-8";
+.position-line{
+  text-align: center;
+}
+.position-y-mid{
+  padding-top:15%;
+}
+.position-left{
+  position: relative;
+  top:0%;
+  left:10%;
+}
+.position-right{
+  position: relative;
+  top:0%;
+  right:-50%;
+}

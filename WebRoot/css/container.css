@@ -1,0 +1,61 @@
+@charset "utf-8";
+.container-left-1:hover{
+  box-shadow:0px 0px 20px 0px #03a9f4;
+}
+.container-right-1:hover{
+  box-shadow:0px 0px 20px 0px #03a9f4;
+  filter: blur(5px);
+}
+.container-right-2:hover{
+  box-shadow:0px 0px 20px 0px #03a9f4;
+}
+.container-small:hover{
+  filter: blur(0px);
+}
+
+.container-right-1{
+  background: url("https://ws1.sinaimg.cn/large/006tNbRwgy1fg02h3qy53j31b30z1wi9.jpg")no-repeat;
+  background-size:contain;
+  background-position:80%;
+  height:70%;
+  width:auto;
+}
+.container-right-2{
+  background: url("https://ws1.sinaimg.cn/large/006tNbRwgy1fg02gidqsbj314010bn0k.jpg")no-repeat;
+  background-size:contain;
+  background-position:80%;
+  height:80%;
+  width:auto;
+}
+.container-left-1{
+  background: url("https://ws2.sinaimg.cn/large/006tNbRwgy1fg02glp0h3j310b0m5jvk.jpg")no-repeat;
+  background-size:contain;
+  background-position:0%;
+  height:60%;
+  width:auto;
+}
+.container-line{
+  height:auto;
+  width:auto;
+}
+.container-line-2{
+  height:70%;
+  width:auto;
+  padding: 0% 2.5%;
+}
+.container-f{
+  height:100%;
+  width: 20%;
+  float: left;
+  padding: 10px 0px;
+  margin:0% 2.5%;
+}
+.container-small{
+  height:auto;
+  width: 30%;
+  float: left;
+}
+.container-s{
+  height:auto;
+  width: 100%;
+}

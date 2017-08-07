@@ -1,0 +1,30 @@
+@charset "UTF-8";
+.section-top{
+  background-color: #fff;
+  margin: 40% 50px 0px ;
+  border-radius: 20px 20px 0px 0px;
+  padding: 10% 0%;
+  box-shadow:10px 25px 15px #B5B4B4,
+            -10px 25px 15px #B5B4B4;
+  z-index:1;
+}
+.section-mid{
+  background-color: #fff;
+  margin: 0px 50px 0px;
+  padding: 10% 0%;
+  box-shadow:10px 25px 15px #B5B4B4,
+            -10px 25px 15px #B5B4B4;
+}
+.section-bottom{
+  background:url("https://ws3.sinaimg.cn/large/006tKfTcly1fg2cterovzj31kw0fge7n.jpg")no-repeat;
+  background-size: cover;
+  background-color: #fff;
+  margin: 0px 50px 100px;
+  border-radius: 0px 0px 20px 20px;
+  padding: 5% 0%;
+  box-shadow:10px 25px 15px #B5B4B4,
+            -10px 25px 15px #B5B4B4;
+}
+.section-photo{
+  background: url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2e1y440tj304g04g0nx.jpg")repeat;
+}
