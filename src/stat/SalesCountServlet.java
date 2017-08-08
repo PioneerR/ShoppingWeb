@@ -19,22 +19,27 @@ import org.jfree.data.category.DefaultCategoryDataset;
              
 public class SalesCountServlet extends HttpServlet {
 
-	public SalesCountServlet() {
-		super();
-	}
+	//一、Tomcat把servlet对象new出来，接下来调用init方法进行初始化。普通的类直接调用空参数的构造函数进行初始化
+	//但servlet调用init()方法进行初始化，而且是带有参数的init()方法进行初始化
+	//普通类继承父类，进行初始化的时候，会在子类的空参数构造函数的第一行有一句super()方法，访问父类的空参数的构造函数
+	//进而知道父类是如何对这些数据进行初始化的，如果是带参数的构造函数，那就要super(参数)的方式访问父类带参数的构造函数
+	//由于servlet是用init方法进行初始化，所以子类servlet访问父类中带参数的init(参数)的方法时，就用super.init(参数)
+	//这样子类servlet才算是初始化完毕
+	
+	//构造函数只能用于单次初始化，而init()方法的初始化可以让servlet对象被复用，至始至终只有一个servlet对象
+	//所以一般都不写构造函数
 	
 	
-	//1、创建私有变量
+	//1、创建子类的私有变量config
 	private ServletConfig config=null;
 	@Override
 	//2、重写init方法，获得config对象，从而获取配置信息中的参数
-	public void init(ServletConfig config) throws ServletException 
+	public void init(ServletConfig config) throws ServletException
 	{
 		super.init(config);
 		this.config=config;
+		//子类的config(左边的config) 等于  Tomcat传进来的config对象，这样，子类的config才真正拥有config实体对象
 	}
-	
-	
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -43,8 +48,11 @@ public class SalesCountServlet extends HttpServlet {
 		response.setContentType("text/html;chaset=UTF-8");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		
-//System.out.println("ok");
+
 		CategoryDataset dataset = getDataSet();
+		
+		//double randomNum=Math.random();
+		
 		String fileName = "SalesCount.jpg";
 		JFreeChart chart = ChartFactory.createBarChart3D("产品销量图", // 图表标题
 				"产品", // 目录轴的显示标签
@@ -59,9 +67,8 @@ public class SalesCountServlet extends HttpServlet {
 		FileOutputStream fos_jpg = null;
 		try {
 
-String path=this.config.getInitParameter("statImagePath");
+String path=this.getServletConfig().getInitParameter("statImagePath");
 			fos_jpg = new FileOutputStream(path + fileName);
-
 
 			ChartUtilities.writeChartAsJPEG(fos_jpg, 0.5f, chart, 400, 300, null);
 		} 
@@ -76,15 +83,13 @@ String path=this.config.getInitParameter("statImagePath");
 				e.printStackTrace();
 			}
 		}
-		System.out.println("111");
 		request.setAttribute("imgName", fileName);//servlet中并没有session对象，只有在jsp中有session对象
-		String name=(String)request.getAttribute("imgName");
-		//System.out.println("aaa"+name);
 		
 		//response.sendRedirect("/Gouwu/admin/SalesCount1.jsp");
 		//根目录WebRoot不必写，因为整个项目Gouwu就代表了根目录
+		
+		//config.getServletContext().getRequestDispatcher("/admin/SalesCount1.jsp").forward(request, response);
 		this.getServletContext().getRequestDispatcher("/admin/SalesCount1.jsp").forward(request, response);
-	
 	}
 	
 

@@ -22,7 +22,7 @@ public class StatService {
 		try
 		{
 			sql="select productid,sum(pcount) totalsalescount,name from salesitem join "
-				+"product on productid=product.id order by totalsalescount desc";
+				+"product on salesitem.productid=product.id group by productid order by totalsalescount desc";
 			rs=DB.getRs(stmt, sql);
 			while(rs.next())
 			{

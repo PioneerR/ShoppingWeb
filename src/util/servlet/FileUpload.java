@@ -21,9 +21,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
 public class FileUpload extends HttpServlet {
-	public FileUpload() {
-		super();
-	}
 
 	//init方法有两种，一种是有带参数的，一种是没带参数的
 	//一般复写有带参数的，并将Tomcat生成的servlet config对象传给子类FileUpload，从而子类拥有了config对象

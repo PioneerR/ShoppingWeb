@@ -134,6 +134,7 @@
 		.marpc1{margin: 1%;}
 		.marpc2{margin: 2%;}
 		.marpc5{margin: 5%;}
+		.marpc10{margin: 10%;}
 		.marpc15{margin: 15%;}
 		.marpc20{margin: 20%;}
 		.marpc25{margin: 25%;}
@@ -308,9 +309,9 @@
     <div class="header">
       <div class="header-filter">
           <form method="post" action="Register1.jsp" style="padding-bottom:0"
-          	class="widpc25 heia borr10 padtb30 boxsg backgw marlra marpc15 colb textc fonts16 letters1">
+          	class="widpc25 heia borr10 padtb30 boxsg backgw marlra marpc10 colb textc fonts16 letters1">
   			<input type="hidden" name="action" value="register" />
-          	  邮箱注册<br>
+          	  用户注册<br>
           	<input type="text" name="username" placeholder="用户名"/><br>
           	<input type="text" name="phone" placeholder="手机号码"/><br>
           	<input type="password" name="password" placeholder="登录密码" /><br>

@@ -12,7 +12,7 @@
 	//通常在jsp与jsp之间都是用可以用session.setAttribute()进行传递数据，也可以用request.setAttribute()传递数据
 	//但是在servlet到jsp时，若request对象不同，导致无法传递，除非将servlet的request以及response对象传递给jsp
 	//这样servlet与jsp就拥有了同一套request对象，也就可以取出存储的数据
-	//System.out.println("aaa"+imgName);
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -52,9 +52,14 @@
 			</tr>	
 			<%
 				}
+				response.setHeader("Pragma","No-cache"); 
+				response.setHeader("Cache-Control","no-cache"); 
+				response.setDateHeader("Expires", 0); 
+				response.flushBuffer();
 			%>
-		</table>		
-		<img src="/Gouwu/admin/images/stat/<%= imgName %>" />
+		</table>
+		 	
+		<img src="<%=request.getContextPath()%>/admin/images/stat/<%= imgName %>" />
 		<!-- request.getContextPath()返回站点根目录 -->		
 	</body>
 </html>
