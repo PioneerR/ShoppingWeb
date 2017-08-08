@@ -48,12 +48,11 @@ public class SalesCountServlet extends HttpServlet {
 		response.setContentType("text/html;chaset=UTF-8");
 		response.setHeader("content-type", "text/html;charset=UTF-8");
 		
-
+		//步骤一：拿到数据集
 		CategoryDataset dataset = getDataSet();
-		
-		//double randomNum=Math.random();
-		
 		String fileName = "SalesCount.jpg";
+		
+		//步骤二：创建图形对象，设置图形属性
 		JFreeChart chart = ChartFactory.createBarChart3D("产品销量图", // 图表标题
 				"产品", // 目录轴的显示标签
 				"销量", // 数值轴的显示标签
@@ -63,19 +62,27 @@ public class SalesCountServlet extends HttpServlet {
 				false, // 是否生成工具
 				false // 是否生成URL链接
 				);
-
+		
+		
 		FileOutputStream fos_jpg = null;
 		try {
 
-String path=this.getServletConfig().getInitParameter("statImagePath");
+			String path=this.getServletConfig().getInitParameter("statImagePath");
+			//步骤三：获取一个输出流
 			fos_jpg = new FileOutputStream(path + fileName);
-
-			ChartUtilities.writeChartAsJPEG(fos_jpg, 0.5f, chart, 400, 300, null);
+			
+			//步骤四：将图表输出为jpg文件
+			ChartUtilities.writeChartAsJPEG(fos_jpg, 1f, chart, 400, 300,null);
+			//第一个参数是输出流outputstream
+			//第二个参数是图的质量，范围是0.0f~1.0f,一般用1f
+			//第三个参数是表格
+			//第四个第五个分别是宽度和高度
+			//第六个是信息 ChartRenderingInfo info
 		} 
 		finally 
 		{ 
 			try 
-			{
+			{	//步骤五：关闭输出流对象
 				fos_jpg.close();
 			} 
 			catch (Exception e) 
@@ -99,7 +106,7 @@ String path=this.getServletConfig().getInitParameter("statImagePath");
 		doGet(request, response);
 	}
 	
-	private CategoryDataset getDataSet()//设置数据集
+	private CategoryDataset getDataSet()//获取数据集
 	{
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		//获取存放数据的数据对象productStatItem
@@ -112,5 +119,6 @@ String path=this.getServletConfig().getInitParameter("statImagePath");
 		}
 		return dataset;
 	}
+	
 	
 }
