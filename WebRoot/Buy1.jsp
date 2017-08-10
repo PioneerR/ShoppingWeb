@@ -18,10 +18,11 @@
 	if(action !=null && action.trim().equals("add"))
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
+		int count=Integer.parseInt(request.getParameter("count"));
 		Product p=ProductMgr.getInstance().getProduct(id);
 		CartItem ci=new CartItem();
 		ci.setProduct(p);
-		ci.setCount(1);
+		ci.setCount(count);
 		c.add(ci);
 	}
 	if(action != null && action.trim().equals("delete"))

@@ -18,7 +18,13 @@
         text-shadow:10px 10px 20px #373638;
         font-size: 55px;
         font-weight: 600;
-        color: #fff;
+        color: #ff0;
+      }
+      .title-text{
+        color: #ff0;
+        font-size: 21px;
+        text-align: center;
+        text-shadow:10px 10px 20px #373638;
       }
       .text-title-mid{
         font-size:30px;
@@ -43,7 +49,7 @@
         font-size: 20px;
       }
       .header-filter{
-        background-color:rgba(0,0,0,0.3);
+        background-color:rgba(0,0,0,0.1);
         width: 100%;
         height: 100%;
 
@@ -53,8 +59,8 @@
         z-index:1;
       }
       .header{
-        background:url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2bd499yqj31jk18g7gr.jpg")no-repeat;
-        background-position: 70% 40%;
+        background:url("/Gouwu/images/background/timg.jpg") repeat;
+        background-position: 50% 40%;
 
         position: absolute;
         top:0;
@@ -64,8 +70,4 @@
         height: 100%;
         z-index: -1;
       }
-      .title-text{
-        color: #fff;
-        font-size: 21px;
-        text-align: center;
-      }
+     

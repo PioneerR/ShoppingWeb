@@ -350,10 +350,4 @@ public class ProductMgr {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 }

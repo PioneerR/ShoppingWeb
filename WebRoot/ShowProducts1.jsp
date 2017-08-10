@@ -5,61 +5,82 @@
 
 
 <%
-	int categoryId=Integer.parseInt(request.getParameter("categoryId"));
-	List<Product> products=ProductMgr.getInstance().getProducts(categoryId);
+	String id=request.getParameter("categoryId");
+	List<Product> products=null;
+	if(id!=null)
+	{
+		try
+		{
+			int categoryId=Integer.parseInt(id);
+			products=ProductMgr.getInstance().getProducts(categoryId);
+		}
+		catch(NumberFormatException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	else
+	{
+		products=ProductMgr.getInstance().getProducts();
+	}
+	
 %>
-
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>产品页面</title>
+		<title>产品服务</title>
+		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
+		<style type="text/css" >
+		body{
+	      background:url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2e1y440tj304g04g0nx.jpg")repeat;
+		}
+		table:hover{
+		  box-shadow:0 0 15px #03a9f4;	
+		}
+		table table:hover{
+		  box-shadow:0 0 0px #fff;	
+		}
+		</style>
 	</head>
-	<body>
+	<body style="padding:5% 8%;">
 	<%
 		for(int i=0;i<products.size();i++)
 		{
 			Product p=products.get(i);
 	%>
-		<table style="width:40%;padding:10px;margin:20px;box-shadow:0 0 8px #000;border-radius:10px;">
+		<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
 			<tr>
-				<td>
+				<td colspan="2">
 					<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="float:left;" >
-						<img src="images/product/<%= p.getId()+".jpg" %>" height="180" width="150" />
+						<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
 					</a>
 				</td>
-				<td style="width:100%;">
-					<table>
-						<tr>
-							<td>
-								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
-									<b><%= p.getName() %></b>
-								</a>
-							</td>
-						</tr>
-						<tr>						
-							<div style="float:right;margin-top:30px;">
-								<a href="Buy1.jsp?id=<%= p.getId() %>&action=add" target="cart">
-									<img src="images/xiaoche.gif"  width=85 />
-								</a>
-							</div>
-						</tr>
-						<tr>
-							<td>市场价格: ¥<%= p.getNormalPrice() %></td>
-						</tr>
-						<tr>
-							<td>会员价格: ¥<%= p.getMemberPrice() %></td>
-						</tr>
-						<tr>
-							<td>商品描述: <%= p.getDescribe() %></td>
-						</tr>
-					</table>
+			</tr>
+			<tr>
+				<td>
+				<table class="martb15">
+					<tr>
+						<td>
+							<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
+								<b class="fonts20" style="color:#696969;width:25%;"><%= p.getName() %></b>
+							</a>
+						</td>
+						<td class="textr colr" style="width:5%;" >
+							<b>¥<%= p.getNormalPrice() %></b>
+						</td>
+					</tr>
+					<tr>
+						<td class="cols2" style="color:#696969" >
+							<%= p.getDescribe() %>
+						</td>
+					</tr>
+				</table>
 				</td>
-			</tr>	
+			</tr>
 		</table>
-		
 	<%
 		}
 	%>	
