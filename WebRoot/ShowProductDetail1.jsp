@@ -1,5 +1,5 @@
-<%@page import="client.CartItem"%>
-<%@page import="java.util.List"%>
+<%@ page import="client.CartItem"%>
+<%@ page import="java.util.List"%>
 <%@ page import="client.Cart"%>
 <%@ page import="product.ProductMgr"%>
 <%@ page import="product.Product"%>
@@ -75,9 +75,10 @@
 		input{
 		  color:#000;
 		  font-size: 18px;
+		  border:none;
 		  width: 25%;
-		  border-bottom: solid #B5B4B4 1px;
 		  margin:auto;
+		  background-color:white; 
 		}		
 		</style>
 		<script type="text/javascript">
@@ -107,7 +108,7 @@
 		</script>	
 	</head>
 	<body class="padlrpc5">
-		<div class="boxs10 heia wida borr20 martbpc5" style="overflow:hidden;padding:5% 8%;">
+		<div class="boxs10 heia wida borr20 martbpc5 backgbs" style="overflow:hidden;padding:5% 8%;background-color:#c8f7f7">
 		   
 		    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
 			    <div>
@@ -119,7 +120,7 @@
 				
 				<div>	
 					<div style="height:50px" class="textc">
-						<b class="colgys" style="font-size:40px;"><%= p.getName() %></b>
+						<b class="colb" style="font-size:40px;"><%= p.getName() %></b>
 					</div>
 					<div style="height:200px;">
 						<p class="textl colgys fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -138,16 +139,16 @@
 						</tr>
 						<tr style="height:50px">
 							<td>
-								<input type="button" value="-" onclick="dele()"/>
+								<input type="button" style="width:20%;font-size:20px;"class="borrl10" value="-" onclick="dele()"/>
 								<input type="text" id="count" name="count" class="textc" value="<%= count %>"/>
-								<input type="button" value="+" onclick="add()"/>
+								<input type="button" style="width:20%;font-size:20px;" class="borrr10" value="+" onclick="add()"/>
 							</td>
 						</tr>
 						<tr style="height:50px">
 							<td>
 								<a href="" onclick="aler()" >
 									<div class="button-1 backgy" style="cursor:pointer;">				            
-							          	<div class="title-text colw" style="font-size:16px;">加入购物车</div>
+							          	<div class="title-text colgys" style="font-size:16px;">加入购物车</div>
 							        </div>
 						        </a>
 							</td>

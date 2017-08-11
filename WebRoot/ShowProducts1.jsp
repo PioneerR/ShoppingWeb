@@ -65,7 +65,7 @@
 					<tr>
 						<td>
 							<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
-								<b class="fonts20" style="color:#696969;width:25%;"><%= p.getName() %></b>
+								<b class="fonts20 colb" style="width:25%;"><%= p.getName() %></b>
 							</a>
 						</td>
 						<td class="textr colr" style="width:5%;" >

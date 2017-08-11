@@ -63,17 +63,154 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>购物车</title>
+		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 		<style type="text/css">
 			td{
 				text-align:center;
-				border:3px solid #fff1cc;
+				border-collapse: collapse;
 			}
-			a{
-				text-decoration: none;
+			hr{		
+				border:none;
+				border-top:1px dashed #03a9f4;
 			}
+			.button-1{
+			 border-radius:20px;
+			 width: 100px;
+			 text-align: center;
+			 padding:5px;
+			 margin: 20px;
+			 cursor: pointer;
+			}
+			input{
+			  color:#000;
+			  font-size: 18px;
+			  border:none;
+			  width: 25%;
+			  margin:auto;
+			  background-color:white; 
+			}	
 		</style>
+		<script type="text/javascript">
+			function add()
+			{
+				var a=document.getElementsByName("count")[0].value;
+				//getElementByName获得的是一个数组，如果想指定获取某个元素，必须用角标
+				a=parseInt(a);
+				a++;
+				document.getElementsByName("count")[0].value=a;
+			}
+			function dele()
+			{
+				//getElementById()的Element后面没有s
+				var a=document.getElementById("count").value;
+				a=parseInt(a);
+				a--;
+				if(a<0) a=0;
+				document.getElementById("count").value=a;	
+			}
+			window.onload=function()
+			{
+				var checks=document.getElementsByName("check");
+				var checkall=document.getElementById("checkall");
+				checkall.onclick=function()
+				{
+					if(checkall.checked==true)
+					{
+						for(var i=0;i<checks.length;i++)
+						{
+							checks[i].checked=true;
+						}
+					}
+					else
+					{
+						for(var i=0;i<checks.length;i++)
+						{
+							checks[i].checked=false;
+						}
+					}
+				}
+			}	
+
+		</script>
 	</head>
-	<body>
+	<body class="padpc5"> 
+		<div class="backgb flol" style="height:50px;width:50px;padding-left:15px;padding-top:15px;">
+			<img src="/Gouwu/images/background/cart.png"/>
+		</div>
+		<div class="pad10 boxs10 borr10">
+			<table class="widpc100">
+				<tr>
+					<td></td>
+					<td class="colb fonts20 fontw700">购物车</td>
+					<td>产品名称</td>
+					<td>产品单价</td>
+					<td>购买数量</td>
+					<td>订单总价</td>
+					<td></td>
+				</tr>
+				<tr><td colspan="7"><hr></td></tr>
+				<%
+					while(it.hasNext())
+					{
+						CartItem ci=it.next();
+						Product p=ci.getProduct();
+				%>
+				<tr>
+					<td style="width:50px;">
+						<input type="checkbox" value="<%=  %>" name="check"/>
+					</td>
+					<td style="width:200px;">
+						 <img src="images/product/<%= p.getId()+".jpg" %>" class="borr10" style="height:120px;width:120px;"/>
+					</td>
+					<td class="colb fonts24 fontw700 wid300" >
+						<%= ci.getProduct().getName() %>
+					</td>
+					<td class="colgys fonts20" style="width:150px;">
+						¥<%= ci.getProduct().getNormalPrice() %>
+					</td>
+					<td class="wid200">
+						<input type="button" class="backgbs borrl10 colw" value="-" onclick="dele()"/>
+						<input type="text" id="count" class="backgbs textc" name="count" value="<%= ci.getCount() %>"/>
+						<input type="button" class="backgb borrr10 colw" value="+" onclick="add()"/>   
+					</td>
+					<td class="colgys fonts20" style="width:150px;" id="itemtotal">
+						¥<%= ci.getProduct().getNormalPrice()*ci.getCount() %>
+					</td>
+					<td class="colgys fonts22">
+						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>">x</a>
+					</td>
+				</tr>
+				<tr><td colspan="7"><hr></td></tr>
+				<%
+					}
+				%>
+				<tr>
+					<td><input type="checkbox" id="checkall" /></td>
+					<td>已选择x门课程  </td>
+					<td class="textl padlr20">删除选中的课程</td>
+					<td></td>
+					<td class="colgys fonts20">Total</td>
+					<td class="colb fonts22 fontw700" id="total">¥ 0.0</td>
+					<td></td>
+				</tr>
+			</table>
+			<div class="button-1 flor colw marlrpc5 backgb">结算</div>
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		<form action="Buy1.jsp" method="post">
 		<input type="hidden" name="action" value="update"/>
 		<table style="border:3px solid #fff1cc;border-collapse:collapse;width:50% ">
