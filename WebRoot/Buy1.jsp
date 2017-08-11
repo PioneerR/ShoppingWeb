@@ -19,10 +19,18 @@
 	{
 		int id=Integer.parseInt(request.getParameter("id"));
 		int count=Integer.parseInt(request.getParameter("count"));
+		session.setAttribute("count", count);//为了产品详情页提交表单后数量不变
 		Product p=ProductMgr.getInstance().getProduct(id);
 		CartItem ci=new CartItem();
 		ci.setProduct(p);
-		ci.setCount(count);
+		if(count>=0)
+		{
+			ci.setCount(count);
+		}
+		else
+		{
+			ci.setCount(0);
+		}
 		c.add(ci);
 	}
 	if(action != null && action.trim().equals("delete"))
@@ -41,9 +49,8 @@
 	}
 
 	
-	String path=request.getContextPath();
-	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	
+	//String path=request.getContextPath();
+	//String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 	
 	List<CartItem>items=c.getItems();
 	Iterator<CartItem> it=items.iterator();

@@ -26,7 +26,7 @@ public class Cart {
 			CartItem item=it.next();
 			if(item.getProduct().getId() == ci.getProduct().getId())
 			{
-				item.setCount(item.getCount()+1);
+				item.setCount(item.getCount()+ci.getCount());
 				return;
 			}
 		}
