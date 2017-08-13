@@ -11,7 +11,7 @@
     	mainState=0;    
     </script>
   	<title>管理员主页</title> 
-    <link rel="stylesheet" type="text/css" href="/Gouwu/css/mine.css"> 
+    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
   	<style type="text/css">
   		iframe
   		{

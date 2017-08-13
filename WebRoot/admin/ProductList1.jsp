@@ -47,7 +47,13 @@
 			a{
 				text-decoration: none;
 			}
-		
+			input{ 
+				text-align:center;
+				width:70px;
+				border:none;
+				height: 25px;
+				font-size:16px; 
+			}
 		</style>
 		<script type="text/javascript">
 		//checkbox有两个值，勾选为真，不勾选为假
@@ -74,6 +80,74 @@
 							checkboxs[i].checked=false;
 						}
 					}
+				}
+			}
+		</script>
+		
+		<script type="text/javascript">
+			var request;
+			function changeToInputNP(id)
+			{
+				var productid=document.getElementById(id);
+				var value=productid.value;
+				productid.outerHTML="<input type='text' style='color:#03a9f4' id='"+id+"' value='"+value+"' size='5' onblur='changeNP(this.id)' />";
+				document.getElementById(id).focus();			
+			}
+			function changeToInputMP(name)
+			{
+				var productids=document.getElementsByName(name);
+				var productid=productids[0];
+				var value=productid.value;
+				productid.outerHTML="<input type='text' style='color:#03a9f4' name='"+name+"' value='"+value+"' size='5' onblur='changeMP(this.name)' />";
+				document.getElementsByName(name)[0].focus();			
+			}	
+			
+			function changeNP(id)
+			{
+				var productid=document.getElementById(id);
+				var value=productid.value;//获得已经修改过后的价格
+				var url="ChangePrice1.jsp?id="+escape(id)+"&normalprice="+value;
+				
+				init();
+				request.open("post", url, true);
+				request.onreadystatechange=function()
+				{
+					if(request.readyState==4 && request.status==200)
+					{
+						productid.outerHTML="<input type='text' id='"+ id +"' value="+value+" onclick='changeToInputNP(this.id)'></input>";
+					}
+				}
+				request.send(null);
+				alert("修改价格成功！");
+			}
+			function changeMP(name)
+			{
+				var productids=document.getElementsByName(name);
+				var productid=productids[0];
+				var value=productid.value;
+				var url="ChangePrice1.jsp?id="+escape(name)+"&memberprice="+value;
+				
+				init();
+				request.open("post", url, true);
+				request.onreadystatechange=function()
+				{
+					if(request.readyState==4 && request.status==200)
+					{
+						productid.outerHTML="<input type='text' name='"+ name +"' value="+value+" onclick='changeToInputMP(this.name)'></input>";
+					}
+				}
+				request.send(null);
+				alert("修改会员价格成功！");
+			}
+			function init()
+			{
+				if(window.XMLHttpRequest)
+				{
+					request=new XMLHttpRequest();
+				}
+				else if(window.ActiveXObject)
+				{
+					request=new ActiveXObject("Microsoft.XMLHTTP");
 				}
 			}
 		</script>
@@ -104,12 +178,18 @@
 				//通过产品类别的id号，取得产品类别，进而获取类别属性
 		%>
 			<tr>
-				<td><input type="checkbox" name="delete" value="<%= p.getId()  %>" /></td>
+				<td><input type="checkbox" name="delete" value="<%= p.getId() %>" /></td>
 				<td><%= p.getId() %></td>
 				<td><%= p.getName() %></td>
 				<td><%= p.getDescribe() %></td> 
-				<td><%= p.getNormalPrice() %></td>
-				<td><%= p.getMemberPrice() %></td>
+				<td>			
+					<input type="text" id="<%= p.getId() %>" onclick="changeToInputNP(this.id)" value="<%= p.getNormalPrice() %>" >
+					</input>
+				</td>
+				<td>
+					<input type="text" name="<%= p.getId() %>" onclick="changeToInputMP(this.name)" value="<%= p.getMemberPrice() %>" >
+					</input>
+				</td>
 				<td><%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 					.format(p.getDate()) %></td>
 				<td><%= c.getName()+c.getCno() %></td>

@@ -32,6 +32,7 @@
 			ci.setCount(0);
 		}
 		c.add(ci);
+		return;
 	}
 	if(action != null && action.trim().equals("delete"))
 	{
@@ -51,7 +52,7 @@
 	
 	//String path=request.getContextPath();
 	//String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-	
+	int a=0;
 	List<CartItem>items=c.getItems();
 	Iterator<CartItem> it=items.iterator();
 %>
@@ -90,24 +91,7 @@
 			  background-color:white; 
 			}	
 		</style>
-		<script type="text/javascript">
-			function add()
-			{
-				var a=document.getElementsByName("count")[0].value;
-				//getElementByName获得的是一个数组，如果想指定获取某个元素，必须用角标
-				a=parseInt(a);
-				a++;
-				document.getElementsByName("count")[0].value=a;
-			}
-			function dele()
-			{
-				//getElementById()的Element后面没有s
-				var a=document.getElementById("count").value;
-				a=parseInt(a);
-				a--;
-				if(a<0) a=0;
-				document.getElementById("count").value=a;	
-			}
+		<script type="text/javascript">			
 			window.onload=function()
 			{
 				var checks=document.getElementsByName("check");
@@ -129,13 +113,98 @@
 						}
 					}
 				}
+				
+		
+				
+				
+				 
+				
+				
 			}	
-
 		</script>
+		<script type="text/javascript">		
+			var request;
+			function addCartItem(id)
+			{
+				var s=document.getElementById(id).id;
+				var ss=s.split("+");//获得：id值+"+"+i  整个字符串
+				var pid=ss[0];//获得id值
+				var i=ss[1];//获得i的值
+				
+				var productid=document.getElementById(pid);						
+				var count=document.getElementById(pid).value;
+				count++;
+				var url="ChangeCartItem1.jsp?productid="+escape(pid)+"&count="+count;
+				
+				var itemtotal=document.getElementById("itemtotal"+i);
+				var normal=document.getElementById("normalprice"+i).innerText;
+				var normalprice=normal.substring(1,normal.length);
+				
+				init();
+				request.open("post",url,true);
+				request.onreadystatechange=function()
+				{
+					if(request.readyState==4 && request.status==200)
+					{
+						productid.outerHTML="<input type='text' id='"+pid+"' class='backgbs textc' name='"
+										   +pid+"' value='"+count+"'></input>";									 
+					
+						itemtotal.innerText="¥ "+parseFloat(normalprice*count).toFixed(1);
+					}
+				}
+				request.send(null);
+				//alert(request.readyState);
+				//alert(request.status);
+			}
+			function deleCartItem(id)
+			{
+				var s=document.getElementById(id).id;
+				var ss=s.split("-");
+				var pid=ss[0];
+				var i=ss[1];
+				
+				var productid=document.getElementById(pid);						
+				var count=document.getElementById(pid).value;
+				count--;
+				if(count<0){count=0;}
+				
+				var url="ChangeCartItem1.jsp?productid="+escape(pid)+"&count="+count;
+				
+				var itemtotal=document.getElementById("itemtotal"+i);
+				var normal=document.getElementById("normalprice"+i).innerText;
+				var normalprice=normal.substring(1,normal.length);
+				
+				init();
+				request.open("post",url,true);
+				request.onreadystatechange=function()
+				{
+					if(request.readyState==4 && request.status==200)
+					{
+						productid.outerHTML="<input type='text' id='"+pid+"' class='backgbs textc' name='"
+										   +pid+"' value='"+count+"'></input>";									 
+					
+						itemtotal.innerText="¥ "+parseFloat(normalprice*count).toFixed(1);
+					}
+				}
+				request.send(null);
+			}
+			
+			function init()
+			{
+				if(window.XMLHttpRequest)
+				{
+					request=new XMLHttpRequest();
+				}
+				else if(window.ActiveXObject)
+				{
+					request=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+		</script>	
 	</head>
 	<body class="padpc5"> 
 		<div class="backgb flol" style="height:50px;width:50px;padding-left:15px;padding-top:15px;">
-			<img src="/Gouwu/images/background/cart.png"/>
+			<img src="/Gouwu/images/background/cart.png" />
 		</div>
 		<div class="pad10 boxs10 borr10">
 			<table class="widpc100">
@@ -150,43 +219,69 @@
 				</tr>
 				<tr><td colspan="7"><hr></td></tr>
 				<%
-					while(it.hasNext())
-					{
-						CartItem ci=it.next();
+					for(int i=0;i<items.size();i++)
+					{	
+						CartItem ci=items.get(i);
 						Product p=ci.getProduct();
 				%>
 				<tr>
 					<td style="width:50px;">
-						<input type="checkbox" value="<%=  %>" name="check"/>
+						<input type="checkbox" value="" name="check" id="check<%= i %>"/>
 					</td>
 					<td style="width:200px;">
-						 <img src="images/product/<%= p.getId()+".jpg" %>" class="borr10" style="height:120px;width:120px;"/>
+						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
+						 	<img src="images/product/<%= p.getId()+".jpg" %>" class="borr10" style="height:120px;width:120px;" />
+						</a>
 					</td>
-					<td class="colb fonts24 fontw700 wid300" >
-						<%= ci.getProduct().getName() %>
+					<td >
+						<a class="fonts24 fontw700 wid300" style="color:#03a9f4;" href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
+						<%= ci.getProduct().getName() %></a>
 					</td>
-					<td class="colgys fonts20" style="width:150px;">
-						¥<%= ci.getProduct().getNormalPrice() %>
+					<td class="colgys fonts20" style="width:150px;" id="normalprice<%= i %>">
+						¥ <%= ci.getProduct().getNormalPrice() %>
 					</td>
 					<td class="wid200">
-						<input type="button" class="backgbs borrl10 colw" value="-" onclick="dele()"/>
-						<input type="text" id="count" class="backgbs textc" name="count" value="<%= ci.getCount() %>"/>
-						<input type="button" class="backgb borrr10 colw" value="+" onclick="add()"/>   
+						<input type="button" id="<%= p.getId() %>-<%= i %>" class="backgbs borrl10 colw" value="-" 
+							   onclick="deleCartItem(this.id)()"/>
+						<input type="text" id="<%= p.getId() %>" class="backgbs textc" value="<%= ci.getCount() %>"/>
+						<input type="button" id="<%= p.getId() %>+<%= i %>" class="backgb borrr10 colw" value="+" 
+							   onclick="addCartItem(this.id)" />
 					</td>
-					<td class="colgys fonts20" style="width:150px;" id="itemtotal">
-						¥<%= ci.getProduct().getNormalPrice()*ci.getCount() %>
-					</td>
-					<td class="colgys fonts22">
-						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>">x</a>
+					<td class="colgys fonts20" style="width:150px;" id="itemtotal<%=i %>">
+					¥ <%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
+					<td >
+						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>" class="colgys fonts22">x</a>
 					</td>
 				</tr>
 				<tr><td colspan="7"><hr></td></tr>
+				<script type="text/javascript">
+					var number=document.getElementById("number");
+					var ii=document.getElementById(<%= i %>).id;
+					
+					var checki=document.getElementById("check"+ii);
+					checki.onclick=function()
+					{
+						if(checki.checked==true)
+						{
+							number.innerText++;						
+						}
+						else if(checki.checked==false)
+						{
+							number.innerText--;
+							if(number.innerText<0)
+							{
+								number.innerText=0;
+							}
+						}							
+					}
+					
+				</script>
 				<%
 					}
 				%>
 				<tr>
 					<td><input type="checkbox" id="checkall" /></td>
-					<td>已选择x门课程  </td>
+					<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
 					<td class="textl padlr20">删除选中的课程</td>
 					<td></td>
 					<td class="colgys fonts20">Total</td>
@@ -194,7 +289,9 @@
 					<td></td>
 				</tr>
 			</table>
-			<div class="button-1 flor colw marlrpc5 backgb">结算</div>
+			<a href="Confirm1.jsp">
+				<span class="button-1 flor colw marlrpc5 backgb">结算</span>
+			</a>
 		</div>
 	
 	
@@ -211,45 +308,6 @@
 	
 	
 	
-		<form action="Buy1.jsp" method="post">
-		<input type="hidden" name="action" value="update"/>
-		<table style="border:3px solid #fff1cc;border-collapse:collapse;width:50% ">
-			<tr style="background-color:#fff1cc;">
-				<th>产品Id</th>
-				<th>产品名称</th>
-				<th>购买数量</th>
-				<th>单价</th>
-				<th>总价</th>
-				<th>处理</th>
-			</tr>
-			<%
-				while(it.hasNext())
-				{
-					CartItem ci=it.next();
-			%>
-			<tr>
-				<td><%= ci.getProduct().getId() %></td>
-				<td><%= ci.getProduct().getName() %></td>
-				<td>
-					<input type="text" size=3 name="<%= "product"+ci.getProduct().getId() %>"
-						   value="<%= ci.getCount() %>"/>
-				</td>
-				<td><%= ci.getProduct().getNormalPrice() %></td>
-				<td><%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
-				<td>
-					<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>">删除</a>
-				</td>
-			</tr>
-			<%
-				}
-			%>
-			<tr>
-				<td colspan="6">
-					<a href="Confirm1.jsp" style="margin-right:100px;">确认订单</a>
-					<a href="javascript:document.forms[0].submit()" >修改订单</a>
-				</td>
-			</tr>
-		</table>
-		</form>
+		
 	</body>
 </html>

@@ -345,9 +345,12 @@ public class ProductMgr {
 			DB.close(pstmt);
 			DB.close(conn);
 		}
-		
 	}
 	
+	public void update(Product p)
+	{
+		dao.update(p);
+	}
 	
 	
 }
