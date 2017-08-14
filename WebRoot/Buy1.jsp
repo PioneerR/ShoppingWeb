@@ -92,35 +92,57 @@
 			}	
 		</style>
 		<script type="text/javascript">			
-			window.onload=function()
-			{
-				var checks=document.getElementsByName("check");
-				var checkall=document.getElementById("checkall");
-				checkall.onclick=function()
+			
+			
+			function sele(id)//javascript函数名不能用关键字select
+			{				
+				var number=document.getElementById("number");
+				var checki=document.getElementById(id);									
+				if(checki.checked==true)
 				{
-					if(checkall.checked==true)
-					{
-						for(var i=0;i<checks.length;i++)
-						{
-							checks[i].checked=true;
-						}
-					}
-					else
-					{
-						for(var i=0;i<checks.length;i++)
-						{
-							checks[i].checked=false;
-						}
-					}
+					number.innerText++;	
+					check(id);
+					//alert("--1--");
 				}
+				else if(checki.checked==false)
+				{
+					number.innerText--;
+					check(id);
+					//alert("--2--");
+					if(number.innerText<0)
+					{
+						number.innerText=0;
+					}
+				}			
+			}			
+			
+			function check(id)
+			{				
+				//获得i
+				var i=id.substring(5,id.length);				
+				//alert(i);
+				//获得total处的数值
+				var totals=document.getElementById("total");
+				var total=document.getElementById("total").innerText;	
+				var zero=parseInt(total.substring(1,total.length));
+				//alert(zero);
+				//获得itemtotal处的数值				
+				var itemtotal=document.getElementById("itemtotal"+i).innerText;
+				var itemtotalprice=parseInt(itemtotal.substring(1,itemtotal.length));
+				//alert(itemtotalprice);
 				
-		
-				
-				
-				 
-				
-				
-			}	
+				var checki=document.getElementById(id);									
+				if(checki.checked==true)
+				{
+					zero=zero+itemtotalprice;					
+					totals.innerText="¥ "+parseFloat(zero).toFixed(1);
+				}
+				else if(checki.checked==false)
+				{				
+					zero=zero-itemtotalprice;					
+					totals.innerText="¥ "+parseFloat(zero).toFixed(1);
+				}							
+			}
 		</script>
 		<script type="text/javascript">		
 			var request;
@@ -155,6 +177,19 @@
 				request.send(null);
 				//alert(request.readyState);
 				//alert(request.status);
+				
+				var checki=document.getElementById("check"+i);	
+				if(checki.checked==true)
+				{				
+					var normal=document.getElementById("normalprice"+i).innerText;
+					var normalprice=parseInt(normal.substring(1,normal.length));						
+					var totals=document.getElementById("total");
+					var total=document.getElementById("total").innerText;	
+					var zero=parseInt(total.substring(1,total.length));
+					
+					zero=zero+normalprice;					
+					totals.innerText="¥ "+parseFloat(zero).toFixed(1);
+				}
 			}
 			function deleCartItem(id)
 			{
@@ -187,6 +222,23 @@
 					}
 				}
 				request.send(null);
+				
+				var checki=document.getElementById("check"+i);	
+				if(checki.checked==true)
+				{				
+					var totals=document.getElementById("total");
+					var total=document.getElementById("total").innerText;	
+					var zero=parseInt(total.substring(1,total.length));
+					
+					var itemtotals=document.getElementById("itemtotal"+i).innerText;				
+					var itemtotalprices=parseInt(itemtotals.substring(1,itemtotals.length));				
+					if(itemtotalprices>0)
+					{
+						zero=zero-normalprice;
+					}						
+
+					totals.innerText="¥ "+parseFloat(zero).toFixed(1);	
+				}
 			}
 			
 			function init()
@@ -226,7 +278,7 @@
 				%>
 				<tr>
 					<td style="width:50px;">
-						<input type="checkbox" value="" name="check" id="check<%= i %>"/>
+						<input type="checkbox" value="" name="check" id="check<%= i %>" onclick="sele(this.id)"/>
 					</td>
 					<td style="width:200px;">
 						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
@@ -243,11 +295,11 @@
 					<td class="wid200">
 						<input type="button" id="<%= p.getId() %>-<%= i %>" class="backgbs borrl10 colw" value="-" 
 							   onclick="deleCartItem(this.id)()"/>
-						<input type="text" id="<%= p.getId() %>" class="backgbs textc" value="<%= ci.getCount() %>"/>
+						<input type="text" id="<%= p.getId() %>" name="count<%= i %>" class="backgbs textc" value="<%= ci.getCount() %>"/>
 						<input type="button" id="<%= p.getId() %>+<%= i %>" class="backgb borrr10 colw" value="+" 
 							   onclick="addCartItem(this.id)" />
 					</td>
-					<td class="colgys fonts20" style="width:150px;" id="itemtotal<%=i %>">
+					<td class="colgys fonts20" style="width:150px;" id="itemtotal<%=i %>" name="itemtotal">
 					¥ <%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
 					<td >
 						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>" class="colgys fonts22">x</a>
@@ -255,34 +307,80 @@
 				</tr>
 				<tr><td colspan="7"><hr></td></tr>
 				<script type="text/javascript">
-					var number=document.getElementById("number");
-					var ii=document.getElementById(<%= i %>).id;
-					
-					var checki=document.getElementById("check"+ii);
-					checki.onclick=function()
+					window.onload=function()
 					{
-						if(checki.checked==true)
+						var checks=document.getElementsByName("check");
+						var checkall=document.getElementById("checkall");
+						
+						checkall.onclick=function()
 						{
-							number.innerText++;						
-						}
-						else if(checki.checked==false)
-						{
-							number.innerText--;
-							if(number.innerText<0)
+							if(checkall.checked==true)
 							{
-								number.innerText=0;
+								for(var j=0;j<checks.length;j++)
+								{
+									checks[j].checked=true;	
+								}
+								sel();
 							}
-						}							
+							else
+							{								
+								for(var j=0;j<checks.length;j++)
+								{
+									checks[j].checked=false;
+								}
+								sel();
+							}
+						}
+					}	
+					
+					function sel()
+					{
+						var checks=document.getElementsByName("check");
+						var checkall=document.getElementById("checkall");	
+						var number=document.getElementById("number");
+						
+						
+						var totals=document.getElementById("total");						
+						var total=document.getElementById("total").innerText;						
+						var totalprice=parseInt(total.substring(1,total.length));						
+						
+						var itemtotal=document.getElementsByName("itemtotal");										
+						if(checkall.checked==true)
+						{							
+							number.innerText=checks.length;	
+							for(var j=0;j<checks.length;j++)
+							{		
+								var value=itemtotal[j].innerText;								
+								var pricej=parseInt(value.substring(1,value.length));					
+								totalprice+=pricej;//JavaScript中数据计算，注意要先转换成int类型，parseInt()										
+							}
+							totals.innerText="¥ "+parseFloat(totalprice).toFixed(1);
+						}
+						else if(checkall.checked==false)
+						{
+							number.innerText=0;
+							for(var j=0;j<checks.length;j++)
+							{
+								var value=itemtotal[j].innerText;								
+								var pricej=parseInt(value.substring(1,value.length));					
+								totalprice-=pricej;
+								//JavaScript中数据计算或大小判断运算，注意要先转换成int类型，parseInt()
+								//JavaScript注意变量的定义，在同一个范围内，不要重复定义，否则会运算出错
+							}
+							totals.innerText="¥ "+parseFloat(totalprice).toFixed(1);							
+						}																							
 					}
 					
-				</script>
+				</script>							
 				<%
 					}
 				%>
 				<tr>
 					<td><input type="checkbox" id="checkall" /></td>
 					<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
-					<td class="textl padlr20">删除选中的课程</td>
+					<td class="textl padlr20">
+						<a href="Buy1.jsp?action=delete&id=">删除选中的课程</a>
+					</td>
 					<td></td>
 					<td class="colgys fonts20">Total</td>
 					<td class="colb fonts22 fontw700" id="total">¥ 0.0</td>
@@ -295,19 +393,5 @@
 		</div>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
 	</body>
 </html>
