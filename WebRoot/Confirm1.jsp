@@ -20,10 +20,12 @@
 		session.setAttribute("cart", c);
 	}
 	
-	List<CartItem> items=c.getItems();
-	Iterator<CartItem> it=items.iterator();
+	String [] ids=request.getParameterValues("check");
+	System.out.println(ids[0]);
+	
+	//List<CartItem> items=c.getItems();
+	//Iterator<CartItem> it=items.iterator();
 %>
-
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,9 +55,13 @@
 				<th>总价</th>
 			</tr>
 			<%
-				while(it.hasNext())
+				//while(it.hasNext())
+				//{
+					//CartItem ci=it.next();
+				for(int i=0;i<ids.length;i++)
 				{
-					CartItem ci=it.next();
+					int id=Integer.parseInt(ids[i]);
+					CartItem ci=c.getItemByPid(id);	
 			%>
 			<tr>
 				<td><%= ci.getProduct().getId() %></td>

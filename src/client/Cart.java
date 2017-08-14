@@ -58,7 +58,20 @@ public class Cart {
 		}		
 	}
 	
-	
+	public CartItem getItemByPid(int productId)
+	{
+		Iterator<CartItem> it=items.iterator();
+		CartItem ci=null;
+		while(it.hasNext())
+		{
+			CartItem item=it.next();
+			if(item.getProduct().getId() == productId)
+			{
+				ci=item;
+			}
+		}
+		return ci;
+	}
 	
 	
 	

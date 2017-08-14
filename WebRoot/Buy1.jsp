@@ -39,6 +39,18 @@
 		int id=Integer.parseInt(request.getParameter("id"));
 		c.deleteItemById(id);
 	}
+	if(action != null && action.trim().equals("deletex"))
+	{
+		String [] ids=request.getParameterValues("check");
+		if( ids!=null )
+		{
+			for(int k=0;k<ids.length;k++)
+			{
+				int id=Integer.parseInt(ids[k]);
+				c.deleteItemById(id);
+			}
+		}
+	}
 	if(action !=null && action.trim().equals("update"))
 	{
 		for(int i=0;i<c.getItems().size();i++)
@@ -65,6 +77,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>购物车</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
+		<script type="text/javascript" src="/Gouwu/jquery/jquery-3.1.1.min.js"></script>
 		<style type="text/css">
 			td{
 				text-align:center;
@@ -92,8 +105,6 @@
 			}	
 		</style>
 		<script type="text/javascript">			
-			
-			
 			function sele(id)//javascript函数名不能用关键字select
 			{				
 				var number=document.getElementById("number");
@@ -252,6 +263,81 @@
 					request=new ActiveXObject("Microsoft.XMLHTTP");
 				}
 			}
+		</script>
+		<script type="text/javascript">
+			window.onload=function()
+			{
+				var checks=document.getElementsByName("check");
+				var checkall=document.getElementById("checkall");
+				
+				checkall.onclick=function()
+				{
+					if(checkall.checked==true)
+					{
+						for(var j=0;j<checks.length;j++)
+						{
+							checks[j].checked=true;	
+						}
+						sel();
+					}
+					else
+					{								
+						for(var j=0;j<checks.length;j++)
+						{
+							checks[j].checked=false;
+						}
+						sel();
+					}
+				}
+			}	
+			
+			function sel()
+			{
+				var checks=document.getElementsByName("check");
+				var checkall=document.getElementById("checkall");	
+				var number=document.getElementById("number");
+				
+				
+				var totals=document.getElementById("total");						
+				var total=document.getElementById("total").innerText;						
+				var totalprice=parseInt(total.substring(1,total.length));						
+				
+				var itemtotal=document.getElementsByName("itemtotal");										
+				if(checkall.checked==true)
+				{							
+					number.innerText=checks.length;	
+					for(var j=0;j<checks.length;j++)
+					{		
+						var value=itemtotal[j].innerText;								
+						var pricej=parseInt(value.substring(1,value.length));					
+						totalprice+=pricej;//JavaScript中数据计算，注意要先转换成int类型，parseInt()										
+					}
+					totals.innerText="¥ "+parseFloat(totalprice).toFixed(1);
+				}
+				else if(checkall.checked==false)
+				{
+					number.innerText=0;
+					for(var j=0;j<checks.length;j++)
+					{
+						var value=itemtotal[j].innerText;								
+						var pricej=parseInt(value.substring(1,value.length));					
+						totalprice-=pricej;
+						//JavaScript中数据计算或大小判断运算，注意要先转换成int类型，parseInt()
+						//JavaScript注意变量的定义，在同一个范围内，不要重复定义，否则会运算出错
+					}
+					totals.innerText="¥ "+parseFloat(totalprice).toFixed(1);							
+				}																							
+			}		
+			
+			$(document).ready(function()
+			{  
+	            $("#confirm").click(function(){  
+	            	
+	                $("#form1").attr("action","Buy1.jsp");   
+	                $("#form1").submit();  
+	            });   
+	         });  
+			
 		</script>	
 	</head>
 	<body class="padpc5"> 
@@ -278,7 +364,9 @@
 				%>
 				<tr>
 					<td style="width:50px;">
-						<input type="checkbox" value="" name="check" id="check<%= i %>" onclick="sele(this.id)"/>
+						<form action="Confirm1.jsp" method="post" name="form1" id="form1">
+							<input type="hidden" name="action" value="deletex" />
+							<input type="checkbox" value="<%= p.getId() %>" name="check" id="check<%= i %>" onclick="sele(this.id)"/>				
 					</td>
 					<td style="width:200px;">
 						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
@@ -302,76 +390,10 @@
 					<td class="colgys fonts20" style="width:150px;" id="itemtotal<%=i %>" name="itemtotal">
 					¥ <%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
 					<td >
-						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>" class="colgys fonts22">x</a>
+						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>" class="colgys fonts24">x</a>
 					</td>
 				</tr>
-				<tr><td colspan="7"><hr></td></tr>
-				<script type="text/javascript">
-					window.onload=function()
-					{
-						var checks=document.getElementsByName("check");
-						var checkall=document.getElementById("checkall");
-						
-						checkall.onclick=function()
-						{
-							if(checkall.checked==true)
-							{
-								for(var j=0;j<checks.length;j++)
-								{
-									checks[j].checked=true;	
-								}
-								sel();
-							}
-							else
-							{								
-								for(var j=0;j<checks.length;j++)
-								{
-									checks[j].checked=false;
-								}
-								sel();
-							}
-						}
-					}	
-					
-					function sel()
-					{
-						var checks=document.getElementsByName("check");
-						var checkall=document.getElementById("checkall");	
-						var number=document.getElementById("number");
-						
-						
-						var totals=document.getElementById("total");						
-						var total=document.getElementById("total").innerText;						
-						var totalprice=parseInt(total.substring(1,total.length));						
-						
-						var itemtotal=document.getElementsByName("itemtotal");										
-						if(checkall.checked==true)
-						{							
-							number.innerText=checks.length;	
-							for(var j=0;j<checks.length;j++)
-							{		
-								var value=itemtotal[j].innerText;								
-								var pricej=parseInt(value.substring(1,value.length));					
-								totalprice+=pricej;//JavaScript中数据计算，注意要先转换成int类型，parseInt()										
-							}
-							totals.innerText="¥ "+parseFloat(totalprice).toFixed(1);
-						}
-						else if(checkall.checked==false)
-						{
-							number.innerText=0;
-							for(var j=0;j<checks.length;j++)
-							{
-								var value=itemtotal[j].innerText;								
-								var pricej=parseInt(value.substring(1,value.length));					
-								totalprice-=pricej;
-								//JavaScript中数据计算或大小判断运算，注意要先转换成int类型，parseInt()
-								//JavaScript注意变量的定义，在同一个范围内，不要重复定义，否则会运算出错
-							}
-							totals.innerText="¥ "+parseFloat(totalprice).toFixed(1);							
-						}																							
-					}
-					
-				</script>							
+				<tr><td colspan="7"><hr></td></tr>							
 				<%
 					}
 				%>
@@ -379,7 +401,8 @@
 					<td><input type="checkbox" id="checkall" /></td>
 					<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
 					<td class="textl padlr20">
-						<a href="Buy1.jsp?action=delete&id=">删除选中的课程</a>
+						<a href="" id="confirm" onclick="return confirm('确定要删除吗？')" class="colgy">
+							删除选中的课程</a></form>
 					</td>
 					<td></td>
 					<td class="colgys fonts20">Total</td>
@@ -387,7 +410,7 @@
 					<td></td>
 				</tr>
 			</table>
-			<a href="Confirm1.jsp">
+			<a href="javascript:document.form1.submit()">
 				<span class="button-1 flor colw marlrpc5 backgb">结算</span>
 			</a>
 		</div>
