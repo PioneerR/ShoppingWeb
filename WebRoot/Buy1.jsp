@@ -78,11 +78,7 @@
 		<title>购物车</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 		<script type="text/javascript" src="/Gouwu/jquery/jquery-3.1.1.min.js"></script>
-		<style type="text/css">
-			td{
-				text-align:center;
-				border-collapse: collapse;
-			}
+		<style type="text/css">			
 			hr{		
 				border:none;
 				border-top:1px dashed #03a9f4;
@@ -103,44 +99,6 @@
 			  margin:auto;
 			  background-color:white; 
 			}	
-			.disabled{
-			  background-color:gray;
-			  cursor:pointer;
-			  pointer-events: none;
-			}
-			.checkbox{
-			  display: none;
-			}
-			.checkbox+label{
-			background-color: #FFF; 
-		    border: 1px solid #C1CACA; 
-		    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); 
-		    padding: 9px; 
-		    border-radius: 5px; 
-		    display: inline-block; 
-		    position: relative; 
-		    margin-right: 30px; 
-			}
-			
-			.checkbox:checked + label { 
-			    background-color: #ECF2F7; 
-			    border: 1px solid #92A1AC; 
-			    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1); 
-			    color: #243441; 
-			} 			 
-			.checkbox:checked + label:after{ 
-			    content: '\2714'; 
-			    position: absolute; 
-			    top:-10px; 
-			    left: 0px; 
-			    color: #758794; 
-			    width: 100%; 
-			    text-align: center; 
-			    font-size: 1.4em; 
-			    padding: 1px 0 0 0; 
-			    vertical-align: text-top; 
-			}
-			
 		</style>
 		<script type="text/javascript">			
 			function sele(id)//javascript函数名不能用关键字select
@@ -427,8 +385,8 @@
 				<tr>
 					<td></td>
 					<td class="colb fonts20 fontw700">购物车</td>
-					<td>产品名称</td>
-					<td>产品单价</td>
+					<td>课程名称</td>
+					<td>课程单价</td>
 					<td>购买数量</td>
 					<td>订单总价</td>
 					<td></td>
@@ -479,7 +437,7 @@
 					}
 				%>
 				<tr>
-					<td><input type="checkbox" id="checkall" /></td>
+					<td><input type="checkbox" id="checkall" class="checkbox" /><label for="checkall"></label></td>
 					<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
 					<td class="textl padlr20">
 						<a href="" id="confirm" onclick="return confirm('确定要删除吗？')" class="colgy">
@@ -496,7 +454,6 @@
 				结算
 			</a>
 		</div>
-	
 	
 	</body>
 </html>

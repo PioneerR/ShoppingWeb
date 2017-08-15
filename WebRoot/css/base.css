@@ -299,10 +299,56 @@
 	a{
 		text-decoration: none;
 	}
+	td{
+		text-align:center;
+		border-collapse: collapse;
+	}
 	/*-------------------------------------*/
 	a:visited { 
 		color:#B5B4B4;
 	}
+	
+	/*-----------checkbox与label组合---------------*/
+	/* 每个想更换checkbox样式的input标签，都要在input标签后增加一个label标签  */
+	.checkbox{
+	  display: none;
+	}
+	/* checkbox不被点击时的效果 */
+	.checkbox+label{
+		background-color: #FFF; 
+	    border: 1px solid #C1CACA; 
+	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); 
+	    padding: 9px; 
+	    border-radius: 5px; 
+	    display: inline-block; 
+	    position: relative; 
+   
+	}
+	/*label点击瞬间的效果*/   
+	.checkbox+ label:active { 
+	    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);     
+	}
+	/*checkbox为真时的效果*/
+	.checkbox:checked + label { 
+	    background-color: #fff; 
+	    border: 1px solid #92A1AC; 
+	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1); 
+	    color: #243441; 
+	}
+	/*checkbox为真时，label被点击后的效果 */ 			 
+	.checkbox:checked + label:after{ 
+	    content: '\2714'; 
+	    position: absolute; 
+	    top:-10px; 
+	    left: 0px; 
+	    color: #03a9f4; 
+	    width: 100%; 
+	    text-align: center; 
+	    font-size: 1.4em; 
+	    padding: 1px 0 0 0; 
+	    vertical-align: text-top; 
+	}
+	
 	/*-------------------------------------*/
 	.button-3{
 	 border-radius:40px;
