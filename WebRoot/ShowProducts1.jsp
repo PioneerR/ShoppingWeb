@@ -63,17 +63,17 @@
 				<td>
 				<table class="martb15">
 					<tr>
-						<td>
+						<td style="text-align:left;">
 							<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
 								<b class="fonts20 colb" style="width:25%;"><%= p.getName() %></b>
 							</a>
 						</td>
-						<td class="textr colr" style="width:5%;" >
+						<td class="textr colr fonts20" style="width:5%;" >
 							<b>¥<%= p.getNormalPrice() %></b>
 						</td>
 					</tr>
 					<tr>
-						<td class="cols2" style="color:#696969" >
+						<td class="cols2 textl" style="color:#696969" >
 							<%= p.getDescribe() %>
 						</td>
 					</tr>

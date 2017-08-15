@@ -21,6 +21,7 @@
 	}
 	
 	String [] ids=request.getParameterValues("check");
+	session.setAttribute("checks", ids);
 	//System.out.println(ids[0]);
 	
 	//List<CartItem> items=c.getItems();
@@ -47,10 +48,10 @@
 			 border-top:1px dashed #03a9f4;
 			}
 			input{
-			  color:#000;
-			  font-size: 18px;
+			  color:#B5B4B4;
+			  font-size: 16px;
 			  border:none;
-			  width: 25%;
+			  width: 100%;
 			  margin:auto;
 			  background-color:white; 
 			}
@@ -65,10 +66,32 @@
 			tr{
 			height:30px; 
 			}
-			td{
-			border:solid 1px #ff0;
-			}
 		</style>
+		<script type="text/javascript">
+		function sure(num)
+		{
+			var b1=document.getElementById("b1");
+			var b2=document.getElementById("b2");
+			if(num==1)
+			{
+				b1.style.backgroundColor="#03a9f4";
+				b1.style.color="#fff";
+				
+				b2.style.backgroundColor="#fff";
+				b2.style.color="#B5B4B4";
+				b2.style.boxShadow="0 0 2px #B5B4B4";
+			}
+			else if(num==2)
+			{
+				b1.style.backgroundColor="#fff";
+				b1.style.color="#B5B4B4";
+				b1.style.boxShadow="0 0 2px #B5B4B4";
+				
+				b2.style.backgroundColor="#03a9f4";
+				b2.style.color="#fff";
+			}
+		}		
+		</script>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 	</head>
 	<body class="padpc5">		
@@ -81,7 +104,7 @@
 				</div>
 			</div>
 			<div class="pad20">	
-				<table class="padtbpc2">
+				<table style="padding-bottom:2%;">
 					<tr>
 						<td colspan=3 class="colb fonts20 fontw700 textl">
 							<img src="/Gouwu/images/background/site.png" />寄送至
@@ -94,26 +117,18 @@
 					</tr>
 				</table>
 				
-				<table class="padtbpc2">
-					<tr>
-						<td class="colb fonts20 fontw700 textl">
-							<img src="/Gouwu/images/background/pay.png" />&nbsp;&nbsp;付款方式
-						</td>
-					</tr>
-					<tr>
-						<td class="wid100 boxs10">
-							<select>	
-								<option>微信支付</option>
-								<option>支付宝</option>
-							</select>
-						</td>
-					</tr>
-				</table>
+				<div class="padtbpc2" style="margin-bottom:8%;">
+					<div class="colb fonts20 fontw700 textl" style="margin-bottom:20px;">					
+						<img src="/Gouwu/images/background/pay.png" />&nbsp;&nbsp;付款方式						
+					</div>
+					<input type="button" name="1" class="boxs10 wid100 flol borr5 textc padtb10" style="margin-right:10px;" id="b1" value="微信支付" onclick="sure(1)" />
+					<input type="button" name="2" class="boxs10 wid100 flol borr5 textc padtb10" id="b2" value="支付宝" onclick="sure(2)" />					
+				</div>
 				
-				<table class="widpc100 padtbpc2">
+				<table class="widpc100" style="margin-top:2%;">
 					<tr>
 						<td class="colb fonts20 fontw700 textl" colspan=4>
-							&nbsp;<img src="/Gouwu/images/background/order.png" style="margin-right:20px;"/>订单确认
+							<img src="/Gouwu/images/background/order.png" style="margin-right:15px;"/>订单确认
 						</td>
 					</tr>
 					<tr>
@@ -125,17 +140,23 @@
 					</tr>
 					<tr><td colspan="5"><hr></td></tr>
 					<%
+						double sum=0.0;
+						//cc是存放选择了商品的购物车，把这个购物车当做订单来提交
+						Cart cc=new Cart();
 						for(int i=0;i<ids.length;i++)
 						{
 							int id=Integer.parseInt(ids[i]);
-							CartItem ci=c.getItemByPid(id);	
+							CartItem ci=c.getItemByPid(id);
+							//订单总价
+							sum=sum+ci.getProduct().getNormalPrice()*ci.getCount();						
+							cc.add(ci);													
 					%>
 					<tr>					
 						<td style="width:100px;">						
 							<img src="images/product/<%= ci.getProduct().getId()+".jpg" %>" 
 								 class="borr10" style="height:100px;width:100px;" />						
 						</td>
-						<td class="fonts22 wid200" >
+						<td class="fonts20 wid200" >
 							<%= ci.getProduct().getName() %>
 						</td>
 						<td class="colgys fonts20" style="width:150px;" id="normalprice<%= i %>">
@@ -150,16 +171,16 @@
 					<tr><td colspan="5"><hr></td></tr>							
 					<%
 						}
+						session.setAttribute("cartorder", cc);
 					%>
 					<tr>
 						<td colspan="3"></td>				
-						<td class="colb fonts20" style="font-weight:550">实付款</td>
-						<td class="colb fonts22 fontw700" id="total">¥ 0.0</td>
+						<td class="colb fonts20" style="font-weight:700">实付款</td>
+						<td class="colb fonts22 fontw700" id="total">¥ <%= sum %></td>
 					</tr>
 				</table>				
 			</div>	
-			<a href="javascript:document.form1.submit()" style="pointer-events:none;" 
-			   class="button-1 flor colw marlrpc5 backgb"  >
+			<a href="javascript:document.form1.submit()" class="button-1 flor colw marpc1 backgb"  >
 				提交订单
 			</a>
 		</div>
@@ -186,43 +207,6 @@
 	
 	
 	
-		<form action="Order1.jsp" method="post">
-		<input type="hidden" name="action" value="confirm"/>
-		<table style="border:3px solid #fff1cc;border-collapse:collapse;width:50% ">
-			<tr style="background-color:#fff1cc;">
-				<th>产品Id</th>
-				<th>产品名称</th>
-				<th>购买数量</th>
-				<th>单价</th>
-				<th>总价</th>
-			</tr>
-			<%
-				//while(it.hasNext())
-				//{
-					//CartItem ci=it.next();
-				for(int i=0;i<ids.length;i++)
-				{
-					int id=Integer.parseInt(ids[i]);
-					CartItem ci=c.getItemByPid(id);	
-			%>
-			<tr>
-				<td><%= ci.getProduct().getId() %></td>
-				<td><%= ci.getProduct().getName() %></td>
-				<td><%= ci.getCount() %></td>
-				<td><%= ci.getProduct().getNormalPrice() %></td>
-				<td><%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
-			</tr>
-			<%
-				}
-			%>
-			<tr>
-				<td colspan="6" style="text-align:right; ">
-					收货地址：<%= u.getAddress() %><br>
-					联系方式：<%= u.getPhone() %><br>
-					<input type="submit" name="confirm" value="提交订单" />
-				</td>
-			</tr>
-		</table>
-		</form>
+		
 	</body>
 </html>

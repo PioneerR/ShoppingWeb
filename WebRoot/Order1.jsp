@@ -13,14 +13,8 @@
 		return;
 	}
 	
-	Cart c=(Cart)session.getAttribute("cart");
-	if(c == null)
-	{
-		c=new Cart();
-		session.setAttribute("cart", c);
-	}
-	
-	List<CartItem> items=c.getItems();
+	Cart cc=(Cart)session.getAttribute("cartorder");
+	List<CartItem> items=cc.getItems();
 	Iterator<CartItem> it=items.iterator();
 	while(it.hasNext())
 	{
@@ -30,10 +24,25 @@
 	}
 	//System.out.println(u.getAddress());
 	
-	int orderId=u.buy(c);
+	int orderId=u.buy(cc);
 	//买完之后，返回订单号。购买的过程中，将cartItems集合中的多个CartItem传递给商家变成SalesItem
 	//组成集合List<SalesItem> salesItems，将这个集合存入订单SalesOrder对象中，返回订单号
-	session.removeAttribute("cart");//cart的生命周期结束，销毁
+	session.removeAttribute("cartorder");//cart的生命周期结束，销毁
+	
+	
+	//确认订单的时候，要将购物车中的这些物品删除
+	String []ids=(String [])session.getAttribute("checks");
+	Cart c=(Cart)session.getAttribute("cart");
+	if(c == null)
+	{
+		c=new Cart();
+		session.setAttribute("cart", c);
+	}					
+	for(int k=0;k<ids.length;k++)
+	{
+		int id=Integer.parseInt(ids[k]);
+		c.deleteItemById(id);
+	}
 %>
 
 

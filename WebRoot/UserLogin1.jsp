@@ -26,12 +26,11 @@
 			out.println(e1.getMessage());
 			return;
 		}
-		
 		session.setAttribute("user", u);
-		response.sendRedirect("Confirm1.jsp");
+		int id=(Integer)(session.getAttribute("id"));
+		response.sendRedirect("ShowProductDetail1.jsp?id="+id);
 	}
 %>
-
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

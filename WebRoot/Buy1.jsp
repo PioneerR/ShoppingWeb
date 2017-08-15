@@ -1,3 +1,4 @@
+<%@ page import="user.User"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="java.util.List"%>
 <%@ page import="client.CartItem"%>
@@ -7,6 +8,20 @@
 
 <%
 	request.setCharacterEncoding("utf8");
+	String idStr=request.getParameter("id");
+	User u=(User)session.getAttribute("user");
+	if(u == null && idStr == null)
+	{
+		response.sendRedirect("UserLogin1.jsp");
+		return;
+	}
+	else if(u == null && idStr != null)
+	{
+		int id=Integer.parseInt(idStr);
+		session.setAttribute("id", id);
+		response.sendRedirect("UserLogin1.jsp");
+		return;
+	}
 	Cart c = (Cart)session.getAttribute("cart");//getAttribute获得的是object类
 	if(c==null)
 	{
@@ -143,7 +158,7 @@
 				var checki=document.getElementById(id);									
 				if(checki.checked==true)
 				{
-					zero=zero+itemtotalprice;					
+					zero=zero+itemtotalprice;						
 					totals.innerText="¥ "+parseFloat(zero).toFixed(1);
 				}
 				else if(checki.checked==false)

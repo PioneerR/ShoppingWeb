@@ -124,7 +124,7 @@
 
 	    <div class="section-mid heipc100 wida backgw" style="overflow:hidden;">
 	        <div class="heia widpc30 flol colb" style="margin-left:9%;margin-right:1%;">
-	          <h3 style="margin:20px;" >手把手极简教程</h3>
+	          <h3 style="margin:20px;" class="fonts30" >手把手极简教程</h3>
 		        <p  style="font-size:20px;">
 		          <br>以「做到」为原则的教程体系，第一件事就是输出完整作品。
 		          <br>
@@ -144,7 +144,7 @@
 			<img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fg02glp0h3j310b0m5jvk.jpg" class="widpc100" />
         </div>
         <div class="heia widpc30 flol colb" > <!--块级宽度会影响排版-->
-          <h3 style="margin:25px;">学习游戏化</h3>
+          <h3 style="margin:25px;" class="fonts30">学习游戏化</h3>
 	        <p style="font-size:20px;">
 	          <br>为什么学习不可以像游戏一样，让人沉迷上瘾呢？
 	          <br>
@@ -155,7 +155,7 @@
 
 	    <div class="section-mid heipc100 wida backgw" style="overflow:hidden;">
 	  		<div class="heia widpc30 flol colb" style="margin-left:9%;margin-right:7%;">
-	          <h3 style="margin-top:50px;">全面辅导</h3>
+	          <h3 style="margin-top:50px;" class="fonts30">全面辅导</h3>
 		        <p style="font-size:20px;">
 		          <br>一切的学习均是社交。
 		          <br>
@@ -174,7 +174,7 @@
 
 	    <div class="section-mid section-photo" style="overflow:hidden;">
 	      <div class="heia wida colb fonts30 textc">
-	       <h5 style="margin:0 0 100px 0">牛 人 推 荐</h5>
+	       <h5 style="margin:0 0 100px 0" class="fonts30">牛 人 推 荐</h5>
 
 	       <div class="heipc70 wida padtbpc1 padlrpc2" >
 
