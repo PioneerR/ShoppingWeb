@@ -103,23 +103,63 @@
 			  margin:auto;
 			  background-color:white; 
 			}	
+			.disabled{
+			  background-color:gray;
+			  cursor:pointer;
+			  pointer-events: none;
+			}
+			.checkbox{
+			  display: none;
+			}
+			.checkbox+label{
+			background-color: #FFF; 
+		    border: 1px solid #C1CACA; 
+		    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05); 
+		    padding: 9px; 
+		    border-radius: 5px; 
+		    display: inline-block; 
+		    position: relative; 
+		    margin-right: 30px; 
+			}
+			
+			.checkbox:checked + label { 
+			    background-color: #ECF2F7; 
+			    border: 1px solid #92A1AC; 
+			    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1); 
+			    color: #243441; 
+			} 			 
+			.checkbox:checked + label:after{ 
+			    content: '\2714'; 
+			    position: absolute; 
+			    top:-10px; 
+			    left: 0px; 
+			    color: #758794; 
+			    width: 100%; 
+			    text-align: center; 
+			    font-size: 1.4em; 
+			    padding: 1px 0 0 0; 
+			    vertical-align: text-top; 
+			}
+			
 		</style>
 		<script type="text/javascript">			
 			function sele(id)//javascript函数名不能用关键字select
 			{				
 				var number=document.getElementById("number");
-				var checki=document.getElementById(id);									
+				var checki=document.getElementById(id);					
+				
 				if(checki.checked==true)
 				{
 					number.innerText++;	
 					check(id);
-					//alert("--1--");
+					click(1);
 				}
 				else if(checki.checked==false)
 				{
 					number.innerText--;
 					check(id);
-					//alert("--2--");
+					click(0);
+				
 					if(number.innerText<0)
 					{
 						number.innerText=0;
@@ -297,6 +337,7 @@
 				var checkall=document.getElementById("checkall");	
 				var number=document.getElementById("number");
 				
+				var click=document.getElementById("click");	
 				
 				var totals=document.getElementById("total");						
 				var total=document.getElementById("total").innerText;						
@@ -304,7 +345,10 @@
 				
 				var itemtotal=document.getElementsByName("itemtotal");										
 				if(checkall.checked==true)
-				{							
+				{				
+					sum=checks.length;
+					click.style="pointer-events:auto;background-color:#03a9f4;";
+					
 					number.innerText=checks.length;	
 					for(var j=0;j<checks.length;j++)
 					{		
@@ -316,6 +360,9 @@
 				}
 				else if(checkall.checked==false)
 				{
+					sum=0;
+					click.style="pointer-events:none;background-color:#B5B4B4;";
+					
 					number.innerText=0;
 					for(var j=0;j<checks.length;j++)
 					{
@@ -329,6 +376,7 @@
 				}																							
 			}		
 			
+			//form嵌套
 			$(document).ready(function()
 			{  
 	            $("#confirm").click(function(){  
@@ -338,6 +386,36 @@
 	            });   
 	         });  
 			
+			//超链接是否能被点击
+			var sum=0;
+			function click(a)
+			{
+				var click=document.getElementById("click");
+				var checkall=document.getElementById("checkall");
+				var checks=document.getElementsByName("check");
+				if(a==0)
+				{
+					sum=sum-1;					
+					if(sum==0)
+					click.style="pointer-events:none;background-color:#B5B4B4;";	
+				}					
+				else if(a==1)
+				{
+					sum=sum+1;				
+					if(sum>=0)
+					click.style="pointer-events:auto;background-color:#03a9f4;";
+				}
+				
+				if(sum==0)
+				{
+					checkall.checked=false;
+				}
+				else if(sum==checks.length)
+				{
+					checkall.checked=true;
+				}	
+				
+			}				
 		</script>	
 	</head>
 	<body class="padpc5"> 
@@ -362,11 +440,13 @@
 						CartItem ci=items.get(i);
 						Product p=ci.getProduct();
 				%>
-				<tr>
+				<tr id="product">
 					<td style="width:50px;">
 						<form action="Confirm1.jsp" method="post" name="form1" id="form1">
 							<input type="hidden" name="action" value="deletex" />
-							<input type="checkbox" value="<%= p.getId() %>" name="check" id="check<%= i %>" onclick="sele(this.id)"/>				
+							<input type="checkbox" value="<%= p.getId() %>" name="check" id="check<%= i %>" 
+							       class="checkbox" onclick="sele(this.id)"/>
+							<label for="check<%= i %>"></label>       				
 					</td>
 					<td style="width:200px;">
 						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
@@ -383,7 +463,8 @@
 					<td class="wid200">
 						<input type="button" id="<%= p.getId() %>-<%= i %>" class="backgbs borrl10 colw" value="-" 
 							   onclick="deleCartItem(this.id)()"/>
-						<input type="text" id="<%= p.getId() %>" name="count<%= i %>" class="backgbs textc" value="<%= ci.getCount() %>"/>
+						<input type="text" id="<%= p.getId() %>" name="count<%= i %>" class="backgbs textc" 
+							   value="<%= ci.getCount() %>" readonly="true" />
 						<input type="button" id="<%= p.getId() %>+<%= i %>" class="backgb borrr10 colw" value="+" 
 							   onclick="addCartItem(this.id)" />
 					</td>
@@ -410,8 +491,9 @@
 					<td></td>
 				</tr>
 			</table>
-			<a href="javascript:document.form1.submit()">
-				<span class="button-1 flor colw marlrpc5 backgb">结算</span>
+			<a href="javascript:document.form1.submit()" class="button-1 flor colw marlrpc5 backggy" 
+			   style="pointer-events:none;" id="click">
+				结算
 			</a>
 		</div>
 	

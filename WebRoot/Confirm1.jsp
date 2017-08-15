@@ -44,6 +44,32 @@
 		</style>
 	</head>
 	<body>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		<form action="Order1.jsp" method="post">
 		<input type="hidden" name="action" value="confirm"/>
 		<table style="border:3px solid #fff1cc;border-collapse:collapse;width:50% ">
