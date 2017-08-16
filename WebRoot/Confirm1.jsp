@@ -33,7 +33,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>确认订单</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+		<title>艺术创想</title>
 		<style type="text/css">
 			.button-1{
 			 border-radius:20px;
@@ -106,6 +107,8 @@
 			{
 				var b1=document.getElementById("b1");
 				var b2=document.getElementById("b2");
+				var sub=document.getElementById("sub");
+				sub.style="pointer-events:auto;background-color:#03a9f4;";
 				if(num==1)
 				{
 					b1.checked=true;
@@ -116,19 +119,20 @@
 					b1.checked=false;
 					b2.checked=true;
 				}
-			}	
+			}
+			
 		</script>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
-	</head>
+	</head>	
 	<body class="padpc5">		
 		<form action="Order1.jsp" name="form1" method="post">
 		<input type="hidden" name="action" value="confirm"/>
 		<div class="boxs10 borr10">
-			<div>
-				<div class="backgb" style="height:50px;width:50px;padding-left:5px;padding-top:5px;">
-					<img src="/Gouwu/images/background/info.png" />
-				</div>
+				
+			<div class="backgb" style="height:50px;width:50px;padding-left:5px;padding-top:5px;">
+				<img src="/Gouwu/images/background/info.png" />
 			</div>
+			
 			<div class="pad20">	
 				<table style="padding-bottom:2%;">
 					<tr>
@@ -137,26 +141,26 @@
 						</td>
 					</tr>
 					<tr>
-						<td style="width:120px;"><%= u.getUsername() %></td>
-						<td class="wid400"><%= u.getAddress() %></td>
-						<td class="wid200"><%= u.getPhone() %></td>
+						<td class="textc" style="width:150px;"><%= u.getUsername() %></td>
+						<td class="wid200 textl"><%= u.getAddress() %></td>
+						<td class="wid100 textl"><%= u.getPhone() %></td>
 					</tr>
 				</table>
 				
 				<div class="padtbpc2" style="margin-bottom:8%;">
-					<div class="colb fonts20 fontw700 textl" style="margin-bottom:20px;">					
+					<div class="colb fonts20 fontw700 textl" style="margin-bottom:20px;margin-left:13px;">					
 						<img src="/Gouwu/images/background/pay.png" />&nbsp;&nbsp;付款方式						
 					</div>
 					<input type="checkbox" name="payset" class="radio" id="b1" value="wx" onclick="sure(1)"/>
-					<label for="b1" style="width:100px;margin-right:5px;">微信支付</label>
+					<label for="b1" style="margin-right:5px;margin-left:20px;">微信支付</label>
 					<input type="checkbox" name="payset" class="radio" id="b2" value="zfb" onclick="sure(2)"/>					
-					<label for="b2" style="width:100px;">支付宝</label>
+					<label for="b2" style="padding-left:15px;padding-right:15px;" >支付宝</label>
 				</div>
 				
-				<table class="widpc100" style="margin-top:2%;">
+				<table class="widpc100" style="margin-top:2%;padding-left:10px;padding-right:10px; ">
 					<tr>
 						<td class="colb fonts20 fontw700 textl" colspan=4>
-							<img src="/Gouwu/images/background/order.png" style="margin-right:15px;"/>订单确认
+							<img src="/Gouwu/images/background/order.png" style="margin-right:15px;margin-left:11px;"/>订单确认
 						</td>
 					</tr>
 					<tr>
@@ -208,7 +212,8 @@
 					</tr>
 				</table>				
 			</div>				
-			<a href="javascript:document.form1.submit()" class="button-1 flor colw marpc1 backgb"  >
+			<a href="javascript:document.form1.submit()" style="pointer-events:none;"
+			   class="button-1 flor colw marpc1 backggy" id="sub">
 				提交订单
 			</a>
 			<a href="Buy1.jsp" class="flor colgy marpc1 backgw pad5 boxs5 textc borr5" style="width:70px;" >

@@ -59,7 +59,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>产品详情</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+		<title>艺术创想</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 		<style type="text/css">
 		.button-1{

@@ -90,7 +90,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>购物车</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+		<title>艺术创想</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 		<script type="text/javascript" src="/Gouwu/jquery/jquery-3.1.1.min.js"></script>
 		<style type="text/css">			
@@ -398,9 +399,14 @@
 		</script>	
 	</head>
 	<body class="padpc5"> 
+	
 		<div class="backgb flol" style="height:50px;width:50px;padding-left:15px;padding-top:15px;">
 			<img src="/Gouwu/images/background/cart.png" />
 		</div>
+	<%
+		if(it.hasNext())
+		{
+	%>
 		<div class="pad10 boxs10 borr10">
 			<table class="widpc100">
 				<tr>
@@ -475,6 +481,20 @@
 				结算
 			</a>
 		</div>
-	
+	<%
+		}
+		else
+		{	
+	%>
+		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc15" style="height:120px;">
+			<img src="/Gouwu/images/background/cart1.png"/>
+			购物车空空如也!
+			<div class="button-1 colw marlrpc5 backgb boxs5">
+				快去选购课程吧~
+			</div>
+		</div>
+	<%
+		}
+	%>
 	</body>
 </html>

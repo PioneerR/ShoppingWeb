@@ -9,6 +9,7 @@
 <html>
 	<head>
   		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
 		<title>艺术创想</title>
 	    <link type="text/css" rel="stylesheet" href="/Gouwu/css/base.css" /> 
 	    <style type="text/css">

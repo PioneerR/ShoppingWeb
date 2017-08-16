@@ -43,6 +43,14 @@
 		int id=Integer.parseInt(ids[k]);
 		c.deleteItemById(id);
 	}
+	
+	
+	String [] paysets=request.getParameterValues("payset");
+	String payset=paysets[0];
+	session.setAttribute("payset", payset);
+	response.setHeader("refresh","3;URL=payset.jsp");
+	
+	
 %>
 
 
@@ -51,9 +59,19 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>订单状态</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+		<title>艺术创想</title>
+		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 	</head>
-	<body>
-		<h3>您的订单已成功下单....3秒钟后跳转至支付页面....</h3>
+	<body class="padpc10">
+
+		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr20 padtbpc15" style="height:120px;">
+			<img src="/Gouwu/images/icon/gou.png"/>
+			<span>您的订单已成功下单....3秒钟后跳转至支付页面....</span>
+		</div>
+
 	</body>
 </html>
+
+
+	
