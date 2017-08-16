@@ -45,7 +45,8 @@
 			 padding:10px;
 			 padding-right: 20px;
 			 margin: auto;
-			 margin-bottom: 20px;
+			 margin-bottom: 20px;			
+			 transition:all 0.6s;
 			}
 			div.button-1:hover{
 			 border:#F44336 solid;

@@ -270,17 +270,17 @@
 	.heipc90{height: 90%;}
 	.heipc100{height: 100%;}
 	/*box-shadow*/
-	.boxs10{box-shadow:0 0 10px #B5B4B4;}
-	.boxs15{box-shadow:0 0 15px #B5B4B4;}
-	.boxs20{box-shadow:0 0 20px #B5B4B4;}
+	.boxs10{box-shadow:0 0 10px #B5B4B4;transition:all 0.6s;}
+	.boxs15{box-shadow:0 0 15px #B5B4B4;transition:all 0.6s;}
+	.boxs20{box-shadow:0 0 20px #B5B4B4;transition:all 0.6s;}
 	
-	.boxscb10{box-shadow:0 0 10px #03a9f4;}
-	.boxscb15{box-shadow:0 0 15px #03a9f4;}
-	.boxscb20{box-shadow:0 0 20px #03a9f4;}
+	.boxscb10{box-shadow:0 0 10px #03a9f4;transition:all 0.6s;}
+	.boxscb15{box-shadow:0 0 15px #03a9f4;transition:all 0.6s;}
+	.boxscb20{box-shadow:0 0 20px #03a9f4;transition:all 0.6s;}
 	
-	.boxsb10{box-shadow:10px 20px 10px #B5B4B4,-10px 20px 10px #B5B4B4;}
-	.boxsb15{box-shadow:10px 20px 15px #B5B4B4,-10px 20px 15px #B5B4B4;}
-	.boxsb20{box-shadow:10px 20px 20px #B5B4B4,-10px 20px 20px #B5B4B4;}
+	.boxsb10{box-shadow:10px 20px 10px #B5B4B4,-10px 20px 10px #B5B4B4;transition:all 0.6s;}
+	.boxsb15{box-shadow:10px 20px 15px #B5B4B4,-10px 20px 15px #B5B4B4;transition:all 0.6s;}
+	.boxsb20{box-shadow:10px 20px 20px #B5B4B4,-10px 20px 20px #B5B4B4;transition:all 0.6s;}
 	/*colspan rowspan*/
 	.cols2{colspan:2;}
 	.cols3{colspan:3;}
@@ -322,7 +322,6 @@
 	    border-radius: 5px; 
 	    display: inline-block; 
 	    position: relative; 
-   
 	}
 	/*label点击瞬间的效果*/   
 	.checkbox+ label:active { 

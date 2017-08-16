@@ -1,4 +1,4 @@
-<%@page import="java.util.Iterator"%>
+<%@ page import="java.util.Iterator"%>
 <%@ page import="client.Cart"%>
 <%@ page import="client.CartItem"%>
 <%@ page import="java.util.List"%>
@@ -65,43 +65,40 @@
 			}
 			tr{
 			height:30px; 
-			}
-			.box { 
-				position: relative; 
-				display: inline-block; 
-				width: 60px; 
-				text-align:center;
-				background-color: #fff; 
-				border-radius: 5px; 
-				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
-				border-radius: 5px; 
-				-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-				transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-			} 
-			.box::after { 
-				content: ""; 
-				border-radius: 5px; 
-				position: absolute; 
-				z-index: -1; 
-				top: 0; left: 0; 
-				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
-				-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-				transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-			} 
-			.box:hover { 
-				-webkit-transform: scale(1.1, 1.1); 
-				transform: scale(1.1, 1.1); 
-			} 
-			
-			
-			
+			}			
 			.boxs5{
-			box-shadow:0 0 2px #B5B4B4;
-			transition:all 0.6s;
+				box-shadow:0 0 1px #B5B4B4;
+				transition:all 0.6s;
 			}
 			.boxs5:hover {  
-				box-shadow:0 0 15px #B5B4B4;
+				box-shadow:0 0 10px #B5B4B4;
 			} 
+			.boxs5::after{
+				transition:all 0.6s;
+			}
+			
+			.radio{
+			  display: none;
+			}
+			.radio+label{
+				background-color: #FFF; 
+			    box-shadow: 0 0px 1px #B5B4B4; 
+			    padding: 7px; 
+			    border-radius: 5px; 	
+			    transition:all 0.6s;
+			}
+			.radio+ label:hover{ 
+			    box-shadow: 0 0px 10px #B5B4B4;   
+			}
+			.radio:checked + label { 
+			    background-color: #03a9f4; 
+			    box-shadow: 0 0px 1px #B5B4B4; 
+			    color: #fff; 
+			    transition:all 0.6s;
+			}
+			.radio:checked + label:hover { 
+			     box-shadow: 0 0px 10px #B5B4B4; 
+			}
 			
 		</style>
 		<script type="text/javascript">
@@ -111,21 +108,13 @@
 				var b2=document.getElementById("b2");
 				if(num==1)
 				{
-					b1.style.backgroundColor="#03a9f4";
-					b1.style.color="#fff";
-					
-					b2.style.backgroundColor="#fff";
-					b2.style.color="#B5B4B4";
-					b2.style.boxShadow="0 0 2px #B5B4B4";
+					b1.checked=true;
+					b2.checked=false;
 				}
 				else if(num==2)
 				{
-					b1.style.backgroundColor="#fff";
-					b1.style.color="#B5B4B4";
-					b1.style.boxShadow="0 0 2px #B5B4B4";
-					
-					b2.style.backgroundColor="#03a9f4";
-					b2.style.color="#fff";
+					b1.checked=false;
+					b2.checked=true;
 				}
 			}	
 		</script>
@@ -158,8 +147,10 @@
 					<div class="colb fonts20 fontw700 textl" style="margin-bottom:20px;">					
 						<img src="/Gouwu/images/background/pay.png" />&nbsp;&nbsp;付款方式						
 					</div>
-					<input type="button" name="1" class="boxs10 wid100 flol borr5 textc padtb10" style="margin-right:10px;" id="b1" value="微信支付" onclick="sure(1)" />
-					<input type="button" name="2" class="boxs10 wid100 flol borr5 textc padtb10" id="b2" value="支付宝" onclick="sure(2)" />					
+					<input type="checkbox" name="payset" class="radio" id="b1" value="wx" onclick="sure(1)"/>
+					<label for="b1" style="width:100px;margin-right:5px;">微信支付</label>
+					<input type="checkbox" name="payset" class="radio" id="b2" value="zfb" onclick="sure(2)"/>					
+					<label for="b2" style="width:100px;">支付宝</label>
 				</div>
 				
 				<table class="widpc100" style="margin-top:2%;">
@@ -220,33 +211,10 @@
 			<a href="javascript:document.form1.submit()" class="button-1 flor colw marpc1 backgb"  >
 				提交订单
 			</a>
-			<a href="Buy1.jsp" class="flor colgy marpc1 backgw pad5 boxs5" >
+			<a href="Buy1.jsp" class="flor colgy marpc1 backgw pad5 boxs5 textc borr5" style="width:70px;" >
 				返回
 			</a>
 		</div>
 		</form>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
 	</body>
 </html>

@@ -113,7 +113,14 @@
 			  width: 25%;
 			  margin:auto;
 			  background-color:white; 
-			}	
+			}
+			.boxs5{
+				box-shadow:0 0 1px #B5B4B4;
+				transition:all 0.6s;
+			}
+			.boxs5:hover {  
+				box-shadow:0 0 10px #B5B4B4;
+			} 	
 		</style>
 		<script type="text/javascript">			
 			function sele(id)//javascript函数名不能用关键字select。
@@ -454,8 +461,8 @@
 					<td><input type="checkbox" id="checkall" class="checkbox" /><label for="checkall"></label></td>
 					<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
 					<td class="textl padlr20">
-						<a href="" id="confirm" onclick="return confirm('确定要删除吗？')" class="colgy">
-							删除选中的课程</a></form>
+						<a href="" id="confirm" onclick="return confirm('确定要删除吗？')" class="colgy pad5 borr5 boxs5">
+						删除选中的课程</a></form>
 					</td>
 					<td></td>
 					<td class="colgys fonts20">Total</td>
