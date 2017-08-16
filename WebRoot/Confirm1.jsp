@@ -66,31 +66,68 @@
 			tr{
 			height:30px; 
 			}
+			.box { 
+				position: relative; 
+				display: inline-block; 
+				width: 60px; 
+				text-align:center;
+				background-color: #fff; 
+				border-radius: 5px; 
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
+				border-radius: 5px; 
+				-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+				transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+			} 
+			.box::after { 
+				content: ""; 
+				border-radius: 5px; 
+				position: absolute; 
+				z-index: -1; 
+				top: 0; left: 0; 
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+				-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+				transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+			} 
+			.box:hover { 
+				-webkit-transform: scale(1.1, 1.1); 
+				transform: scale(1.1, 1.1); 
+			} 
+			
+			
+			
+			.boxs5{
+			box-shadow:0 0 2px #B5B4B4;
+			transition:all 0.6s;
+			}
+			.boxs5:hover {  
+				box-shadow:0 0 15px #B5B4B4;
+			} 
+			
 		</style>
 		<script type="text/javascript">
-		function sure(num)
-		{
-			var b1=document.getElementById("b1");
-			var b2=document.getElementById("b2");
-			if(num==1)
+			function sure(num)
 			{
-				b1.style.backgroundColor="#03a9f4";
-				b1.style.color="#fff";
-				
-				b2.style.backgroundColor="#fff";
-				b2.style.color="#B5B4B4";
-				b2.style.boxShadow="0 0 2px #B5B4B4";
-			}
-			else if(num==2)
-			{
-				b1.style.backgroundColor="#fff";
-				b1.style.color="#B5B4B4";
-				b1.style.boxShadow="0 0 2px #B5B4B4";
-				
-				b2.style.backgroundColor="#03a9f4";
-				b2.style.color="#fff";
-			}
-		}		
+				var b1=document.getElementById("b1");
+				var b2=document.getElementById("b2");
+				if(num==1)
+				{
+					b1.style.backgroundColor="#03a9f4";
+					b1.style.color="#fff";
+					
+					b2.style.backgroundColor="#fff";
+					b2.style.color="#B5B4B4";
+					b2.style.boxShadow="0 0 2px #B5B4B4";
+				}
+				else if(num==2)
+				{
+					b1.style.backgroundColor="#fff";
+					b1.style.color="#B5B4B4";
+					b1.style.boxShadow="0 0 2px #B5B4B4";
+					
+					b2.style.backgroundColor="#03a9f4";
+					b2.style.color="#fff";
+				}
+			}	
 		</script>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 	</head>
@@ -179,9 +216,12 @@
 						<td class="colb fonts22 fontw700" id="total">¥ <%= sum %></td>
 					</tr>
 				</table>				
-			</div>	
+			</div>				
 			<a href="javascript:document.form1.submit()" class="button-1 flor colw marpc1 backgb"  >
 				提交订单
+			</a>
+			<a href="Buy1.jsp" class="flor colgy marpc1 backgw pad5 boxs5" >
+				返回
 			</a>
 		</div>
 		</form>

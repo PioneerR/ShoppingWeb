@@ -116,7 +116,7 @@
 			}	
 		</style>
 		<script type="text/javascript">			
-			function sele(id)//javascript函数名不能用关键字select
+			function sele(id)//javascript函数名不能用关键字select。
 			{				
 				var number=document.getElementById("number");
 				var checki=document.getElementById(id);					
@@ -387,7 +387,6 @@
 				{
 					checkall.checked=true;
 				}	
-				
 			}				
 		</script>	
 	</head>
