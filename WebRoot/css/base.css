@@ -352,6 +352,15 @@
 	    vertical-align: text-top; 
 	}
 	
+	
+	.boxs5{
+		box-shadow:0 0 1px #B5B4B4;
+		transition:all 0.6s;
+	}
+	.boxs5:hover {  
+		box-shadow:0 0 10px #B5B4B4;
+	} 
+	
 	/*-------------------------------------*/
 	.button-3{
 	 border-radius:40px;

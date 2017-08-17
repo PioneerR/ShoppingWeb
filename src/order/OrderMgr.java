@@ -34,6 +34,9 @@ public class OrderMgr {
 	{
 		return u.buy(c);
 	}
+	public List<SalesOrder> getOrders() {
+		return dao.getOrders();
+	}
 	public int getOrders(List<SalesOrder> orders,int pageNo,int pageSize)
 	{
 		return dao.getOrders(orders, pageNo, pageSize);

@@ -28,7 +28,7 @@
 	</head>
 	<body class="padpc10">
 		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr20" style="padding-bottom:5%;">
-			<div class="backgb" style="height:50px;width:50px;padding-left:5px;padding-top:9px;">
+			<div class="backgb" style="height:50px;width:50px;padding-left:4px;padding-top:9px;">
 				<img src="/Gouwu/images/icon/payset.png" />
 			</div>
 	<%

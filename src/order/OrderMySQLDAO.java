@@ -94,17 +94,48 @@ public class OrderMySQLDAO implements OrderDAO {
 	@Override
 	public List<SalesOrder> getOrders() 
 	{
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return null;
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		String sql="select salesorder.id sid,salesorder.userid,salesorder.addr,salesorder.odate,"
+				  +"salesorder.status,user.id uid,user.username,user.password,user.phone,user.addr,"
+				  + "user.rdate from salesorder inner join user on user.id=salesorder.userid";
+		ResultSet rs=DB.getRs(stmt, sql);
+		List<SalesOrder> orders=null;
+		try
+		{
+			orders=new ArrayList<SalesOrder>();
+			while(rs.next())
+			{
+				User u=new User();
+				u.setId(rs.getInt("uid"));
+				u.setAddress(rs.getString("user.addr"));
+				u.setDate(rs.getTimestamp("user.rdate"));
+				u.setPassword(rs.getString("password"));
+				u.setPhone(rs.getString("phone"));
+				u.setUsername(rs.getString("username"));
+				
+				
+				SalesOrder so=new SalesOrder();
+				so.setAddress(rs.getString("addr"));
+				so.setODate(rs.getTimestamp("odate"));
+				so.setStatus(rs.getInt("status"));
+				so.setId(rs.getInt("sid"));
+				so.setUser(u);
+				
+				orders.add(so);				
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(stmt);
+			DB.close(rs);
+			DB.close(conn);
+		}
+		return orders;
 	}
 
 	@Override
