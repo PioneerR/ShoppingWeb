@@ -8,20 +8,6 @@
 
 <%
 	request.setCharacterEncoding("utf8");
-	String idStr=request.getParameter("id");
-	User u=(User)session.getAttribute("user");
-	if(u == null && idStr == null)
-	{
-		response.sendRedirect("UserLogin1.jsp");
-		return;
-	}
-	else if(u == null && idStr != null)
-	{
-		int id=Integer.parseInt(idStr);
-		session.setAttribute("id", id);
-		response.sendRedirect("UserLogin1.jsp");
-		return;
-	}
 	Cart c = (Cart)session.getAttribute("cart");//getAttribute获得的是object类
 	if(c==null)
 	{
@@ -82,14 +68,18 @@
 	int a=0;
 	List<CartItem>items=c.getItems();
 	Iterator<CartItem> it=items.iterator();
+	
+	//点击浏览器后退按钮时，不读取该页缓存，并自动刷新本页面
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0); 				
 %>
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		 
 		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
 		<title>艺术创想</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
@@ -406,6 +396,20 @@
 	<%
 		if(it.hasNext())
 		{
+			String idStr=request.getParameter("id");
+			User u=(User)session.getAttribute("user");
+			if(u == null && idStr == null)
+			{
+				response.sendRedirect("UserLogin1.jsp");
+				return;
+			}
+			else if(u == null && idStr != null)
+			{
+				int id=Integer.parseInt(idStr);
+				session.setAttribute("id", id);
+				response.sendRedirect("UserLogin1.jsp");
+				return;
+			}
 	%>
 		<div class="pad10 boxs10 borr10">
 			<table class="widpc100">
@@ -435,7 +439,7 @@
 					</td>
 					<td style="width:200px;">
 						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
-						 	<img src="images/product/<%= p.getId()+".jpg" %>" class="borr10" style="height:120px;width:120px;" />
+						 	<img src="images/product/<%= p.getId()+".jpg" %>" class="borr10 boxs5" style="height:120px;width:120px;" />
 						</a>
 					</td>
 					<td >
@@ -476,7 +480,7 @@
 					<td></td>
 				</tr>
 			</table>
-			<a href="javascript:document.form1.submit()" class="button-1 flor colw marlrpc5 backggy" 
+			<a href="javascript:document.form1.submit()" class="button-1 flor colw marlrpc5 backggy boxs5" 
 			   style="pointer-events:none;" id="click">
 				结算
 			</a>
@@ -486,12 +490,11 @@
 		else
 		{	
 	%>
-		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc15" style="height:120px;">
-			<img src="/Gouwu/images/background/cart1.png"/>
-			购物车空空如也!
-			<div class="button-1 colw marlrpc5 backgb boxs5">
-				快去选购课程吧~
-			</div>
+		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc10" style="height:200px;">
+			<img src="/Gouwu/images/background/cart1.png"/>购物车空空如也!~<br>
+			<a class="borr20 fonts18 marlrpc5 backgb boxs5 curp padtb5" href="ShowProducts1.jsp"
+				 style="width:200px;margin-top:70px;margin-left:43%;display:block;color:#fff;">快去选购课程吧~
+			</a>
 		</div>
 	<%
 		}
