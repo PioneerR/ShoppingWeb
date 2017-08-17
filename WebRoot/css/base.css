@@ -33,12 +33,12 @@
 	.fontw1000{font-weight: 1000;}
 	
 	/*font-family*/
-	.fonta{font-family:Arial;}
-	.fontt{font-family:Tahoma;}
-	.fontv{font-family:Verdana;}
-	.fonts{font-family:Simsun;}
-	.fontl{font-family:'Lucida Console';}
-	.fontw{font-family:'Microsoft Yahei';}
+	.fontfa{font-family:Arial;}
+	.fontft{font-family:Tahoma;}
+	.fontfv{font-family:Verdana;}
+	.fontfs{font-family:Simsun;}
+	.fontfl{font-family:Lucida Console;}
+	.fontfwy{font-family:Microsoft Yahei;}
 
 	/* text-align */
 	.textc{text-align:center;}
@@ -295,6 +295,7 @@
 	/*-------------------------------------*/
 	div{
 		color: #696969;
+		font-family:Microsoft YaHei;
 	}
 	body{
 		margin: 0;

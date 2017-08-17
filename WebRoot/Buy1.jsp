@@ -15,6 +15,21 @@
 		session.setAttribute("cart", c);
 	}
 
+	String idStr=request.getParameter("id");
+	User u=(User)session.getAttribute("user");
+	if(u == null && idStr == null)
+	{
+		response.sendRedirect("UserLogin1.jsp");
+		return;
+	}
+	else if(u == null && idStr != null)
+	{
+		int id=Integer.parseInt(idStr);
+		session.setAttribute("id", id);
+		response.sendRedirect("UserLogin1.jsp");
+		return;
+	}
+	
 	String action=request.getParameter("action");
 	if(action !=null && action.trim().equals("add"))
 	{
@@ -394,22 +409,8 @@
 			<img src="/Gouwu/images/background/cart.png" />
 		</div>
 	<%
-		if(it.hasNext())
+		if(it.hasNext()==true)
 		{
-			String idStr=request.getParameter("id");
-			User u=(User)session.getAttribute("user");
-			if(u == null && idStr == null)
-			{
-				response.sendRedirect("UserLogin1.jsp");
-				return;
-			}
-			else if(u == null && idStr != null)
-			{
-				int id=Integer.parseInt(idStr);
-				session.setAttribute("id", id);
-				response.sendRedirect("UserLogin1.jsp");
-				return;
-			}
 	%>
 		<div class="pad10 boxs10 borr10">
 			<table class="widpc100">
@@ -487,7 +488,7 @@
 		</div>
 	<%
 		}
-		else
+		else if(it.hasNext()==false)
 		{	
 	%>
 		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc10" style="height:200px;">

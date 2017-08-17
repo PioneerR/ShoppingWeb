@@ -27,6 +27,7 @@
 	int orderId=u.buy(cc);
 	//买完之后，返回订单号。购买的过程中，将cartItems集合中的多个CartItem传递给商家变成SalesItem
 	//组成集合List<SalesItem> salesItems，将这个集合存入订单SalesOrder对象中，返回订单号
+	session.setAttribute("orderId", orderId);
 	session.removeAttribute("cartorder");//cart的生命周期结束，销毁
 	
 	
@@ -48,8 +49,7 @@
 	String [] paysets=request.getParameterValues("payset");
 	String payset=paysets[0];
 	session.setAttribute("payset", payset);
-	response.setHeader("refresh","3;URL=payset.jsp");
-	
+	response.setHeader("refresh","2;URL=payset.jsp");//3秒钟后跳转
 	
 %>
 
@@ -65,9 +65,12 @@
 	</head>
 	<body class="padpc10">
 
-		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr20 padtbpc15" style="height:120px;">
+		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr20" style="padding-bottom:15%;">
+			<div class="backgb" style="height:50px;width:50px;padding-left:2px;padding-top:2px;margin-bottom:10%;">
+				<img src="/Gouwu/images/icon/gou1.png" />
+			</div>
 			<img src="/Gouwu/images/icon/gou.png"/>
-			<span>您的订单已成功下单....3秒钟后跳转至支付页面....</span>
+			<span style="margin-bottom:12%;">您的订单已成功下单....3秒钟后跳转至支付页面....</span>
 		</div>
 
 	</body>

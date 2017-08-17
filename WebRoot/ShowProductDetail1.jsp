@@ -87,7 +87,7 @@
 			{
 				alert("已成功加入购物车！~");
 				window.setTimeout(document.form1.submit(),1000);
-				return false;//提交表单后，不刷新页面
+				//return false;//提交表单后，不刷新页面,似乎无效
 			}
 			function add()
 			{
@@ -107,6 +107,7 @@
 				document.getElementById("count").value=a;	
 			}
 		</script>	
+		
 	</head>
 	<body class="padlrpc5">
 		<div class="boxs10 heia wida borr20 martbpc5 backgbs" style="overflow:hidden;padding:5% 8%;background-color:#c8f7f7">
@@ -129,7 +130,7 @@
 						</p>
 					</div>
 				</div>
-				
+
 				<div style="margin-left:15%;">
 					<form name="form1" action="Buy1.jsp" method="post">
 					<input type="hidden" name="action" value="add"/>
@@ -156,7 +157,7 @@
 						</tr>
 						<tr style="height:50px">
 							<td>                      
-								<a href="Buy1.jsp" onclick="document.form1.submit();">
+								<a href="Buy1.jsp?id=<%= p.getId() %>" onclick="document.form1.submit();">
 									<div class="button-1 backgr" style="cursor:pointer;">				     
 							          	<div class="title-text colw" style="font-size:16px;">立刻下单</div>
 							        </div>

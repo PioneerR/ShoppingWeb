@@ -44,7 +44,7 @@
 		table table:hover{
 		  box-shadow:0 0 0px #fff;	
 		}
-		</style>
+		</style>		
 	</head>
 	<body style="padding:5% 8%;">
 	<%
@@ -66,7 +66,7 @@
 					<tr>
 						<td style="text-align:left;">
 							<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
-								<b class="fonts20 colb" style="width:25%;"><%= p.getName() %></b>
+								<b class="fonts20 colb" style="width:25%;font-family:Microsoft Yahei;"><%= p.getName() %></b>
 							</a>
 						</td>
 						<td class="textr colr fonts20" style="width:5%;" >
@@ -74,7 +74,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="cols2 textl" style="color:#696969" >
+						<td class="cols2 textl" style="color:#696969;font-family:Microsoft Yahei;" >
 							<%= p.getDescribe() %>
 						</td>
 					</tr>
