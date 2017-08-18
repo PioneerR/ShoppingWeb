@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%
 
-
-%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -93,8 +90,40 @@
 			background: url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2e1y440tj304g04g0nx.jpg")repeat;
 			}
 	    </style>
+	    <script type="text/javascript">
+	    	window.onscroll=function()
+	    	{
+	    		var t=document.documentElement.scrollTop || document.body.scrollTop;
+	    		var nav=document.getElementById("nav");
+	    		if(t<=300)
+	    		{
+	    			nav.style.backgroundColor='rgba(50,170,220,-0.1)';
+	    			nav.style.boxShadow='none';
+	    		}
+	    		else
+	    		{
+	    			nav.style.backgroundColor='rgba(50,170,220,1)';//如果用双引号就会无效
+	    			nav.style.boxShadow='5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4';
+	    		} 
+	    	}
+	    </script>
 	</head>
 	<body>
+		<div class="widpc100" style="position:fixed;top:0;height:70px;" id="nav">
+			<nav style="">
+				<a href="Index1.jsp" style="margin-right:40px;margin-left:7%;color:white;" class="fontw700">				
+					<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:50px;">艺术创想
+				</a>
+				<a href="ShowProducts1.jsp" class="" style="color:#fff;back">课程</a>
+				<a href="Buy1.jsp">
+					<img src="/Gouwu/images/background/cart2.png" class="wida" style="height:20px;margin-left:55%; ">
+				</a>
+				<a>
+				
+				</a>
+			</nav>
+		</div>
+		
 		<div class="widpc100 heipc100 header">
 	      <div class="widpc100 heipc100 header-filter">
 	          <div class="heia wida textc" style="padding-top:15%">
@@ -237,6 +266,30 @@
 	    </div>
 	    <div class="section-bottom borrb20 padtbpc5 fonts30 colb textc">
 	      <h3>现在开始认知升级</h3>
+	    </div>
+	    
+	    <div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
+	    	<div class="widpc100 heia">
+		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">
+			    	<a href="" target="_blank" style="position:relative;left:22%;top:22%;">				
+						<img src="/Gouwu/images/icon/weibo.png" class="wida" style="height:20px;border-radius:50%">
+					</a>
+				</div>
+				<div class="flol" style="margin-right:20px;border-radius:60%;height:40px;width:40px;background-color:#4867AA;">
+					<a href="" target="_blank" style="position:relative;left:20%;top:20%;">				
+						<img src="/Gouwu/images/icon/facebook.png" class="wida" style="height:25px;border-radius:50%">
+					</a>
+				</div>
+				<div class="flol backg" style="margin-right:20px;border-radius:60%;height:40px;width:40px;">
+					<a href="https://github.com/PioneerR" style="position:relative;left:20%;top:20%;">				
+						<img src="/Gouwu/images/icon/github.png" class="wida" style="height:25px;border-radius:50%">
+					</a>
+				</div>
+			</div>
+			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+				Copyright © 2017 艺术创想  Designed by 
+				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
+			</div>
 	    </div>
 	</body>
 </html>

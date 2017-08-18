@@ -109,66 +109,93 @@
 		</script>	
 		
 	</head>
-	<body class="padlrpc5">
-		<div class="boxs10 heia wida borr20 martbpc5 backgbs" style="overflow:hidden;padding:5% 8%;background-color:#c8f7f7">
-		   
-		    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
-			    <div>
-				  <img src="images/product/<%= p.getId()+".jpg" %>" class="wida" style="height:450px;"/>
+	<body >
+		<div class="padlrpc5">
+			<div class="boxs10 heia wida borr20 martbpc5 backgbs" style="overflow:hidden;padding:5% 8%;background-color:#c8f7f7">
+			   
+			    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
+				    <div>
+					  <img src="images/product/<%= p.getId()+".jpg" %>" class="wida" style="height:450px;"/>
+					</div>
+				</div>
+				
+				<div class="flol" style="margin-left:10%;width:40%">
+					
+					<div>	
+						<div style="height:50px" class="textc">
+							<b class="colb" style="font-size:40px;"><%= p.getName() %></b>
+						</div>
+						<div style="height:200px;">
+							<p class="textl colgys fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<%= p.getDescribe() %>
+							</p>
+						</div>
+					</div>
+	
+					<div style="margin-left:15%;">
+						<form name="form1" action="Buy1.jsp" method="post">
+						<input type="hidden" name="action" value="add"/>
+						<input type="hidden" name="id" value="<%= p.getId() %>"/>
+						<table>	
+							<tr style="height:50px;">
+								<td><b class="colr fonts28">¥<%= p.getNormalPrice() %></b></td>
+							</tr>
+							<tr style="height:50px">
+								<td>
+									<input type="button" style="width:20%;font-size:20px;"class="borrl10" value="-" onclick="dele()"/>
+									<input type="text" id="count" name="count" class="textc" value="<%= count %>"/>
+									<input type="button" style="width:20%;font-size:20px;" class="borrr10" value="+" onclick="add()"/>
+								</td>
+							</tr>
+							<tr style="height:50px">
+								<td>
+									<a href="" onclick="aler()" >
+										<div class="button-1 backgy" style="cursor:pointer;">				            
+								          	<div class="title-text colgys" style="font-size:16px;">加入购物车</div>
+								        </div>
+							        </a>
+								</td>
+							</tr>
+							<tr style="height:50px">
+								<td>                      
+									<a href="Buy1.jsp?id=<%= p.getId() %>" onclick="document.form1.submit();">
+										<div class="button-1 backgr" style="cursor:pointer;">				     
+								          	<div class="title-text colw" style="font-size:16px;">立刻下单</div>
+								        </div>
+									</a>
+								</td>
+							</tr>				
+						</table>
+						</form>
+			    	</div>
+			    	
+			   </div>
+			 </div>
+		 </div>
+		  
+		 <div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
+	    	<div class="widpc100 heia">
+		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">
+			    	<a href="" target="_blank" style="position:relative;left:22%;top:22%;">				
+						<img src="/Gouwu/images/icon/weibo.png" class="wida" style="height:20px;border-radius:50%">
+					</a>
+				</div>
+				<div class="flol" style="margin-right:20px;border-radius:60%;height:40px;width:40px;background-color:#4867AA;">
+					<a href="" target="_blank" style="position:relative;left:20%;top:20%;">				
+						<img src="/Gouwu/images/icon/facebook.png" class="wida" style="height:25px;border-radius:50%">
+					</a>
+				</div>
+				<div class="flol backg" style="margin-right:20px;border-radius:60%;height:40px;width:40px;">
+					<a href="https://github.com/PioneerR" style="position:relative;left:20%;top:20%;">				
+						<img src="/Gouwu/images/icon/github.png" class="wida" style="height:25px;border-radius:50%">
+					</a>
 				</div>
 			</div>
-			
-			<div class="flol" style="margin-left:10%;width:40%">
-				
-				<div>	
-					<div style="height:50px" class="textc">
-						<b class="colb" style="font-size:40px;"><%= p.getName() %></b>
-					</div>
-					<div style="height:200px;">
-						<p class="textl colgys fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<%= p.getDescribe() %>
-						</p>
-					</div>
-				</div>
-
-				<div style="margin-left:15%;">
-					<form name="form1" action="Buy1.jsp" method="post">
-					<input type="hidden" name="action" value="add"/>
-					<input type="hidden" name="id" value="<%= p.getId() %>"/>
-					<table>	
-						<tr style="height:50px;">
-							<td><b class="colr fonts28">¥<%= p.getNormalPrice() %></b></td>
-						</tr>
-						<tr style="height:50px">
-							<td>
-								<input type="button" style="width:20%;font-size:20px;"class="borrl10" value="-" onclick="dele()"/>
-								<input type="text" id="count" name="count" class="textc" value="<%= count %>"/>
-								<input type="button" style="width:20%;font-size:20px;" class="borrr10" value="+" onclick="add()"/>
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td>
-								<a href="" onclick="aler()" >
-									<div class="button-1 backgy" style="cursor:pointer;">				            
-							          	<div class="title-text colgys" style="font-size:16px;">加入购物车</div>
-							        </div>
-						        </a>
-							</td>
-						</tr>
-						<tr style="height:50px">
-							<td>                      
-								<a href="Buy1.jsp?id=<%= p.getId() %>" onclick="document.form1.submit();">
-									<div class="button-1 backgr" style="cursor:pointer;">				     
-							          	<div class="title-text colw" style="font-size:16px;">立刻下单</div>
-							        </div>
-								</a>
-							</td>
-						</tr>				
-					</table>
-					</form>
-		    	</div>
-		    	
-		   </div>
-		 </div>   	
+			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+				Copyright © 2017 艺术创想  Designed by 
+				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
+			</div>
+	    </div>
+	      	
 	</body>
 </html>

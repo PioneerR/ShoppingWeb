@@ -403,102 +403,128 @@
 			}				
 		</script>	
 	</head>
-	<body class="padpc5"> 
-	
-		<div class="backgb flol" style="height:50px;width:50px;padding-left:15px;padding-top:15px;">
-			<img src="/Gouwu/images/background/cart.png" />
+	<body > 
+		<div class="padpc5">
+			<div class="backgb flol" style="height:50px;width:50px;padding-left:15px;padding-top:15px;">
+				<img src="/Gouwu/images/background/cart.png" />
+			</div>
+		<%
+			if(it.hasNext()==true)
+			{
+		%>
+			<div class="pad10 boxs10 borr10">
+				<table class="widpc100">
+					<tr>
+						<td></td>
+						<td class="colb fonts20 fontw700">购物车</td>
+						<td>课程名称</td>
+						<td>课程单价</td>
+						<td>购买数量</td>
+						<td>订单总价</td>
+						<td></td>
+					</tr>
+					<tr><td colspan="7"><hr></td></tr>
+					<%
+						for(int i=0;i<items.size();i++)
+						{	
+							CartItem ci=items.get(i);
+							Product p=ci.getProduct();
+					%>
+					<tr id="product">
+						<td style="width:50px;">
+							<form action="Confirm1.jsp" method="post" name="form1" id="form1">
+								<input type="hidden" name="action" value="deletex" />
+								<input type="checkbox" value="<%= p.getId() %>" name="check" id="check<%= i %>" 
+								       class="checkbox" onclick="sele(this.id)"/>
+								<label for="check<%= i %>"></label>       				
+						</td>
+						<td style="width:200px;">
+							<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
+							 	<img src="images/product/<%= p.getId()+".jpg" %>" class="borr10 boxs5" style="height:120px;width:120px;" />
+							</a>
+						</td>
+						<td >
+							<a class="fonts24 fontw700 wid300" style="color:#03a9f4;" href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
+							<%= ci.getProduct().getName() %></a>
+						</td>
+						<td class="colgys fonts20" style="width:150px;" id="normalprice<%= i %>">
+							¥ <%= ci.getProduct().getNormalPrice() %>
+						</td>
+						<td class="wid200">
+							<input type="button" id="<%= p.getId() %>-<%= i %>" class="backgbs borrl10 colw" value="-" 
+								   onclick="deleCartItem(this.id)()"/>
+							<input type="text" id="<%= p.getId() %>" name="count<%= i %>" class="backgbs textc" 
+								   value="<%= ci.getCount() %>" readonly="true" />
+							<input type="button" id="<%= p.getId() %>+<%= i %>" class="backgb borrr10 colw" value="+" 
+								   onclick="addCartItem(this.id)" />
+						</td>
+						<td class="colgys fonts20" style="width:150px;" id="itemtotal<%=i %>" name="itemtotal">
+						¥ <%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
+						<td >
+							<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>" class="colgys fonts24">x</a>
+						</td>
+					</tr>
+					<tr><td colspan="7"><hr></td></tr>							
+					<%
+						}
+					%>
+					<tr>
+						<td><input type="checkbox" id="checkall" class="checkbox" /><label for="checkall"></label></td>
+						<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
+						<td class="textl padlr20">
+							<a href="" id="confirm" onclick="return confirm('确定要删除吗？')" class="colgy pad5 borr5 boxs5">
+							删除选中的课程</a></form>
+						</td>
+						<td></td>
+						<td class="colgys fonts20">Total</td>
+						<td class="colb fonts22 fontw700" id="total">¥ 0.0</td>
+						<td></td>
+					</tr>
+				</table>
+				<a href="javascript:document.form1.submit()" class="button-1 flor colw marlrpc5 backggy boxs5" 
+				   style="pointer-events:none;" id="click">
+					结算
+				</a>
+			</div>
+		<%
+			}
+			else if(it.hasNext()==false)
+			{	
+		%>
+			<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc10" style="height:200px;">
+				<img src="/Gouwu/images/background/cart1.png"/>购物车空空如也!~<br>
+				<a class="borr20 fonts18 marlrpc5 backgb boxs5 curp padtb5" href="ShowProducts1.jsp"
+					 style="width:200px;margin-top:70px;margin-left:43%;display:block;color:#fff;">快去选购课程吧~
+				</a>
+			</div>
+			
+		<%
+			}
+		%>
 		</div>
-	<%
-		if(it.hasNext()==true)
-		{
-	%>
-		<div class="pad10 boxs10 borr10">
-			<table class="widpc100">
-				<tr>
-					<td></td>
-					<td class="colb fonts20 fontw700">购物车</td>
-					<td>课程名称</td>
-					<td>课程单价</td>
-					<td>购买数量</td>
-					<td>订单总价</td>
-					<td></td>
-				</tr>
-				<tr><td colspan="7"><hr></td></tr>
-				<%
-					for(int i=0;i<items.size();i++)
-					{	
-						CartItem ci=items.get(i);
-						Product p=ci.getProduct();
-				%>
-				<tr id="product">
-					<td style="width:50px;">
-						<form action="Confirm1.jsp" method="post" name="form1" id="form1">
-							<input type="hidden" name="action" value="deletex" />
-							<input type="checkbox" value="<%= p.getId() %>" name="check" id="check<%= i %>" 
-							       class="checkbox" onclick="sele(this.id)"/>
-							<label for="check<%= i %>"></label>       				
-					</td>
-					<td style="width:200px;">
-						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
-						 	<img src="images/product/<%= p.getId()+".jpg" %>" class="borr10 boxs5" style="height:120px;width:120px;" />
-						</a>
-					</td>
-					<td >
-						<a class="fonts24 fontw700 wid300" style="color:#03a9f4;" href="ShowProductDetail1.jsp?id=<%= p.getId() %>">
-						<%= ci.getProduct().getName() %></a>
-					</td>
-					<td class="colgys fonts20" style="width:150px;" id="normalprice<%= i %>">
-						¥ <%= ci.getProduct().getNormalPrice() %>
-					</td>
-					<td class="wid200">
-						<input type="button" id="<%= p.getId() %>-<%= i %>" class="backgbs borrl10 colw" value="-" 
-							   onclick="deleCartItem(this.id)()"/>
-						<input type="text" id="<%= p.getId() %>" name="count<%= i %>" class="backgbs textc" 
-							   value="<%= ci.getCount() %>" readonly="true" />
-						<input type="button" id="<%= p.getId() %>+<%= i %>" class="backgb borrr10 colw" value="+" 
-							   onclick="addCartItem(this.id)" />
-					</td>
-					<td class="colgys fonts20" style="width:150px;" id="itemtotal<%=i %>" name="itemtotal">
-					¥ <%= ci.getProduct().getNormalPrice()*ci.getCount() %></td>
-					<td >
-						<a href="Buy1.jsp?action=delete&id=<%= ci.getProduct().getId() %>" class="colgys fonts24">x</a>
-					</td>
-				</tr>
-				<tr><td colspan="7"><hr></td></tr>							
-				<%
-					}
-				%>
-				<tr>
-					<td><input type="checkbox" id="checkall" class="checkbox" /><label for="checkall"></label></td>
-					<td>已选择 <b class="colb" id="number"><%= a %></b> 门课程  </td>
-					<td class="textl padlr20">
-						<a href="" id="confirm" onclick="return confirm('确定要删除吗？')" class="colgy pad5 borr5 boxs5">
-						删除选中的课程</a></form>
-					</td>
-					<td></td>
-					<td class="colgys fonts20">Total</td>
-					<td class="colb fonts22 fontw700" id="total">¥ 0.0</td>
-					<td></td>
-				</tr>
-			</table>
-			<a href="javascript:document.form1.submit()" class="button-1 flor colw marlrpc5 backggy boxs5" 
-			   style="pointer-events:none;" id="click">
-				结算
-			</a>
-		</div>
-	<%
-		}
-		else if(it.hasNext()==false)
-		{	
-	%>
-		<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc10" style="height:200px;">
-			<img src="/Gouwu/images/background/cart1.png"/>购物车空空如也!~<br>
-			<a class="borr20 fonts18 marlrpc5 backgb boxs5 curp padtb5" href="ShowProducts1.jsp"
-				 style="width:200px;margin-top:70px;margin-left:43%;display:block;color:#fff;">快去选购课程吧~
-			</a>
-		</div>
-	<%
-		}
-	%>
+		
+		<div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
+	    	<div class="widpc100 heia">
+		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">
+			    	<a href="" target="_blank" style="position:relative;left:22%;top:22%;">				
+						<img src="/Gouwu/images/icon/weibo.png" class="wida" style="height:20px;border-radius:50%">
+					</a>
+				</div>
+				<div class="flol" style="margin-right:20px;border-radius:60%;height:40px;width:40px;background-color:#4867AA;">
+					<a href="" target="_blank" style="position:relative;left:20%;top:20%;">				
+						<img src="/Gouwu/images/icon/facebook.png" class="wida" style="height:25px;border-radius:50%">
+					</a>
+				</div>
+				<div class="flol backg" style="margin-right:20px;border-radius:60%;height:40px;width:40px;">
+					<a href="https://github.com/PioneerR" style="position:relative;left:20%;top:20%;">				
+						<img src="/Gouwu/images/icon/github.png" class="wida" style="height:25px;border-radius:50%">
+					</a>
+				</div>
+			</div>
+			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+				Copyright © 2017 艺术创想  Designed by 
+				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
+			</div>
+	    </div>
 	</body>
 </html>
