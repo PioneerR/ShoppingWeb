@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+	request.setCharacterEncoding("utf8");
 	String payset=(String)session.getAttribute("payset");
 	int orderId=(Integer)session.getAttribute("orderId");
 %>
@@ -38,7 +39,7 @@
 			<img src="/Gouwu/images/icon/wx.png"/>
 			<span>微信支付</span><hr>
 			<img src="/Gouwu/images/icon/wxpay.png" class="boxs10 hei200 wid200" style="margin-top:30px;"/>
-			<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" href="Orderstatus1.jsp?orderId=<%= orderId %>"
+			<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" href="Orderstatus1.jsp?orderId=<%= orderId %>&action=change"
 				 style="margin-top:30px;margin-left:41%;display:block;color:#fff;width:193px;">支付成功
 			</a>
 	<%
@@ -49,7 +50,7 @@
 			<img src="/Gouwu/images/icon/zfb.png"/>
 			<span>支付宝支付</span><hr>
 			<img src="/Gouwu/images/icon/zfbpay.png" class="boxs10 hei200 wid200" style="margin-top:30px;"/>
-			<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" href="Orderstatus1.jsp?orderId=<%= orderId %>"
+			<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" href="Orderstatus1.jsp?orderId=<%= orderId %>&action=change"
 				 style="margin-top:30px;margin-left:41%;display:block;color:#fff;width:193px;">支付成功
 			</a>
 	<%

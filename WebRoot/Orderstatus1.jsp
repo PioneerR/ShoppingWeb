@@ -7,12 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-	String orderIdStr=request.getParameter("orderid");
-	if(orderIdStr!=null)
-	{
-		int orderId=Integer.parseInt(orderIdStr);
-	}
-	
+	request.setCharacterEncoding("utf8");
 	User u=(User)session.getAttribute("user");
 	if(u == null)
 	{
@@ -23,7 +18,34 @@
 	List<SalesOrder> orders=OrderMgr.getInstance().getOrders();
 	int uid=u.getId();
 	
-	String [] status={"待发货","已发货","订单已取消"};
+	String [] status={"待付款","等待审核","待发货","已发货","订单已取消"};
+	
+	
+	String action=request.getParameter("action");
+	String orderIdStr=request.getParameter("orderId");
+	if(orderIdStr != null)
+	{
+		
+		int orderId=Integer.parseInt(orderIdStr);
+		for(int i=0;i<orders.size();i++)
+		{
+			SalesOrder so=orders.get(i);
+			if(so.getId()==orderId)
+			{
+			
+				if(action!=null && action.equals("change"))
+				{
+					so.setStatus(2);					
+				}
+				else if(action!=null && action.equals("cancel"))
+				{
+					so.setStatus(1);					
+				}
+				OrderMgr.getInstance().updateStatus(so);
+			}
+		}
+	}
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -39,73 +61,6 @@
 			 border-top:1px dashed #03a9f4;
 			}		
 		</style>
-		<script type="text/javascript">
-			var request;
-			function changeToInputNP(id)
-			{
-				var productid=document.getElementById(id);
-				var value=productid.value;
-				productid.outerHTML="<input type='text' style='color:#03a9f4' id='"+id+"' value='"+value+"' size='5' onblur='changeNP(this.id)' />";
-				document.getElementById(id).focus();			
-			}
-			function changeToInputMP(name)
-			{
-				var productids=document.getElementsByName(name);
-				var productid=productids[0];
-				var value=productid.value;
-				productid.outerHTML="<input type='text' style='color:#03a9f4' name='"+name+"' value='"+value+"' size='5' onblur='changeMP(this.name)' />";
-				document.getElementsByName(name)[0].focus();			
-			}	
-			
-			function changeNP(id)
-			{
-				var productid=document.getElementById(id);
-				var value=productid.value;//获得已经修改过后的价格
-				var url="ChangePrice1.jsp?id="+escape(id)+"&normalprice="+value;
-				
-				init();
-				request.open("post", url, true);
-				request.onreadystatechange=function()
-				{
-					if(request.readyState==4 && request.status==200)
-					{
-						productid.outerHTML="<input type='text' id='"+ id +"' value="+value+" onclick='changeToInputNP(this.id)'></input>";
-					}
-				}
-				request.send(null);
-				alert("修改价格成功！");
-			}
-			function changeMP(name)
-			{
-				var productids=document.getElementsByName(name);
-				var productid=productids[0];
-				var value=productid.value;
-				var url="ChangePrice1.jsp?id="+escape(name)+"&memberprice="+value;
-				
-				init();
-				request.open("post", url, true);
-				request.onreadystatechange=function()
-				{
-					if(request.readyState==4 && request.status==200)
-					{
-						productid.outerHTML="<input type='text' name='"+ name +"' value="+value+" onclick='changeToInputMP(this.name)'></input>";
-					}
-				}
-				request.send(null);
-				alert("修改会员价格成功！");
-			}
-			function init()
-			{
-				if(window.XMLHttpRequest)
-				{
-					request=new XMLHttpRequest();
-				}
-				else if(window.ActiveXObject)
-				{
-					request=new ActiveXObject("Microsoft.XMLHTTP");
-				}
-			}
-		</script>		
 	</head>
 	<body class="padpc5">
 		
@@ -153,14 +108,35 @@
 							<%= status[so.getStatus()] %>
 						</span>
 					</td>
-					<td class="wid200">						
-						<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" href=""
-						   style="color:#fff;" onclick="">
-							完成支付  取消订单
-						</a>							
+					<td class="wid200">	
+					<%
+						if(so.getStatus()==0)
+						{
+					%>	
+						<form action="Orderstatus1.jsp" method="post" name="form1">
+							<input type="hidden" name="action" value="change"/>
+							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>				
+							<input type="submit" class="borr5 fonts18 marlrpc5 backgr boxs5 padtb5" 
+							       style="color:#fff;" value="完成支付" />								
+						</form>
+					<%
+						}
+						if(so.getStatus() == 0 || so.getStatus() == 2)
+						{
+					%>	
+						<form action="Orderstatus1.jsp" method="post" name="form2">
+							<input type="hidden" name="action" value="cancel"/>
+							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>
+							<input type="submit" class="borr5 fonts18 marlrpc5 backgw boxs5 padtb5 colgy curp"
+							 	   value="取消订单" />
+						</form>
+					<%
+						}
+					%>						
 					</td>
 					<td style="width:100px;">
-						<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" href="OrderDetail.jsp" style="color:#fff;" >
+						<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5"  style="color:#fff;"
+							href="OrderDetail1.jsp?orderId=<%= so.getId() %>" >
 							订单详情
 						</a>
 					</td>
