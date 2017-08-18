@@ -23,10 +23,6 @@
 	
 	String [] ids=request.getParameterValues("check");
 	session.setAttribute("checks", ids);
-	//System.out.println(ids[0]);
-	
-	//List<CartItem> items=c.getItems();
-	//Iterator<CartItem> it=items.iterator();
 	 
 %>
 
@@ -153,9 +149,9 @@
 					<div class="colb fonts20 fontw700 textl" style="margin-bottom:20px;margin-left:13px;">					
 						<img src="/Gouwu/images/background/pay.png" />&nbsp;&nbsp;付款方式						
 					</div>
-					<input type="checkbox" name="payset" class="radio" id="b1" value="wx" onclick="sure(1)"/>
+					<input type="checkbox" name="payset" class="radio" id="b1" value="1" onclick="sure(1)"/>
 					<label for="b1" style="margin-right:5px;margin-left:20px;">微信支付</label>
-					<input type="checkbox" name="payset" class="radio" id="b2" value="zfb" onclick="sure(2)"/>					
+					<input type="checkbox" name="payset" class="radio" id="b2" value="2" onclick="sure(2)"/>					
 					<label for="b2" style="padding-left:15px;padding-right:15px;" >支付宝</label>
 				</div>
 				

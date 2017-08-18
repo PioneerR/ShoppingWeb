@@ -1,3 +1,5 @@
+<%@page import="order.OrderMgr"%>
+<%@page import="order.SalesOrder"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="client.CartItem"%>
@@ -28,9 +30,9 @@
 	int orderId=u.buy(cc);
 	//买完之后，返回订单号。购买的过程中，将cartItems集合中的多个CartItem传递给商家变成SalesItem
 	//组成集合List<SalesItem> salesItems，将这个集合存入订单SalesOrder对象中，返回订单号
-	session.setAttribute("orderId", orderId);
+	//session.setAttribute("orderId", orderId);
 	session.removeAttribute("cartorder");//cart的生命周期结束，销毁
-	
+
 	
 	//确认订单的时候，要将购物车中的这些物品删除
 	String []ids=(String [])session.getAttribute("checks");
@@ -48,13 +50,19 @@
 	
 	
 	String [] paysets=request.getParameterValues("payset");
-	String payset=paysets[0];
-	session.setAttribute("payset", payset);
-	response.setHeader("refresh","2;URL=payset.jsp");//3秒钟后跳转
+	String paysetStr=paysets[0];
+
+	//将支付方式存到数据库中
+	SalesOrder so=OrderMgr.getInstance().loadById(orderId);
+	if(paysetStr != null)
+	{
+		int payset=Integer.parseInt(paysetStr);
+		so.setPaySet(payset);
+		OrderMgr.getInstance().update(so);
+	}
+	response.setHeader("refresh","2;URL=payset.jsp?orderId="+orderId+"&payset="+so.getPaySet());//2秒钟后跳转
 	
 %>
-
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

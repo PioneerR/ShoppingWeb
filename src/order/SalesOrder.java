@@ -15,6 +15,7 @@ public class SalesOrder {
 	private Date odate;
 	private int status;
 	private List<SalesItem> items;
+	private int payset;
 	
 	public String getAddress()
 	{
@@ -32,6 +33,14 @@ public class SalesOrder {
 	public void setId(int id) 
 	{
 		this.id = id;
+	}
+	public int getPaySet() 
+	{
+		return payset;
+	}
+	public void setPaySet(int payset) 
+	{
+		this.payset = payset;
 	}
 
 	public List<SalesItem> getItems() 
@@ -70,8 +79,8 @@ public class SalesOrder {
 		this.user = user;
 	}
 	
-	public void updateStatus()
-	{
-		OrderMgr.getInstance().updateStatus(this);
-	}
+//	public void updateStatus()
+//	{
+//		OrderMgr.getInstance().updateStatus(this);
+//	}
 }

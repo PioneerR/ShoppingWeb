@@ -41,7 +41,11 @@
 				{
 					so.setStatus(1);					
 				}
-				OrderMgr.getInstance().updateStatus(so);
+				else if(action!=null && action.equals("delete"))
+				{
+					OrderMgr.getInstance().delete(so);
+				}	
+				OrderMgr.getInstance().update(so);
 			}
 		}
 	}
@@ -61,6 +65,12 @@
 			 border-top:1px dashed #03a9f4;
 			}		
 		</style>
+		<script type="text/javascript">
+			function sub()
+			{
+				document.form3.submit();
+			}
+		</script>
 	</head>
 	<body class="padpc5">
 		
@@ -104,7 +114,7 @@
 						¥ <%= p.getNormalPrice()*si.getCount() %>
 					</td>
 					<td class="wid100">
-						<span class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5" style="color:#fff;">
+						<span class="borr5 fonts16 marlrpc5 colgys pad2">
 							<%= status[so.getStatus()] %>
 						</span>
 					</td>
@@ -113,13 +123,15 @@
 						if(so.getStatus()==0)
 						{
 					%>	
-						<form action="Orderstatus1.jsp" method="post" name="form1">
+						<form action="payset.jsp" method="post" name="form1">
 							<input type="hidden" name="action" value="change"/>
-							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>				
-							<input type="submit" class="borr5 fonts18 marlrpc5 backgr boxs5 padtb5" 
-							       style="color:#fff;" value="完成支付" />								
+							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>	
+							<input type="hidden" name="payset" value="<%= so.getPaySet() %>"/>				
+							<input type="submit" class="borr5 fonts16 marlrpc5 backgr boxs5 pad2" 
+							       style="color:#fff;border:none;" value="完成支付" />								
 						</form>
 					<%
+							
 						}
 						if(so.getStatus() == 0 || so.getStatus() == 2)
 						{
@@ -127,15 +139,40 @@
 						<form action="Orderstatus1.jsp" method="post" name="form2">
 							<input type="hidden" name="action" value="cancel"/>
 							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>
-							<input type="submit" class="borr5 fonts18 marlrpc5 backgw boxs5 padtb5 colgy curp"
-							 	   value="取消订单" />
+							<input type="submit" class="borr5 fonts16 marlrpc5 backgw boxs5 pad2 colgy curp"
+							 	   value="取消订单" style="border:none;margin-top:5px;"/>
 						</form>
 					<%
 						}
-					%>						
+						if(so.getStatus() == 4)
+						{
+					%>	
+						<form action="Orderstatus1.jsp" method="post" name="form3">
+							<input type="hidden" name="action" value="delete"/>
+							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>
+							<input type="submit" value="删除订单" style="border:none;"
+							       class="borr5 fonts16 backgw boxs5 pad2 colgy" />
+								  
+						</form>
+					<%
+						}						
+					%>					
 					</td>
 					<td style="width:100px;">
-						<a class="borr5 fonts18 marlrpc5 backgb boxs5 padtb5"  style="color:#fff;"
+					<%
+						if(so.getStatus()!=4)
+						{
+					%>
+						<a class="borr5 fonts16 marlrpc5 backgb boxs5 pad2"  style="color:#fff;"
+							href="OrderDetail1.jsp?orderId=<%= so.getId() %>" >
+							订单详情
+						</a>
+					<%
+						}
+					    else if(so.getStatus()==4)
+					    {
+					%>	
+						<a class="borr5 fonts16 marlrpc5 backggy boxs5 pad2"  style="color:#fff;"
 							href="OrderDetail1.jsp?orderId=<%= so.getId() %>" >
 							订单详情
 						</a>
@@ -143,6 +180,7 @@
 				</tr>
 				<tr><td colspan="6"><hr></td></tr>	
 		<%			
+						}
 					}
 				}
 			}

@@ -15,11 +15,26 @@ import user.User;
 import util.DB;
 
 public class OrderMySQLDAO implements OrderDAO {
-
 	@Override
-	public void update(SalesOrder so) {
-		// TODO Auto-generated method stub
-
+	public void update(SalesOrder so) 
+	{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DB.getConn();
+			String sql = "update salesorder set addr=? , status=?, payset=? where id=?";
+			pstmt = DB.getPstmt(conn, sql);
+			pstmt.setString(1, so.getAddress());
+			pstmt.setInt(2, so.getStatus());
+			pstmt.setInt(3, so.getPaySet());
+			pstmt.setInt(4, so.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(pstmt);
+			DB.close(conn);
+		}
 	}
 
 	@Override
@@ -28,7 +43,7 @@ public class OrderMySQLDAO implements OrderDAO {
 		int orderId=-1;
 		//System.out.println(orderId);
 		Connection conn=DB.getConn();
-		String sql="insert into salesorder values(null,?,?,?,?)";
+		String sql="insert into salesorder values(null,?,?,?,?,?)";
 		PreparedStatement pstmt=DB.getPstmt(conn, sql,Statement.RETURN_GENERATED_KEYS);
 		ResultSet rsKey =null;
 		User u=so.getUser();
@@ -44,6 +59,7 @@ public class OrderMySQLDAO implements OrderDAO {
 			pstmt.setString(2, u.getAddress());
 			pstmt.setTimestamp(3, new Timestamp(so.getODate().getTime()));
 			pstmt.setInt(4,so.getStatus());
+			pstmt.setInt(5,so.getPaySet());
 			pstmt.executeUpdate();
 			
 			rsKey=pstmt.getGeneratedKeys();
@@ -97,8 +113,8 @@ public class OrderMySQLDAO implements OrderDAO {
 		Connection conn=DB.getConn();
 		Statement stmt=DB.getStmt(conn);
 		String sql="select salesorder.id sid,salesorder.userid,salesorder.addr,salesorder.odate,"
-				  +"salesorder.status,user.id uid,user.username,user.password,user.phone,user.addr,"
-				  + "user.rdate from salesorder inner join user on user.id=salesorder.userid";
+				  +"salesorder.status,salesorder.payset,user.id uid,user.username,user.password,user.phone,"
+				  + "user.addr,user.rdate from salesorder inner join user on user.id=salesorder.userid";
 		ResultSet rs=DB.getRs(stmt, sql);
 		List<SalesOrder> orders=null;
 		try
@@ -121,6 +137,7 @@ public class OrderMySQLDAO implements OrderDAO {
 				so.setStatus(rs.getInt("status"));
 				so.setId(rs.getInt("sid"));
 				so.setUser(u);
+				so.setPaySet(rs.getInt("payset"));
 				
 				orders.add(so);				
 			}
@@ -145,8 +162,8 @@ public class OrderMySQLDAO implements OrderDAO {
 		Connection conn=DB.getConn();
 		Statement stmt=DB.getStmt(conn);
 		String sql="select salesorder.id,salesorder.userid,salesorder.odate,salesorder.addr,"
-				+ "salesorder.status,user.id uid,user.username,user.password,user.addr uaddr,"
-				+ "user.phone,user.rdate from salesorder left join user on "
+				+ "salesorder.status,salesorder.payset,user.id uid,user.username,user.password,"
+				+ "user.addr uaddr,user.phone,user.rdate from salesorder left join user on "
 				+ "salesorder.userid=user.id"+ " limit "+(pageNo-1)*pageSize+","+pageSize;
 		ResultSet rs=DB.getRs(stmt, sql);
 		
@@ -173,6 +190,7 @@ public class OrderMySQLDAO implements OrderDAO {
 				so.setAddress(rs.getString("addr"));
 				so.setODate(rs.getTimestamp("odate"));
 				so.setStatus(rs.getInt("status"));
+				so.setPaySet(rs.getInt("payset"));
 				so.setUser(u);
 				
 				orders.add(so);
@@ -194,9 +212,24 @@ public class OrderMySQLDAO implements OrderDAO {
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+	public void delete(int id) 
+	{
+		Connection conn=DB.getConn();
+		Statement stmt=DB.getStmt(conn);
+		try
+		{
+			String sql="delete from salesorder where id="+id;
+			stmt.execute(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(stmt);
+			DB.close(conn);
+		}
 	}
 
 	@Override
@@ -209,7 +242,7 @@ public class OrderMySQLDAO implements OrderDAO {
 		try
 		{
 			String sql = "select salesorder.id, salesorder.userid, salesorder.odate, "
-					+ "salesorder.addr, salesorder.status , " +
+					+ "salesorder.addr, salesorder.status , salesorder.payset," +
 		 			 " user.id uid, user.username, user.password, user.addr uaddr, "
 		 			 + "user.phone, user.rdate from salesorder " +
 		 			 " join user on (salesorder.userid = user.id) where salesorder.id = " + id; 
@@ -230,6 +263,7 @@ public class OrderMySQLDAO implements OrderDAO {
 				so.setAddress(rs.getString("addr"));
 				so.setStatus(rs.getInt("status"));
 				so.setODate(rs.getTimestamp("odate"));
+				so.setPaySet(rs.getInt("payset"));
 				so.setUser(u);
 				
 			}
@@ -309,22 +343,22 @@ public class OrderMySQLDAO implements OrderDAO {
 		return items;
 	}
 
-	@Override
-	public void updateStatus(SalesOrder order)
-	{
-		Connection conn=DB.getConn();
-		Statement stmt=DB.getStmt(conn);
-		
-		try
-		{
-			String sql="update salesorder set status="+order.getStatus()
-					  +" where id="+order.getId();
-			DB.executeUpdate(stmt, sql);
-		}
-		finally
-		{
-			DB.close(stmt);
-			DB.close(conn);
-		}
-	}
+//	@Override
+//	public void updateStatus(SalesOrder order)
+//	{
+//		Connection conn=DB.getConn();
+//		Statement stmt=DB.getStmt(conn);
+//		
+//		try
+//		{
+//			String sql="update salesorder set status="+order.getStatus()
+//					  +" where id="+order.getId();
+//			DB.executeUpdate(stmt, sql);
+//		}
+//		finally
+//		{
+//			DB.close(stmt);
+//			DB.close(conn);
+//		}
+//	}
 }

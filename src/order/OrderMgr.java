@@ -21,15 +21,24 @@ public class OrderMgr {
 	
 	private static OrderDAO dao=new OrderMySQLDAO();
 	
-	public void updateStatus(SalesOrder order)
-	{
-		dao.updateStatus(order);
-	}
+//	public void updateStatus(SalesOrder so)
+//	{
+//		dao.updateStatus(so);
+//	}
 	
+	public void update(SalesOrder so)
+	{
+		dao.update(so);
+	}
 	public int add(SalesOrder so)
 	{
 		return dao.add(so);
 	}
+	public void delete(SalesOrder so)
+	{
+		 dao.delete(so.getId());
+	}
+	
 	public int userBuy(Cart c,User u)
 	{
 		return u.buy(c);

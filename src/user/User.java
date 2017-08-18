@@ -265,6 +265,7 @@ public class User {
 		so.setAddress(this.getAddress());
 		so.setStatus(0);
 		so.setODate(new Date());
+		so.setPaySet(0);
 		
 		List<SalesItem> salesItems=new ArrayList<SalesItem>();
 		List<CartItem> cartItems=c.getItems();

@@ -17,7 +17,7 @@
 	{
 		status=Integer.parseInt(request.getParameter("status"));
 		so.setStatus(status);
-		so.updateStatus();
+		OrderMgr.getInstance().update(so);
 %>	
 	<script type="text/javascript">	
 		parent.main.location.reload();
@@ -40,9 +40,11 @@
 			<input type="hidden" name="action" value="modify"/>
 			<input type="hidden" name="id" value="<%= orderid %>"/>
 			<select name="status" style="float:inherit;">
-				<option value="0" <%= (status==0)?"selected":"" %>>待发货</option>
-				<option value="1" <%= (status==1)?"selected":"" %>>已发货</option>
-				<option value="2" <%= (status==2)?"selected":"" %>>订单取消</option>
+				<option value="0" <%= (status==0)?"selected":"" %>>待付款</option>
+				<option value="1" <%= (status==1)?"selected":"" %>>请求取消订单</option>
+				<option value="2" <%= (status==2)?"selected":"" %>>待发货</option>
+				<option value="3" <%= (status==3)?"selected":"" %>>已发货</option>
+				<option value="4" <%= (status==4)?"selected":"" %>>订单已取消</option>
 			</select>
 			<input type="submit" value="提交" />			
 		</form>

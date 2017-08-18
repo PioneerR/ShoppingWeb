@@ -1,9 +1,24 @@
+<%@page import="user.User"%>
+<%@ page import="java.util.List"%>
+<%@ page import="order.SalesOrder"%>
+<%@ page import="order.OrderMgr"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
 	request.setCharacterEncoding("utf8");
-	String payset=(String)session.getAttribute("payset");
-	int orderId=(Integer)session.getAttribute("orderId");
+	User u=(User)session.getAttribute("user");
+	if(u == null)
+	{
+		response.sendRedirect("UserLogin1.jsp");
+		return;
+	}
+
+	String orderIdStr=request.getParameter("orderId");
+	int orderId=Integer.parseInt(orderIdStr);
+	
+	String paysetStr=request.getParameter("payset");
+	int payset=Integer.parseInt(paysetStr);
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -33,7 +48,7 @@
 				<img src="/Gouwu/images/icon/payset.png" />
 			</div>
 	<%
-		if(payset !=null && payset.equals("wx"))
+		if(payset == 1)
 		{
 	%>
 			<img src="/Gouwu/images/icon/wx.png"/>
@@ -44,7 +59,7 @@
 			</a>
 	<%
 		}
-		else if(payset !=null && payset.equals("zfb"))
+		else if(payset == 2)
 		{
 	%>
 			<img src="/Gouwu/images/icon/zfb.png"/>

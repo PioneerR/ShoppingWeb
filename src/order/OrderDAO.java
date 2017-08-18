@@ -14,6 +14,6 @@ public interface OrderDAO {
 	public void delete(String conditionStr);
 	public int find(List<SalesOrder> products, int pageNo, int pageSize, String queryStr);
 	public List<SalesItem> getSalesItems(int orderId);
-	public void updateStatus(SalesOrder order);
+	//public void updateStatus(SalesOrder order);
 	
 }
