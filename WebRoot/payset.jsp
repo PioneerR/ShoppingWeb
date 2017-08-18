@@ -33,13 +33,6 @@
 			 border:none;
 			 border-top:1px dashed #03a9f4;
 			}
-			.boxs5{
-				box-shadow:0 0 1px #B5B4B4;
-				transition:all 0.6s;
-			}
-			.boxs5:hover {  
-				box-shadow:0 0 10px #B5B4B4;
-			} 
 		</style>
 	</head>
 	<body class="padpc10">

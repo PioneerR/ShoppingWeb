@@ -19,8 +19,7 @@
 	int uid=u.getId();
 	
 	String [] status={"待付款","等待审核","待发货","已发货","订单已取消"};
-	
-	
+
 	String action=request.getParameter("action");
 	String orderIdStr=request.getParameter("orderId");
 	if(orderIdStr != null)
@@ -49,7 +48,6 @@
 			}
 		}
 	}
-	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -151,8 +149,7 @@
 							<input type="hidden" name="action" value="delete"/>
 							<input type="hidden" name="orderId" value="<%= so.getId() %>"/>
 							<input type="submit" value="删除订单" style="border:none;"
-							       class="borr5 fonts16 backgw boxs5 pad2 colgy" />
-								  
+							       class="borr5 fonts16 backgw boxs5 pad2 colgy" />  
 						</form>
 					<%
 						}						

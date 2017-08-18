@@ -54,9 +54,9 @@ public class OrderMgr {
 	{
 		return dao.loadById(id);
 	}
-	public List<SalesItem> getSalesItems(SalesOrder order)
+	public List<SalesItem> getSalesItems(SalesOrder so)
 	{
-		return dao.getSalesItems(order.getId());
+		return dao.getSalesItems(so.getId());
 	}
 
 }
