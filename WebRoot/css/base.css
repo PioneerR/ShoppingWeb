@@ -285,10 +285,14 @@
 	.cols2{colspan:2;}
 	.cols3{colspan:3;}
 	.cols4{colspan:4;}
+	.cols4{colspan:5;}
+	.cols4{colspan:6;}
 	
 	.rows2{rowspan:2;}
 	.rows3{rowspan:3;}
 	.rows4{rowspan:4;}
+	.rows4{rowspan:5;}
+	.rows4{rowspan:6;}
 	
 	.curp{cursor:pointer;}
 	
@@ -365,6 +369,28 @@
 	.overfh{overflow:hidden;}
 	
 	
+	
+	/*-------------------------------------*/
+	.itemhide{
+	 	display:none;  
+	}
+	/* 在navs被hover的时候list2的hidden属性被覆盖，就会显现出下拉菜单  */
+	.itemshow:hover >.itemhide{
+	 	display:block;
+	}
+	/* 导航刚开始的样子   */
+	.itemshow{
+		line-height: 50px;/* 让navs在hover的时候 不会使下拉菜单消失 */
+	}
+	/* item被呼出的效果   */
+	.item{
+		box-shadow:2px 2px 3px #B5B4B4,-2px 2px 3px #B5B4B4;
+	}
+	/* item被hover后的效果  */
+	.item:hover{
+		background:#03a9f4;
+		color:#fff;
+	}
 	/*-------------------------------------*/
 	.button-3{
 	 border-radius:40px;

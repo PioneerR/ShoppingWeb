@@ -1,5 +1,11 @@
+<%@ page import="category.CategoryService"%>
+<%@ page import="category.Category"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%
+    List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
+%>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -89,55 +95,6 @@
 			.section-photo{
 			background: url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2e1y440tj304g04g0nx.jpg")repeat;
 			}
-			
-			 
-			
-			div.list2{
-			 position:absolute;
-			 left:0;
-			 top:90px;
-			 display:none; 
-			 width:150px; 
-			 border-radius:10px;
-			 block:none;
-			}
-			/* list1 */
-			.list1{		
-			 height: 40px;
-			 padding:0 10px;
-			 position: relative;
-			 float:left;
-			 line-height: 70px;
-			 font-size: 18px;	
-			}
-			div.navs:hover >div.list2{
-			 display: block;
-			}
-			
-			/* 导航刚开始的样子   */
-			div.navs{
-				width:150px;
-				margin:0px;
-				padding: 0; 
-				text-align: center;
-				line-height: 40px;
-				
-			}
-			/* item被呼出的效果   */
-			div.item{
-				margin: 0;
-				padding: 0; 
-				color:#B5B4B4;
-				background-color:#fff;
-				text-align: center;
-				font-size:16px; 
-			}
-			/* item被hover后的效果  */
-			div.item:hover{
-				background:#03a9f4;
-				color:#fff;
-			}
-			
 	    </style>
 	    <script type="text/javascript">
 	    	window.onscroll=function()
@@ -159,35 +116,61 @@
 	</head>
 	<body>
 		<div class="widpc100" style="position:fixed;top:0;height:70px;" id="nav">
-			<nav style="">
-				<a href="Index1.jsp" style="margin-right:40px;margin-left:7%;color:white;" class="fontw700">				
-					<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:50px;">艺术创想
-				</a>
-				<a href="ShowProducts1.jsp" class="two" style="color:#fff;back">课程</a>
-				<a href="Buy1.jsp">
-					<img src="/Gouwu/images/background/cart2.png" class="wida" style="height:20px;margin-left:55%; ">
-				</a>
+			<nav style="" class="overfh">
+				<div class="flol" style="margin-right:20px;margin-left:7%;">
+					<a href="Index1.jsp" style="color:white;" class="fontw700">				
+						<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:50px;">艺术创想
+					</a>
+				</div>
+				<div class="itemshow flol wid100 textc" style="margin-top:17px; ">
+					<a href="ShowProducts1.jsp" class="" style="color:#fff;">课程</a>
+					<div class="itemhide" style="margin-left:18%;width:150px;padding-bottom:5px; ">
+						
+					<%
+						Category c=categories.get(0);
+						int id=c.getId();
+					%>		
+						<a href="ShowProducts1.jsp?categoryId=<%= id %>">
+							<div class="item backgw borrt5 textc fonts16 colgy" style="line-height:37px;">
+								<%= c.getName() %>
+							</div>
+						</a>						
+					<%						
+						for(int i=1;i<categories.size()-1;i++)
+						{							
+							c=categories.get(i);
+							id=c.getId();
+					%>	
+						<a href="ShowProducts1.jsp?categoryId=<%= id %>">
+							<div class="item backgw textc fonts16 colgy" style="line-height:37px;">
+								<%= c.getName() %>
+							</div>
+						</a>
+					<%
+						}
+							c=categories.get(categories.size()-1);
+							id=c.getId();
+					%>
+						<a href="ShowProducts1.jsp?categoryId=<%= id %>">
+							<div class="item backgw borrb5 textc fonts16 colgy" style="line-height:37px;">
+								<%= c.getName() %>
+							</div>
+						</a>	
+					</div>
+				</div>
+			
+				<div class="flol" style="margin-top:29px;margin-left:45%;">
+					<a href="Buy1.jsp" style="">
+						<img src="/Gouwu/images/background/cart2.png" class="wida" style="height:22px;">
+					</a>
+				</div>
 				<a>
 				
 				</a>
 			</nav>
 			
-		
-				
-					<div class="navs" style="">
-						<a href="ShowProducts1.jsp" class="" style="color:#fff;">课程</a>
-						<div class="list2 " style="border-radius:5px;">
-							<div class="item">课程类别1</div>
-							<div class="item">课程类别2</div>
-							<div class="item">课程类别3</div>
-						</div>
-					</div>	
-				
+			
 		</div>
-		
-		
-		
-		
 		
 		<div class="widpc100 heipc100 header">
 	      <div class="widpc100 heipc100 header-filter">

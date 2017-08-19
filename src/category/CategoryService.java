@@ -10,9 +10,6 @@ import java.util.List;
 
 import util.DB;
 
-
-
-
 public class CategoryService {
 	//单例设计模式
 	private CategoryService(){}
@@ -84,6 +81,36 @@ public class CategoryService {
 		}
 		return categories;
 	}
+	
+	public List<Category> getCategoriesGradeTwo()
+	{		
+		List<Category> categories=new ArrayList<Category>();
+		Connection conn=DB.getConn();
+		String sql="select * from category where grade=2";
+		Statement stmt=DB.getStmt(conn);
+		ResultSet rs=DB.getRs(stmt, sql);
+		
+		try
+		{
+			while(rs.next())
+			{
+				Category c=this.getCategoryFromRs(rs);
+				categories.add(c);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(conn);
+		}
+		return categories;
+	}
+	
 	
 	public int getCategories(List<Category>categories,int pageNo,int pageSize)
 	{		
