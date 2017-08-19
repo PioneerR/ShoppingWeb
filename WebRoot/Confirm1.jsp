@@ -23,7 +23,12 @@
 	
 	String [] ids=request.getParameterValues("check");
 	session.setAttribute("checks", ids);
-	 
+	
+	//不论是第一次进入该页面，还是第二次返回该页面，都刷新页面，不保留表单信息
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0); 
 %>
 
 

@@ -44,12 +44,12 @@
 		</style>		
 	</head>
 	<body >
-		<div style="padding:5% 8%;" class="overfh">
-		<%
-			for(int i=0;i<products.size();i++)
-			{
-				Product p=products.get(i);
-		%>
+		<div style="padding:5% 8% 0% 8% ;" class="overfh">
+	<%
+		for(int i=0;i<products.size();i++)
+		{
+			Product p=products.get(i);
+	%>
 			<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
 				<tr>
 					<td colspan="2">
@@ -60,7 +60,7 @@
 				</tr>
 				<tr>
 					<td>
-					<table class="martb15">
+					<table style="margin-top:15%;">
 						<tr>
 							<td style="text-align:left;">
 								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
@@ -80,11 +80,34 @@
 					</td>
 				</tr>
 			</table>
-		<%
-			}
-		%>	
+	<%
+		}
+	%>	
 		</div>
-		
+	<%
+		if(products.size()==0)
+		{	
+	%>	
+		<div class="marlrpc10 boxs10 borr10" style="height:350px;">
+			<div class="widpc80 fontw700 fonts22" style="height:200px;">
+				<div class="backgb flol" style="height:50px;width:50px;padding-left:2px;padding-top:2px;">
+					<img src="/Gouwu/images/icon/gantanhao.png" />
+				</div>
+				<img src="/Gouwu/images/background/dengdai.gif" class="heia flol marlr25" 
+					 style="width:200px;margin-left:26%;margin-top:10%; "/>
+				<div class="flol padtbpc10  textc colb martbpc10">
+					课程即将上线! 敬请期待~
+				</div>
+			</div>
+		</div>
+	<%
+		}
+	%>			
+		<a href="javascript:window.history.go(-1)" class="flor marpc1 backgb padlr30 boxs5 textc borr5" 
+		   style="margin-right:150px;padding-bottom:5px;color:#fff;margin-bottom:5%;" >
+			返回
+		</a>
+			
 		<div class="widpc100 backgbs overfh" style="height:100px;padding-top:30px;background-color:#eafbf6;margin-top:50px; ">
 	    	<div class="widpc100 heia">
 		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">

@@ -1,3 +1,4 @@
+<%@ page import="user.User"%>
 <%@ page import="category.CategoryService"%>
 <%@ page import="category.Category"%>
 <%@ page import="java.util.List"%>
@@ -5,6 +6,13 @@
 
 <%
     List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
+	User u=(User)session.getAttribute("user");
+	
+	String action=request.getParameter("action");
+	if(action !=null && action.equals("exit"))
+	{
+		session.removeAttribute("user");
+	}
 %>
 
 
@@ -101,7 +109,7 @@
 	    	{
 	    		var t=document.documentElement.scrollTop || document.body.scrollTop;
 	    		var nav=document.getElementById("nav");
-	    		if(t<=300)
+	    		if(t<=500)
 	    		{
 	    			nav.style.backgroundColor='rgba(50,170,220,-0.1)';
 	    			nav.style.boxShadow='none';
@@ -122,10 +130,10 @@
 						<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:50px;">艺术创想
 					</a>
 				</div>
+				
 				<div class="itemshow flol wid100 textc" style="margin-top:17px; ">
 					<a href="ShowProducts1.jsp" class="" style="color:#fff;">课程</a>
-					<div class="itemhide" style="margin-left:18%;width:150px;padding-bottom:5px; ">
-						
+					<div class="itemhide" style="margin-left:18%;width:150px;padding-bottom:5px;">
 					<%
 						Category c=categories.get(0);
 						int id=c.getId();
@@ -151,25 +159,69 @@
 							c=categories.get(categories.size()-1);
 							id=c.getId();
 					%>
-						<a href="ShowProducts1.jsp?categoryId=<%= id %>">
+						<a href="ShowProducts1.jsp?categoryId=<%= id %>" >
 							<div class="item backgw borrb5 textc fonts16 colgy" style="line-height:37px;">
 								<%= c.getName() %>
 							</div>
 						</a>	
 					</div>
 				</div>
-			
-				<div class="flol" style="margin-top:29px;margin-left:45%;">
-					<a href="Buy1.jsp" style="">
+				
+				<div class="itemshow flol wid100 textc" style="margin-top:17px;margin-left:45%; ">
+					<a href="Buy1.jsp" class="" style="color:#fff;">
 						<img src="/Gouwu/images/background/cart2.png" class="wida" style="height:22px;">
 					</a>
+					<div class="itemhide" style="width:150px;padding-bottom:5px; ">
+						<a href="Buy1.jsp">
+							<div class="item backgw textc fonts16 colgy borr5" style="line-height:37px;margin-right:15%;">
+								查看购物车
+							</div>
+						</a>
+					</div>
 				</div>
-				<a>
 				
-				</a>
+		<%
+			if(u==null)
+			{
+		%>	
+				<div class="flol marlr15" style="margin-top:25px;" >
+					<a href="Register1.jsp" style="color:white;">
+						<img src="/Gouwu/images/icon/signup.png" class="wida" style="height:20px;margin-right:5px;">注册
+					</a>
+				</div>
+				<div class="flol marlr15" style="margin-top:25px;" >
+					<a href="UserLogin1.jsp" style="color:white;">
+						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;margin-right:5px;">登录
+					</a>
+				</div>
+		<%
+			}
+			else
+			{
+		%>
+				<div class="itemshow flol marlr15" style="margin-top:17px;" >
+					<a href="" style="color:white;">
+						<img src="/Gouwu/images/icon/user.png" class="wida" 
+							 style="height:20px;margin-right:5px;">
+						<%= u.getUsername() %>
+					</a>
+					<div class="itemhide" style="width:150px;padding-bottom:5px;">
+						<a href="Orderstatus1.jsp">
+							<div class="item borrt5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								我的订单
+							</div>
+						</a>
+						<a href="Index1.jsp?action=exit">
+							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								退出
+							</div>
+						</a>					
+					</div>
+				</div>
+		<%
+			}
+		%>	
 			</nav>
-			
-			
 		</div>
 		
 		<div class="widpc100 heipc100 header">
@@ -178,12 +230,15 @@
 	            <h1 class="title coly" >与孩子有关的一切，都充满意义 </h1>
 	            <p class="title-text coly">艺术创想，带孩子到属于他的绘画王国，与大师结盟，开启充满想象的艺术之旅</p>
 	          </div>
-	          <a href="ShowProducts1.jsp">
-		          <div class="button-1">
-		            <div class="button-2"></div>
-		          	<div class="title-text colw" style="font-size:14px;">开始上课</div>
-		          </div>
-	          </a>
+	          
+	          <div class="wid100" style="margin-left:46%;">
+		          <a href="ShowProducts1.jsp">
+			          <div class="button-1">
+			            <div class="button-2"></div>
+			          	<div class="title-text colw" style="font-size:14px;">开始上课</div>
+			          </div>
+		          </a>
+	          </div>
 	      </div>
 	    </div>
 

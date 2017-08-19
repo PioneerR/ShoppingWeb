@@ -28,8 +28,25 @@
 			return;
 		}
 		session.setAttribute("user", u);
-		int id=(Integer)(session.getAttribute("id"));
-		response.sendRedirect("ShowProductDetail1.jsp?id="+id);
+		
+		//设置session时间为三个月
+		String sessiontime=request.getParameter("cookietime");
+		if(sessiontime!=null && sessiontime.equals("true"))
+		{
+			HttpSession sess=request.getSession(true);
+			sess.setMaxInactiveInterval(150);//三个月的时间
+			
+			Cookie cookie=new Cookie("username",username);//密码和账号都要写到cookie内
+			       cookie=new Cookie("password",password);
+			cookie.setMaxAge(90*24*3600);
+			response.addCookie(cookie);
+		}
+		
+%>
+	<script type="text/javascript">
+		window.history.go(-2);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面
+	</script>
+<%
 	}
 %>
 
@@ -103,7 +120,17 @@
 		          <div class="flol widpc70" style="margin-right:15px;"  > 	
 		          	<input type="password" name="password" placeholder="登录密码" /><br>
 		          </div>
-		          <div class="fonts14 textr" style="letter-spacing:0em;">
+		          <div class="flol" style="letter-spacing:0em;padding-left:33px;margin-top:14px;">
+		          	<div class=" flol" style="margin-right:4px;">
+		          		<input type="checkbox" class="checkbox" id="sessiontime" name="cookietime" value="true" />
+		          		<label for="sessiontime"></label>	
+		          	</div>
+		          	<div class="textl fonts14 colgy flol" style="margin-left:2px;">
+		          		记住我
+		          	</div>
+		          	
+		          </div>
+		          <div class="fonts14 textr flor" style="letter-spacing:0em;margin-top:15px;">
 		          	<a href="UserModify1.jsp" class="colgy padlr20" >忘记密码？</a>
 		          </div>
 		          

@@ -78,8 +78,6 @@
 	}
 
 	
-	//String path=request.getContextPath();
-	//String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 	int a=0;
 	List<CartItem>items=c.getItems();
 	Iterator<CartItem> it=items.iterator();

@@ -111,7 +111,7 @@
 	</head>
 	<body >
 		<div class="padlrpc5 overfh">
-			<div class="boxs10 heia wida borr20 martbpc5 backgbs" style="overflow:hidden;padding:5% 8%;background-color:#c8f7f7">
+			<div class="boxs10 heia wida borr20 backgbs" style="overflow:hidden;padding:5% 8%;margin-top:5%;background-color:#c8f7f7">
 			   
 			    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
 				    <div>
@@ -170,6 +170,10 @@
 			    	
 			   </div>
 			 </div>
+			 <a href="javascript:window.history.go(-1)" class="flor marpc1 backgb padlr30 boxs5 textc borr5" 
+			   style="margin-right:30px;padding-bottom:5px;color:#fff;" >
+				返回
+			 </a>
 		 </div>
 		  
 		 <div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;margin-top:50px; ">
