@@ -175,9 +175,11 @@
 							</a>
 						</td>
 					</tr>
-					<tr><td colspan="6"><hr></td></tr>	
-			<%			
+					<%			
 							}
+					%>			
+					<tr><td colspan="6"><hr></td></tr>
+			<%			
 						}
 					}
 				}
@@ -186,7 +188,7 @@
 			</div>
 		</div>	
 		
-		<div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
+		<div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;margin-top:50px; ">
 	    	<div class="widpc100 heia">
 		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">
 			    	<a href="" target="_blank" style="position:relative;left:22%;top:22%;">				

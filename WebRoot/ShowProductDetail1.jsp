@@ -110,7 +110,7 @@
 		
 	</head>
 	<body >
-		<div class="padlrpc5">
+		<div class="padlrpc5 overfh">
 			<div class="boxs10 heia wida borr20 martbpc5 backgbs" style="overflow:hidden;padding:5% 8%;background-color:#c8f7f7">
 			   
 			    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
@@ -119,8 +119,7 @@
 					</div>
 				</div>
 				
-				<div class="flol" style="margin-left:10%;width:40%">
-					
+				<div class="flol" style="margin-left:10%;width:40%">				
 					<div>	
 						<div style="height:50px" class="textc">
 							<b class="colb" style="font-size:40px;"><%= p.getName() %></b>
@@ -173,7 +172,7 @@
 			 </div>
 		 </div>
 		  
-		 <div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
+		 <div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;margin-top:50px; ">
 	    	<div class="widpc100 heia">
 		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">
 			    	<a href="" target="_blank" style="position:relative;left:22%;top:22%;">				

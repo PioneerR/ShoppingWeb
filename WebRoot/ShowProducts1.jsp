@@ -43,46 +43,49 @@
 			}
 		</style>		
 	</head>
-	<body style="padding:5% 8%;">
-	<%
-		for(int i=0;i<products.size();i++)
-		{
-			Product p=products.get(i);
-	%>
-		<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
-			<tr>
-				<td colspan="2">
-					<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="float:left;" >
-						<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
-					</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-				<table class="martb15">
-					<tr>
-						<td style="text-align:left;">
-							<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
-								<b class="fonts20 colb" style="width:25%;font-family:Microsoft Yahei;"><%= p.getName() %></b>
-							</a>
-						</td>
-						<td class="textr colr fonts20" style="width:5%;" >
-							<b>¥<%= p.getNormalPrice() %></b>
-						</td>
-					</tr>
-					<tr>
-						<td class="cols2 textl" style="color:#696969;font-family:Microsoft Yahei;" >
-							<%= p.getDescribe() %>
-						</td>
-					</tr>
-				</table>
-				</td>
-			</tr>
-		</table>
-	<%
-		}
-	%>	
-		<div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
+	<body >
+		<div style="padding:5% 8%;" class="overfh">
+		<%
+			for(int i=0;i<products.size();i++)
+			{
+				Product p=products.get(i);
+		%>
+			<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
+				<tr>
+					<td colspan="2">
+						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="float:left;" >
+							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<table class="martb15">
+						<tr>
+							<td style="text-align:left;">
+								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
+									<b class="fonts20 colb" style="width:25%;font-family:Microsoft Yahei;"><%= p.getName() %></b>
+								</a>
+							</td>
+							<td class="textr colr fonts20" style="width:5%;" >
+								<b>¥<%= p.getNormalPrice() %></b>
+							</td>
+						</tr>
+						<tr>
+							<td class="cols2 textl" style="color:#696969;font-family:Microsoft Yahei;" >
+								<%= p.getDescribe() %>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+			</table>
+		<%
+			}
+		%>	
+		</div>
+		
+		<div class="widpc100 backgbs overfh" style="height:100px;padding-top:30px;background-color:#eafbf6;margin-top:50px; ">
 	    	<div class="widpc100 heia">
 		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">
 			    	<a href="" target="_blank" style="position:relative;left:22%;top:22%;">				
@@ -105,5 +108,6 @@
 				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
 			</div>
 	    </div>
+	    
 	</body>
 </html>

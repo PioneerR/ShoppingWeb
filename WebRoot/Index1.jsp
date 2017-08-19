@@ -89,6 +89,55 @@
 			.section-photo{
 			background: url("https://ws1.sinaimg.cn/large/006tKfTcly1fg2e1y440tj304g04g0nx.jpg")repeat;
 			}
+			
+			 
+			
+			div.list2{
+			 position:absolute;
+			 left:0;
+			 top:90px;
+			 display:none; 
+			 width:150px; 
+			 border-radius:10px;
+			 block:none;
+			}
+			/* list1 */
+			.list1{		
+			 height: 40px;
+			 padding:0 10px;
+			 position: relative;
+			 float:left;
+			 line-height: 70px;
+			 font-size: 18px;	
+			}
+			div.navs:hover >div.list2{
+			 display: block;
+			}
+			
+			/* 导航刚开始的样子   */
+			div.navs{
+				width:150px;
+				margin:0px;
+				padding: 0; 
+				text-align: center;
+				line-height: 40px;
+				
+			}
+			/* item被呼出的效果   */
+			div.item{
+				margin: 0;
+				padding: 0; 
+				color:#B5B4B4;
+				background-color:#fff;
+				text-align: center;
+				font-size:16px; 
+			}
+			/* item被hover后的效果  */
+			div.item:hover{
+				background:#03a9f4;
+				color:#fff;
+			}
+			
 	    </style>
 	    <script type="text/javascript">
 	    	window.onscroll=function()
@@ -114,7 +163,7 @@
 				<a href="Index1.jsp" style="margin-right:40px;margin-left:7%;color:white;" class="fontw700">				
 					<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:50px;">艺术创想
 				</a>
-				<a href="ShowProducts1.jsp" class="" style="color:#fff;back">课程</a>
+				<a href="ShowProducts1.jsp" class="two" style="color:#fff;back">课程</a>
 				<a href="Buy1.jsp">
 					<img src="/Gouwu/images/background/cart2.png" class="wida" style="height:20px;margin-left:55%; ">
 				</a>
@@ -122,7 +171,23 @@
 				
 				</a>
 			</nav>
+			
+		
+				
+					<div class="navs" style="">
+						<a href="ShowProducts1.jsp" class="" style="color:#fff;">课程</a>
+						<div class="list2 " style="border-radius:5px;">
+							<div class="item">课程类别1</div>
+							<div class="item">课程类别2</div>
+							<div class="item">课程类别3</div>
+						</div>
+					</div>	
+				
 		</div>
+		
+		
+		
+		
 		
 		<div class="widpc100 heipc100 header">
 	      <div class="widpc100 heipc100 header-filter">
@@ -204,65 +269,65 @@
 
 
 	    <div class="section-mid section-photo" style="overflow:hidden;">
-	      <div class="heia wida colb fonts30 textc">
-	       <h5 style="margin:0 0 100px 0" class="fonts30">牛 人 推 荐</h5>
-
-	       <div class="heipc70 wida padtbpc1 padlrpc2" >
-
-	        <div class=" heipc100 widpc20 flol padtb10 marlrpc2" style="margin-left:3%">
-	          <div class="heia wida colb fonts30 textc">
-	            <img src="http://odau7u92l.bkt.clouddn.com/%E6%9D%8E%E7%AC%91%E6%9D%A5.jpg" class="widpc70 heia"
-							 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-	            <p style="font-size:18px">李笑来</p>
-	            <p style="font-size:16px;">中国比特币首富</p>
-	            </div>
-	            <div class="heia wida fonts30 colb textl">
-	            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;老朋友了解，‘认知’是我多年研究的主题。不搞清楚‘大脑’如何运作，
-								再努力也是无用。刘传这小伙儿相当Sharp，不仅自己摸透了‘大脑’，还总结出了体系化的课程。</p>
-	          </div>
+	        <div class="heia wida colb fonts30 textc">
+		       <h5 style="margin:0 0 100px 0" class="fonts30">牛 人 推 荐</h5>
+		
+		       <div class="heipc70 wida padtbpc1 padlrpc2" >
+		
+		        <div class=" heipc100 widpc20 flol padtb10 marlrpc2" style="margin-left:3%">
+		          <div class="heia wida colb fonts30 textc">
+		            <img src="http://odau7u92l.bkt.clouddn.com/%E6%9D%8E%E7%AC%91%E6%9D%A5.jpg" class="widpc70 heia"
+								 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
+		            <p style="font-size:18px">李笑来</p>
+		            <p style="font-size:16px;">中国比特币首富</p>
+		            </div>
+		            <div class="heia wida fonts30 colb textl">
+		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;老朋友了解，‘认知’是我多年研究的主题。不搞清楚‘大脑’如何运作，
+									再努力也是无用。刘传这小伙儿相当Sharp，不仅自己摸透了‘大脑’，还总结出了体系化的课程。</p>
+		          </div>
+		        </div>
+		
+		        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
+		          <div class="heia wida colb fonts30 textc">
+		            <img src="http://odau7u92l.bkt.clouddn.com/%E6%9D%8E%E5%8F%AB%E5%85%BD.jpg" class="widpc70 heia"
+		                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
+		            <p style="font-size:18px ">李靖</p>
+		            <p style="font-size:16px;">百度副总裁</p>
+		          </div>
+		          <div class="heia wida fonts30 colb textl">
+		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;谁也不能否认，在这个每天都在变化的时代里，学习的质量和速度已然成为了决定人价值的重要因素。
+		              	可大部分人这么多年一直在学习，却从没学习过如何学习。推荐千古刘传的《认知学习法》，你应该重新学习下，如何学习！</p>
+		          </div>
+		        </div>
+		
+		        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
+		          <div class="heia wida colb fonts30 textc">
+		            <img src="http://odau7u92l.bkt.clouddn.com/xdite.jpg" class="widpc70 heia"
+		                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
+		            <p style="font-size:18px ">Xdite</p>
+		            <p style="font-size:16px;">全栈营创始人</p>
+		          </div>
+		          <div class="heia wida fonts30 colb textl">
+		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;千古刘传的认知学习法，是我接触认知心理学的第一道契机。
+		              	他的课深入浅出，让我从此一头钻进认知心理学的领域，此后我将认知心理学应用在教学上，设计出了全栈营学习生态体系。</p>
+		          </div>
+		        </div>
+		
+		        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
+		          <div class="heia wida colb fonts30 textc">
+		            <img src="http://odau7u92l.bkt.clouddn.com/%E6%88%90%E7%94%B2.jpg" class="widpc70 heia"
+		                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
+		            <p style="font-size:18px ">成甲</p>
+		            <p style="font-size:16px;">《好好学习》作者</p>
+		          </div>
+		          <div class="heia wida fonts30 colb textl">
+		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;掌握学习的认知原理是具备科学学习能力的关键。
+		            	刘传一直致力于研究认知科学，推荐你学习《认知学习法》，掌握高效学习背后的原理！</p>
+		          </div>
+		        </div>
+		
+		       </div>
 	        </div>
-
-	        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
-	          <div class="heia wida colb fonts30 textc">
-	            <img src="http://odau7u92l.bkt.clouddn.com/%E6%9D%8E%E5%8F%AB%E5%85%BD.jpg" class="widpc70 heia"
-	                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-	            <p style="font-size:18px ">李靖</p>
-	            <p style="font-size:16px;">百度副总裁</p>
-	          </div>
-	          <div class="heia wida fonts30 colb textl">
-	            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;谁也不能否认，在这个每天都在变化的时代里，学习的质量和速度已然成为了决定人价值的重要因素。
-	              	可大部分人这么多年一直在学习，却从没学习过如何学习。推荐千古刘传的《认知学习法》，你应该重新学习下，如何学习！</p>
-	          </div>
-	        </div>
-
-	        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
-	          <div class="heia wida colb fonts30 textc">
-	            <img src="http://odau7u92l.bkt.clouddn.com/xdite.jpg" class="widpc70 heia"
-	                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-	            <p style="font-size:18px ">Xdite</p>
-	            <p style="font-size:16px;">全栈营创始人</p>
-	          </div>
-	          <div class="heia wida fonts30 colb textl">
-	            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;千古刘传的认知学习法，是我接触认知心理学的第一道契机。
-	              	他的课深入浅出，让我从此一头钻进认知心理学的领域，此后我将认知心理学应用在教学上，设计出了全栈营学习生态体系。</p>
-	          </div>
-	        </div>
-
-	        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
-	          <div class="heia wida colb fonts30 textc">
-	            <img src="http://odau7u92l.bkt.clouddn.com/%E6%88%90%E7%94%B2.jpg" class="widpc70 heia"
-	                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-	            <p style="font-size:18px ">成甲</p>
-	            <p style="font-size:16px;">《好好学习》作者</p>
-	          </div>
-	          <div class="heia wida fonts30 colb textl">
-	            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;掌握学习的认知原理是具备科学学习能力的关键。
-	            	刘传一直致力于研究认知科学，推荐你学习《认知学习法》，掌握高效学习背后的原理！</p>
-	          </div>
-	        </div>
-
-	       </div>
-	      </div>
 	    </div>
 	    <div class="section-bottom borrb20 padtbpc5 fonts30 colb textc">
 	      <h3>现在开始认知升级</h3>
