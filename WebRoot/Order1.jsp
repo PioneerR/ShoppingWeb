@@ -189,7 +189,7 @@
 			</nav>
 		</div>
 		
-		<div class="padpc10">
+		<div style="padding:10% 5% 5% 5%;">
 			<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr20" style="padding-bottom:15%;">
 				<div class="backgb" style="height:50px;width:50px;padding-left:2px;padding-top:2px;margin-bottom:10%;">
 					<img src="/Gouwu/images/icon/gou1.png" />

@@ -52,25 +52,6 @@
 	response.setHeader("Cache-Control", "No-store");
 	response.setDateHeader("Expires", 0);
 	
-/*
-	Cart c = (Cart)session.getAttribute("cart");//getAttribute获得的是object类
-	if(c==null)
-	{
-		c=new Cart();
-		session.setAttribute("cart", c);
-	}
-    
-    List<CartItem>items=c.getItems();
-   
-    for(int i=0;i<items.size();i++)
-    {
-    	CartItem ci=items.get(i);
-    	if(p.getName().equals(ci.getProduct().getName()))
-    	{
-    		count=ci.getCount();
-    	}
-    }
-*/	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -229,7 +210,7 @@
 		</div>
 	
 		<div class="padlrpc5 overfh">
-			<div class="boxs10 heia wida borr20 backgbs" style="overflow:hidden;padding:5% 8%;margin-top:5%;background-color:#c8f7f7">
+			<div class="boxs10 heia wida borr20 backgbs" style="overflow:hidden;padding:5% 8%;margin-top:10%;background-color:#c8f7f7">
 			   
 			    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
 				    <div>
@@ -275,7 +256,7 @@
 							</tr>
 							<tr style="height:50px">
 								<td>                      
-									<a href="Buy1.jsp?id=<%= p.getId() %>" onclick="document.form1.submit();">
+									<a href="Buy1.jsp" onclick="document.form1.submit();" >
 										<div class="button-1 backgr" style="cursor:pointer;">				     
 								          	<div class="title-text colw" style="font-size:16px;">立刻下单</div>
 								        </div>

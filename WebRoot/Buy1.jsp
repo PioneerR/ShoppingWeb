@@ -134,7 +134,7 @@
 				box-shadow:0 0 10px #B5B4B4;
 			} 	
 		</style>
-		<script type="text/javascript">			
+		<script type="text/javascript">	
 			function sele(id)//javascript函数名不能用关键字select。
 			{				
 				var number=document.getElementById("number");
@@ -509,7 +509,7 @@
 			</nav>
 		</div>
 	
-		<div class="padpc5">
+		<div style="padding:10% 5% 5% 5% ">
 			<div class="backgb flol" style="height:50px;width:50px;padding-left:15px;padding-top:15px;">
 				<img src="/Gouwu/images/background/cart.png" />
 			</div>

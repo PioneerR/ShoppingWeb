@@ -161,7 +161,7 @@
 			</nav>
 		</div>
 	
-		<div style="padding:5% 8% 0% 8% ;" class="overfh">
+		<div style="padding:10% 8% 0% 8% ;" class="overfh">
 	<%
 		for(int i=0;i<products.size();i++)
 		{
@@ -170,7 +170,7 @@
 			<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
 				<tr>
 					<td colspan="2">
-						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="float:left;" >
+						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" target="_blank" style="float:left;" >
 							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
 						</a>
 					</td>

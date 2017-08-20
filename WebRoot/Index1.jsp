@@ -14,6 +14,12 @@
 		session.removeAttribute("user");
 		response.sendRedirect("Index1.jsp");
 	}
+	
+	//不论是第一次进入该页面，还是第二次返回该页面，都刷新页面，不保留表单信息
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0); 
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

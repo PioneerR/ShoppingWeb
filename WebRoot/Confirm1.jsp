@@ -237,7 +237,7 @@
 			</nav>
 		</div>
 		
-		<div class="padpc5">	
+		<div style="padding:10% 5% 5% 5% ">	
 			<form action="Order1.jsp" name="form1" method="post">
 			<input type="hidden" name="action" value="confirm"/>
 			<div class="boxs10 borr10">

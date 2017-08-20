@@ -32,12 +32,18 @@
 		}
 		catch(UserNotFoundException e)
 		{
-			out.println(e.getMessage());
+			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+			out.println("<div style=''>");
+			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
+			out.println("</div></div>");
 			return;
 		}
 		catch(PasswordNotCorrectException e1)
 		{
-			out.println(e1.getMessage());
+			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+			out.println("<div style=''>");
+			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
+			out.println("</div></div>");
 			return;
 		}
 		session.setAttribute("user", u);
