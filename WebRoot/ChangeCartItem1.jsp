@@ -6,6 +6,7 @@
 
 
 <%
+	request.setCharacterEncoding("utf8");
 	int productid=Integer.parseInt(request.getParameter("productid"));
 	int count=Integer.parseInt(request.getParameter("count"));
 	

@@ -9,6 +9,7 @@
 
 
 <%
+	request.setCharacterEncoding("utf8");
 	List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
 	User u=(User)session.getAttribute("user");
 
@@ -19,7 +20,6 @@
 		response.sendRedirect("Index1.jsp");
 	}
 	
-	request.setCharacterEncoding("utf8");
 	String url=request.getParameter("url");//确认--是从首页跳转到登录页面的
 	if(action !=null && action.trim().equals("login"))
 	{

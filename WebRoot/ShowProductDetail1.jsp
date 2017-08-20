@@ -10,6 +10,7 @@
 
 
 <%
+	request.setCharacterEncoding("utf8");
 	List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
 	User u=(User)session.getAttribute("user");
 	

@@ -9,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+	request.setCharacterEncoding("utf8");
 	List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
 	User u=(User)session.getAttribute("user");
 	
@@ -18,7 +19,6 @@
 		session.removeAttribute("user");
 		response.sendRedirect("Index1.jsp");
 	}
-	request.setCharacterEncoding("utf8");
 	Cart c = (Cart)session.getAttribute("cart");//getAttribute获得的是object类
 	if(c==null)
 	{

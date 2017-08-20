@@ -12,6 +12,7 @@
 
 
 <%
+	request.setCharacterEncoding("utf8");
 	List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
 	User u=(User)session.getAttribute("user");
 	
@@ -22,7 +23,6 @@
 		response.sendRedirect("Index1.jsp");
 	}
 
-	request.setCharacterEncoding("utf8");
 	if(u == null)
 	{
 		response.sendRedirect("UserLogin1.jsp");

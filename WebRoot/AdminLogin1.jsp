@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=utf8" %>
 
 <%
+	request.setCharacterEncoding("utf8");
 	String action=request.getParameter("action");	
 	if(action!=null && action.equals("adminlogin"))
 	{
