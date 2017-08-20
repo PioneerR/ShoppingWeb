@@ -117,23 +117,6 @@
 			
 		</style>
 		<script type="text/javascript">
-	    	window.onscroll=function()
-	    	{
-	    		var t=document.documentElement.scrollTop || document.body.scrollTop;
-	    		var nav=document.getElementById("nav");
-	    		if(t<=500)
-	    		{
-	    			nav.style.backgroundColor='rgba(50,170,220,-0.1)';
-	    			nav.style.boxShadow='none';
-	    		}
-	    		else
-	    		{
-	    			nav.style.backgroundColor='rgba(50,170,220,1)';//如果用双引号就会无效
-	    			nav.style.boxShadow='5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4';
-	    		} 
-	    	}
-	   </script>
-		<script type="text/javascript">
 			function sure(num)
 			{
 				var b1=document.getElementById("b1");
@@ -155,7 +138,8 @@
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 	</head>	
 	<body >
-		<div class="widpc100" style="position:fixed;top:0;height:70px;" id="nav">
+		<div class="widpc100 backgb" style="position:fixed;top:0;height:70px;
+			 box-shadow:5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4;" id="nav">
 			<nav style="" class="overfh">
 				<div class="flol" style="margin-right:20px;margin-left:7%;">
 					<a href="Index1.jsp" style="color:white;" class="fontw700">				
@@ -219,10 +203,10 @@
 					</a>
 				</div>
 				<div class="flol marlr15" style="margin-top:25px;" >
-					<a href="UserLogin1.jsp?url=index" style="color:white;">
+					<a href="UserLogin1.jsp" style="color:white;">
 						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
 					</a>
-				</div>
+				</div>				
 		<%
 			}
 			else

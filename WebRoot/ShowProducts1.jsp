@@ -37,13 +37,18 @@
 		products=ProductMgr.getInstance().getProducts();
 	}
 	
+	//从登录页面返回时能够强制刷新
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0);
 %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">				
 		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
 		<title>艺术创想</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
@@ -54,27 +59,11 @@
 			table table:hover{
 			  box-shadow:0 0 0px #fff;	
 			}
-		</style>
-		<script type="text/javascript">
-	    	window.onscroll=function()
-	    	{
-	    		var t=document.documentElement.scrollTop || document.body.scrollTop;
-	    		var nav=document.getElementById("nav");
-	    		if(t<=500)
-	    		{
-	    			nav.style.backgroundColor='rgba(50,170,220,-0.1)';
-	    			nav.style.boxShadow='none';
-	    		}
-	    		else
-	    		{
-	    			nav.style.backgroundColor='rgba(50,170,220,1)';//如果用双引号就会无效
-	    			nav.style.boxShadow='5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4';
-	    		} 
-	    	}
-	    </script>		
+		</style>		
 	</head>
 	<body>
-		<div class="widpc100" style="position:fixed;top:0;height:70px;" id="nav">
+		<div class="widpc100 backgb" style="position:fixed;top:0;height:70px;
+			 box-shadow:5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4;" id="nav">
 			<nav style="" class="overfh">
 				<div class="flol" style="margin-right:20px;margin-left:7%;">
 					<a href="Index1.jsp" style="color:white;" class="fontw700">				
@@ -138,7 +127,7 @@
 					</a>
 				</div>
 				<div class="flol marlr15" style="margin-top:25px;" >
-					<a href="UserLogin1.jsp?url=index" style="color:white;">
+					<a href="UserLogin1.jsp" style="color:white;">
 						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
 					</a>
 				</div>

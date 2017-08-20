@@ -61,7 +61,7 @@
 			response.sendRedirect("Index1.jsp");
 %>
 		<script type="text/javascript">
-			window.history.go(1);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面.进入一个新页面，不读取缓存
+			window.history.go(1);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面.进入上一个缓存页面，读取缓存
 		</script>
 <%			
 		}
@@ -69,7 +69,7 @@
 		{
 %>
 		<script type="text/javascript">
-			window.history.go(-2);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面。进入上一个缓存页面，读取缓存
+			window.history.go(-2);
 		</script>
 <%
 		}
@@ -84,23 +84,6 @@
 		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
 		<title>艺术创想</title>
 		<link type="text/css" rel="stylesheet" href="/Gouwu/css/base.css" />
-		<script type="text/javascript">
-	    	window.onscroll=function()
-	    	{
-	    		var t=document.documentElement.scrollTop || document.body.scrollTop;
-	    		var nav=document.getElementById("nav");
-	    		if(t<=500)
-	    		{
-	    			nav.style.backgroundColor='rgba(50,170,220,-0.1)';
-	    			nav.style.boxShadow='none';
-	    		}
-	    		else
-	    		{
-	    			nav.style.backgroundColor='rgba(50,170,220,1)';//如果用双引号就会无效
-	    			nav.style.boxShadow='5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4';
-	    		} 
-	    	}
-	    </script>
 		<style type="text/css">
 			td{
 				text-align:center;
@@ -206,7 +189,7 @@
 					</a>
 				</div>
 				<div class="flol marlr15" style="margin-top:25px;" >
-					<a href="UserLogin1.jsp?url=index" style="color:white;">
+					<a href="UserLogin1.jsp" style="color:white;">
 						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
 					</a>
 				</div>

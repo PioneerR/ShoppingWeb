@@ -37,6 +37,12 @@
 		Product p=si.getProduct();
 		sum=sum+p.getNormalPrice()*si.getCount();
 	}
+	
+	//从登录页面返回时能够强制刷新
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0);
 %>
 
 

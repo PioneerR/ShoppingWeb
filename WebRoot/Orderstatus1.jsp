@@ -48,6 +48,12 @@
 			}
 		}
 	}
+	
+	//从登录页面返回时能够强制刷新
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
