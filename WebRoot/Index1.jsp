@@ -12,9 +12,9 @@
 	if(action !=null && action.equals("exit"))
 	{
 		session.removeAttribute("user");
+		response.sendRedirect("Index1.jsp");
 	}
 %>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -135,33 +135,30 @@
 					<a href="ShowProducts1.jsp" class="" style="color:#fff;">课程</a>
 					<div class="itemhide" style="margin-left:18%;width:150px;padding-bottom:5px;">
 					<%
-						Category c=categories.get(0);
-						int id=c.getId();
+						Category cg=categories.get(0);				
 					%>		
-						<a href="ShowProducts1.jsp?categoryId=<%= id %>">
+						<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>">
 							<div class="item backgw borrt5 textc fonts16 colgy" style="line-height:37px;">
-								<%= c.getName() %>
+								<%= cg.getName() %>
 							</div>
 						</a>						
 					<%						
 						for(int i=1;i<categories.size()-1;i++)
 						{							
-							c=categories.get(i);
-							id=c.getId();
+							cg=categories.get(i);							
 					%>	
-						<a href="ShowProducts1.jsp?categoryId=<%= id %>">
+						<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>">
 							<div class="item backgw textc fonts16 colgy" style="line-height:37px;">
-								<%= c.getName() %>
+								<%= cg.getName() %>
 							</div>
 						</a>
 					<%
 						}
-							c=categories.get(categories.size()-1);
-							id=c.getId();
+							cg=categories.get(categories.size()-1);							
 					%>
-						<a href="ShowProducts1.jsp?categoryId=<%= id %>" >
+						<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>" >
 							<div class="item backgw borrb5 textc fonts16 colgy" style="line-height:37px;">
-								<%= c.getName() %>
+								<%= cg.getName() %>
 							</div>
 						</a>	
 					</div>
@@ -190,8 +187,8 @@
 					</a>
 				</div>
 				<div class="flol marlr15" style="margin-top:25px;" >
-					<a href="UserLogin1.jsp" style="color:white;">
-						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;margin-right:5px;">登录
+					<a href="UserLogin1.jsp?url=index" style="color:white;">
+						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
 					</a>
 				</div>
 		<%
@@ -389,7 +386,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+			<div class="flol heia martbpc1 fonts14" style="margin-left:38%;">
 				Copyright © 2017 艺术创想  Designed by 
 				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
 			</div>

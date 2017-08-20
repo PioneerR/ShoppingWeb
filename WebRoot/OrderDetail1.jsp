@@ -155,7 +155,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+			<div class="flol heia martbpc1 fonts14" style="margin-left:38%;">
 				Copyright © 2017 艺术创想  Designed by 
 				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
 			</div>

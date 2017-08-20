@@ -18,7 +18,7 @@
 	List<SalesOrder> orders=OrderMgr.getInstance().getOrders();
 	int uid=u.getId();
 	
-	String [] status={"待付款","等待审核","待发货","已发货","订单已取消"};
+	String [] status={"待付款","等待学校确认","待排课","已排课","课程已取消"};
 
 	String action=request.getParameter("action");
 	String orderIdStr=request.getParameter("orderId");
@@ -206,7 +206,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+			<div class="flol heia martbpc1 fonts14" style="margin-left:38%;">
 				Copyright © 2017 艺术创想  Designed by 
 				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
 			</div>

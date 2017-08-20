@@ -1,3 +1,6 @@
+<%@page import="user.User"%>
+<%@page import="category.CategoryService"%>
+<%@page import="category.Category"%>
 <%@ page import="product.ProductMgr" %>
 <%@ page import="product.Product" %>
 <%@ page import="java.util.List" %>
@@ -5,6 +8,16 @@
 
 
 <%
+	List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
+	User u=(User)session.getAttribute("user");
+	
+	String action=request.getParameter("action");
+	if(action !=null && action.equals("exit"))
+	{
+		session.removeAttribute("user");
+		response.sendRedirect("Index1.jsp");
+	}
+
 	String id=request.getParameter("categoryId");
 	List<Product> products=null;
 	if(id!=null)
@@ -41,9 +54,124 @@
 			table table:hover{
 			  box-shadow:0 0 0px #fff;	
 			}
-		</style>		
+		</style>
+		<script type="text/javascript">
+	    	window.onscroll=function()
+	    	{
+	    		var t=document.documentElement.scrollTop || document.body.scrollTop;
+	    		var nav=document.getElementById("nav");
+	    		if(t<=500)
+	    		{
+	    			nav.style.backgroundColor='rgba(50,170,220,-0.1)';
+	    			nav.style.boxShadow='none';
+	    		}
+	    		else
+	    		{
+	    			nav.style.backgroundColor='rgba(50,170,220,1)';//如果用双引号就会无效
+	    			nav.style.boxShadow='5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4';
+	    		} 
+	    	}
+	    </script>		
 	</head>
-	<body >
+	<body>
+		<div class="widpc100" style="position:fixed;top:0;height:70px;" id="nav">
+			<nav style="" class="overfh">
+				<div class="flol" style="margin-right:20px;margin-left:7%;">
+					<a href="Index1.jsp" style="color:white;" class="fontw700">				
+						<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:50px;">艺术创想
+					</a>
+				</div>
+				
+				<div class="itemshow flol wid100 textc" style="margin-top:17px; ">
+					<a href="ShowProducts1.jsp" class="" style="color:#fff;">课程</a>
+					<div class="itemhide" style="margin-left:18%;width:150px;padding-bottom:5px;">
+					<%
+						Category cg=categories.get(0);				
+					%>		
+						<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>">
+							<div class="item backgw borrt5 textc fonts16 colgy" style="line-height:37px;">
+								<%= cg.getName() %>
+							</div>
+						</a>						
+					<%						
+						for(int i=1;i<categories.size()-1;i++)
+						{							
+							cg=categories.get(i);							
+					%>	
+						<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>">
+							<div class="item backgw textc fonts16 colgy" style="line-height:37px;">
+								<%= cg.getName() %>
+							</div>
+						</a>
+					<%
+						}
+							cg=categories.get(categories.size()-1);							
+					%>
+						<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>" >
+							<div class="item backgw borrb5 textc fonts16 colgy" style="line-height:37px;">
+								<%= cg.getName() %>
+							</div>
+						</a>	
+					</div>
+				</div>
+				
+				<div class="itemshow flol wid100 textc" style="margin-top:17px;margin-left:45%; ">
+					<a href="Buy1.jsp" class="" style="color:#fff;">
+						<img src="/Gouwu/images/background/cart2.png" class="wida" style="height:22px;">
+					</a>
+					<div class="itemhide" style="width:150px;padding-bottom:5px; ">
+						<a href="Buy1.jsp">
+							<div class="item backgw textc fonts16 colgy borr5" style="line-height:37px;margin-right:15%;">
+								查看购物车
+							</div>
+						</a>
+					</div>
+				</div>
+				
+		<%
+			if(u==null)
+			{
+		%>	
+				<div class="flol marlr15" style="margin-top:25px;" >
+					<a href="Register1.jsp" style="color:white;">
+						<img src="/Gouwu/images/icon/signup.png" class="wida" style="height:20px;margin-right:5px;">注册
+					</a>
+				</div>
+				<div class="flol marlr15" style="margin-top:25px;" >
+					<a href="UserLogin1.jsp?url=index" style="color:white;">
+						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
+					</a>
+				</div>
+		<%
+			}
+			else
+			{
+		%>
+				<div class="itemshow flol marlr15" style="margin-top:17px;" >
+					<a href="" style="color:white;">
+						<img src="/Gouwu/images/icon/user.png" class="wida" 
+							 style="height:20px;margin-right:5px;">
+						<%= u.getUsername() %>
+					</a>
+					<div class="itemhide" style="width:150px;padding-bottom:5px;">
+						<a href="Orderstatus1.jsp">
+							<div class="item borrt5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								我的订单
+							</div>
+						</a>
+						<a href="Index1.jsp?action=exit">
+							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								退出
+							</div>
+						</a>					
+					</div>
+				</div>
+		<%
+			}
+		%>	
+			</nav>
+		</div>
+	
 		<div style="padding:5% 8% 0% 8% ;" class="overfh">
 	<%
 		for(int i=0;i<products.size();i++)
@@ -126,7 +254,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="flol widpc100 heia martbpc1 fonts14" style="margin-left:38%;">
+			<div class="flol heia martbpc1 fonts14" style="margin-left:38%;">
 				Copyright © 2017 艺术创想  Designed by 
 				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
 			</div>
