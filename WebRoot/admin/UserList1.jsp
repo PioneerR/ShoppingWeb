@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf8" pageEncoding="utf8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf8" %>
 <%@ page import="user.*,java.util.*" %>
 
 <%
@@ -35,27 +35,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf8">
-	
-	<title>会员列表</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf8">	
+	<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+  	<title>艺术创想校园管理中心</title> 
+    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 	<style type="text/css">
-	table
-	{
-	 	border-collapse:collapse;
-	 	text-align:center;	 	
-	}	
-	th,td{
-		text-align:center;
-		border:3px solid #fff1cc;
-	}
-	a{
-		text-decoration: none;
-	}
-
+		table
+		{
+		 	border-collapse:collapse;
+		 	text-align:center;	 	
+		}	
+		th,td{
+			text-align:center;
+			border:3px solid #fff1cc;
+		}
 	</style>
 </head>
 <body>
-	<span>用户管理 &#187 用户列表</span>
+	<div class="flol colb fonts18 fontw700 martb15">
+		用户列表
+	</div>
+	
 	<table border=1 width=100% >
 		<tr style="background-color:#fff1cc">
 			<th>用户名</th>

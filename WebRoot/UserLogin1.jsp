@@ -26,58 +26,82 @@
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		//User u=null;
-		try
+		if(!username.equals("yscxadmin"))
 		{
-			u=User.check(username,password);
-		}
-		catch(UserNotFoundException e)
-		{
-			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
-			out.println("<div style=''>");
-			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
-			out.println("</div></div>");
-			return;
-		}
-		catch(PasswordNotCorrectException e1)
-		{
-			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
-			out.println("<div style=''>");
-			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
-			out.println("</div></div>");
-			return;
-		}
-		session.setAttribute("user", u);
-		
-		//设置session时间为三个月
-		String sessiontime=request.getParameter("cookietime");
-		if(sessiontime!=null && sessiontime.equals("true"))//&&左边为假，右边不执行
-		{
-			HttpSession sess=request.getSession(true);
-			sess.setMaxInactiveInterval(90*24*3600);//三个月的时间
+			try
+			{
+				u=User.check(username,password);
+			}
+			catch(UserNotFoundException e)
+			{
+				out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+				out.println("<div style=''>");
+				out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
+				out.println("</div></div>");
+				return;
+			}
+			catch(PasswordNotCorrectException e1)
+			{
+				out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+				out.println("<div style=''>");
+				out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
+				out.println("</div></div>");
+				return;
+			}
+			session.setAttribute("user", u);
 			
-			Cookie cookie=new Cookie("username",username);//密码和账号都要写到cookie内
-			       cookie=new Cookie("password",password);
-			cookie.setMaxAge(90*24*3600);
-			response.addCookie(cookie);
-		}
-
-		
-		if(url!=null && url.equals("index"))
-		{	
-			response.sendRedirect("Index1.jsp");
+			//设置session时间为三个月
+			String sessiontime=request.getParameter("cookietime");
+			if(sessiontime!=null && sessiontime.equals("true"))//&&左边为假，右边不执行
+			{
+				HttpSession sess=request.getSession(true);
+				sess.setMaxInactiveInterval(90*24*3600);//三个月的时间
+				
+				Cookie cookie=new Cookie("username",username);//密码和账号都要写到cookie内
+				       cookie=new Cookie("password",password);
+				cookie.setMaxAge(90*24*3600);
+				response.addCookie(cookie);
+			}
+			if(url!=null && url.equals("index"))
+			{	
+				response.sendRedirect("Index1.jsp");
 %>
-		<script type="text/javascript">
-			window.history.go(1);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面.进入上一个缓存页面，读取缓存
-		</script>
+			<script type="text/javascript">
+				window.history.go(1);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面.进入上一个缓存页面，读取缓存
+			</script>
 <%			
+			}
+			else
+			{
+%>
+			<script type="text/javascript">
+				window.history.go(-2);
+			</script>
+<%
+			}
 		}
 		else
 		{
-%>
-		<script type="text/javascript">
-			window.history.go(-2);
-		</script>
-<%
+			if(!password.equals("239338"))
+			{
+				out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:250px;margin-left:5%;margin-top:5%;'");
+				out.println("<div style=''>");
+				out.println("<h2 style='color:#ff9632;text-align:center;padding:0% 8%;'>");
+				out.println("<img src='/Gouwu/images/icon/yscx.png' style='width:200px;height:auto;'/>");
+				out.println("管理员密码输入错误~");
+				out.println("</h2></div></div>");
+				
+				out.println("<a href='javascript:window.history.go(-1)' style='text-decoration:none;");
+				out.println("background:#03a9f4;padding-bottom:5px;padding-top:5px;color:#fff;float:right;");
+				out.println("margin:2% 5% 5% 5%;padding-left:30px;padding-right:30px;text-align:center;border-radius:5px;'>");
+				out.println("返回</a>");
+			
+				return;
+			}
+			
+			session.setAttribute("yscxadmin", "admin");
+			//管理员获得权限别忘了写，因为后面的页面需要确认是否有管理员权限，会用到session
+			response.sendRedirect("admin/AdminIndex1.jsp");	
 		}
 	}	
 %>
@@ -260,9 +284,11 @@
 		          </div>
 		          <div class="fonts14 textr flor" style="letter-spacing:0em;margin-top:15px;">
 		          	<a href="UserModify1.jsp" class="colgy padlr20" >忘记密码？</a>
-		          </div>		          
-		          <input type="submit" value="登录" class="backgb boxs5 colw borr25 padtb5 wid100 fonts16 martb20" 
-		          		 style="border-bottom:none;margin-top:30;cursor:pointer;" />
+		          </div>	
+		          <div class="widpc100">          
+			          <input type="submit" value="登录" class="flol backgb boxs5 colw borr25 padtb5 wid100 fonts16 martb20" 
+			          		 style="border-bottom:none;margin-top:30;cursor:pointer;margin-left:35%; " />
+		          </div>		 
 	          </form>	  
 			  
 	      </div>

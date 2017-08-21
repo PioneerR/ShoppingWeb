@@ -37,7 +37,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-		<title>类别列表</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+	  	<title>艺术创想校园管理中心</title> 
+	    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 		<style type="text/css">
 			td{
 				text-align:center;
@@ -50,7 +52,10 @@
 		</style>
 	</head>
 	<body>
-		<span>类别管理 &raquo;类别列表 </span><br>
+		<div class="flol colb fonts18 fontw700 martb15">
+			课程类别
+		</div>
+		
 		<div style="text-align:center">
 			<span><a href="CategoryAdd1.jsp" target="detail" >添加根类别</a></span>
 		</div>

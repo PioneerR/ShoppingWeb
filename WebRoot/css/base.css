@@ -311,6 +311,9 @@
 		text-align:center;
 		border-collapse: collapse;
 	}
+	th{
+		text-align:center;
+	}
 	img{
 		border:none;
 	}

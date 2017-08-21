@@ -40,7 +40,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>订单列表</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+	  	<title>艺术创想校园管理中心</title> 
+	    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 		<style type="text/css">
 			table
 			{
@@ -57,7 +59,10 @@
 		</style>
 	</head>
 	<body>
-		<span>订单管理 &#187 订单列表</span>
+		<div class="flol colb fonts18 fontw700 martb15">
+			报名列表
+		</div>
+	
 		<table border=1 width=100% >
 			<tr style="background-color:#fff1cc">
 				<th>ID</th>

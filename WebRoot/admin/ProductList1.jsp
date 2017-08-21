@@ -38,7 +38,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
-		<title>产品列表</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+	  	<title>艺术创想校园管理中心</title> 
+	    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 		<style type="text/css">
 			td{
 				text-align:center;
@@ -153,7 +155,10 @@
 		</script>
 	</head>
 	<body>
-		<span>产品管理 &raquo;产品列表 </span><br>
+		<div class="flol colb fonts18 fontw700 martb15">
+			课程列表
+		</div>
+		
 		<div style="text-align:center">
 			<span><a href="ProductAdd1.jsp" target="detail" >添加新产品</a></span>
 		</div>
