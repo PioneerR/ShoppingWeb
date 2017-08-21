@@ -287,7 +287,7 @@
 		          </div>	
 		          <div class="widpc100">          
 			          <input type="submit" value="登录" class="flol backgb boxs5 colw borr25 padtb5 wid100 fonts16 martb20" 
-			          		 style="border-bottom:none;margin-top:30;cursor:pointer;margin-left:35%; " />
+			          		 style="border-bottom:none;margin-top:30;cursor:pointer;margin-left:35%;" />
 		          </div>		 
 	          </form>	  
 			  
