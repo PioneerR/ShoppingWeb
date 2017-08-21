@@ -169,8 +169,21 @@
 					</a>		
 				</div>
 			</div>
-			
-	
+		
+		<%
+			if(yscxadmin==null)
+			{
+		%>					
+				<div class="flol marlr15" style="margin-top:25px;" >
+					<a href="UserLogin1.jsp" style="color:white;">
+						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
+					</a>
+				</div>
+		<%
+			}
+			else
+			{
+		%>			
 			<div class="itemshow flol" style="margin-top:0px;margin-left:10%;" >
 				<a href="" style="color:white;">
 					<img src="/Gouwu/images/icon/user.png" class="wida" 
@@ -190,7 +203,9 @@
 					</a>					
 				</div>
 			</div>
-		
+		<%
+			}
+		%>
 		  </nav>
 	  </div>	
   

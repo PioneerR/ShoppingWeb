@@ -1,3 +1,5 @@
+<%@page import="user.UserNotFoundException"%>
+<%@page import="user.PasswordNotCorrectException"%>
 <%@ page import="user.User"%>
 <%@ page import="category.CategoryService"%>
 <%@ page import="category.Category"%>
@@ -8,6 +10,36 @@
 	request.setCharacterEncoding("utf8");
     List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
 	User u=(User)session.getAttribute("user");
+	
+	//仅仅设置首页可以读取cookie的密码和账号
+	Cookie [] cookies=request.getCookies();
+	if(cookies!=null)
+	{
+		String username=cookies[1].getValue();
+		String password=cookies[0].getValue();
+		//System.out.println(username+password);
+		try
+		{
+			u=User.check(username,password);
+		}
+		catch(UserNotFoundException e)
+		{
+			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+			out.println("<div style=''>");
+			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
+			out.println("</div></div>");
+			return;
+		}
+		catch(PasswordNotCorrectException e1)
+		{
+			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+			out.println("<div style=''>");
+			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
+			out.println("</div></div>");
+			return;
+		}
+		session.setAttribute("user", u);
+	}
 	
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))

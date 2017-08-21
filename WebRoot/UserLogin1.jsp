@@ -19,7 +19,7 @@
 		session.removeAttribute("user");
 		response.sendRedirect("Index1.jsp");
 	}
-	
+
 	String url=request.getParameter("url");//确认--是从首页跳转到登录页面的
 	if(action !=null && action.trim().equals("login"))
 	{
@@ -57,10 +57,12 @@
 				HttpSession sess=request.getSession(true);
 				sess.setMaxInactiveInterval(90*24*3600);//三个月的时间
 				
-				Cookie cookie=new Cookie("username",username);//密码和账号都要写到cookie内
-				       cookie=new Cookie("password",password);
-				cookie.setMaxAge(90*24*3600);
-				response.addCookie(cookie);
+				Cookie cookun=new Cookie("username",username);//密码和账号都要写到cookie内
+				Cookie cookpw=new Cookie("password",password);//由于cookie数组是存放在栈中，所以是先进后出，后进先出
+				cookun.setMaxAge(90*24*3600);//先存放的username，取出时的角标反而是靠后的
+				cookpw.setMaxAge(90*24*3600);//后存放的password，取出时的角标反而靠前
+				response.addCookie(cookun);
+				response.addCookie(cookpw);
 			}
 			if(url!=null && url.equals("index"))
 			{	

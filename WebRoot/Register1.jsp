@@ -58,7 +58,9 @@
 				out.println("<img src='/Gouwu/images/icon/yscx.png' style='width:200px;height:auto;'/>");
 				out.println("恭喜您注册成功！~");
 				out.println("</h2></div></div>");
-				//response.setHeader("refresh","2;URL=payset.jsp");可以用于延时加载，但是无法回到上一个浏览页面								
+				//response.setHeader("refresh","2;URL=payset.jsp");可以用于延时加载，但是无法回到上一个浏览页面
+				response.sendRedirect("Index1.jsp");			
+				
 				return;//常常用于提交回本页面并将数据转交到后台进行存储的操作
 			}
 			else 
