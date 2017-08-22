@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="user.UserNotFoundException"%>
 <%@page import="user.PasswordNotCorrectException"%>
 <%@ page import="user.User"%>
@@ -11,14 +12,13 @@
     List<Category> categories=CategoryService.getInstance().getCategoriesGradeTwo();
 	User u=(User)session.getAttribute("user");
 	
-	//仅仅设置首页可以读取cookie的密码和账号
 	
+	//仅仅设置首页可以读取cookie的密码和账号
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
 		//销毁session
 		session.invalidate();
-		response.sendRedirect("/Gouwu/");
 		//移除cookie
 		Cookie [] cookies=request.getCookies();
 		if(cookies!=null)
@@ -27,15 +27,18 @@
 			{
 				//System.out.println(cookies[i].getValue()+"-----");
 				cookies[i].setMaxAge(0);
-				cookies[i].setDomain("C:/Users/Administrator/AppData/Local/Temp");
-				cookies[i].setPath("C:/Users/Administrator/AppData/Local/Temp");
+				//cookies[i].setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookies[i].setPath("/");
 				response.addCookie(cookies[i]);
 			}
 		}	
+		response.sendRedirect("/Gouwu/");
+		return;
 	}
-	else if(action==null )
+	else if(action==null)
 	{
 		Cookie [] cookies=request.getCookies();
+		
 		if(cookies!=null)
 		{
 			String username=null;
@@ -45,14 +48,51 @@
 				String str=cookies[i].getName();
 				if(str.equals("username"))
 				{
-					username=cookies[i].getValue();	
+					username=cookies[i].getValue();
 				}
 				else if(str.equals("password"))
 				{
 					password=cookies[i].getValue();
 				}
+/*				else if(str.equals("JSESSIONID"))/////////////session+cookie实现自动登录暂缓+UserLogin1.jsp
+				{
+					String sessionid=cookies[i].getValue();
+		System.out.println(sessionid+"sessionid");
+					HttpSessionContext  SessCon=  request.getSession(true).getSessionContext(); 
+					//HashMap hm=new HashMap();
+		
+					HttpSession  Sess=  SessCon.getSession(sessionid); 
+		System.out.println(Sess.getId()+"Sess对象");	
+					
+					String uname=(String)Sess.getAttribute("username");
+					String pword=(String)Sess.getAttribute("password");
+					if(uname != null && pword !=null)
+					{
+						try
+						{
+							u=User.check(uname,pword);
+						}
+						catch(UserNotFoundException e)
+						{
+							out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+							out.println("<div style=''>");
+							out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
+							out.println("</div></div>");
+							return;
+						}
+						catch(PasswordNotCorrectException e1)
+						{
+							out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+							out.println("<div style=''>");
+							out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
+							out.println("</div></div>");
+							return;
+						}
+						session.setAttribute("user", u);
+					}
+				}*/				
 			}
-			
+		
 			if(username != null && password !=null)
 			{
 				try

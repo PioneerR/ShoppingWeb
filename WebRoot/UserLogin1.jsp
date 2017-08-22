@@ -25,7 +25,7 @@
 	{
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
-		//User u=null;
+		//User u=null;		
 		if(!username.equals("yscxadmin"))
 		{
 			try
@@ -50,22 +50,37 @@
 			}
 			session.setAttribute("user", u);
 			
-			//设置cookie时间为三个月
+/*			//设置session时间为三个月           /////////////session+cookie实现自动登录暂缓+Index1.jsp
+			String sessiontime=request.getParameter("cookietime");
+			if(sessiontime!=null && sessiontime.equals("true"))//&&左边为假，右边不执行
+			{
+				session.setAttribute("username", username);
+				session.setAttribute("password", password);
+				HttpSession sess=request.getSession(true);//取消了session的持久化设置,sess实际上就是上面的session，只不过有了名字
+				sess.setMaxInactiveInterval(90*24*3600);//设置session的时间为三个月
+	System.out.println("create"+sess.getId());
+				
+				Cookie cookie=new Cookie("JSESSIONID",sess.getId());
+					   cookie.setMaxAge(90*24*3600); 
+				cookie.setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookie.setPath("C:/Users/Administrator/AppData/Local/Temp");
+				response.addCookie(cookie);
+			}*/
+			
+			//设置cookie时间为三个月 
+			//只有用户页面写cookie，管理员页面需要输入密码
 			String cookietime=request.getParameter("cookietime");
 			if(cookietime!=null && cookietime.equals("true"))//&&左边为假，右边不执行
 			{
-				//HttpSession sess=request.getSession(true);取消了session的持久化设置
-				//sess.setMaxInactiveInterval(90*24*3600);//设置session的时间为三个月
-				
 				Cookie cookun=new Cookie("username",username);//密码和账号都要写到cookie内
 				Cookie cookpw=new Cookie("password",password);//由于cookie数组是存放在栈中，所以是先进后出，后进先出
 				cookun.setMaxAge(90*24*3600);//先存放的username，取出时的角标反而是靠后的
-				cookun.setDomain("C:/Users/Administrator/AppData/Local/Temp");
-				cookun.setPath("C:/Users/Administrator/AppData/Local/Temp");
+				//cookun.setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookun.setPath("/");//设置根目录下的页面都可以访问该cookie
 				cookpw.setMaxAge(90*24*3600);//后存放的password，取出时的角标反而靠前
-				cookpw.setDomain("C:/Users/Administrator/AppData/Local/Temp");
-				cookpw.setPath("C:/Users/Administrator/AppData/Local/Temp");
-				System.out.println(cookun.getValue()+"---"+cookpw.getValue());
+				//cookpw.setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookpw.setPath("/");
+				//System.out.println(cookun.getValue()+"---"+cookpw.getValue());
 				response.addCookie(cookun);
 				response.addCookie(cookpw);
 			}
