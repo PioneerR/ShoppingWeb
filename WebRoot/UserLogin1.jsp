@@ -16,8 +16,8 @@
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		session.removeAttribute("user");
-		response.sendRedirect("Index1.jsp");
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 	}
 
 	String url=request.getParameter("url");//确认--是从首页跳转到登录页面的
@@ -50,19 +50,21 @@
 			}
 			session.setAttribute("user", u);
 			
-			//设置session、cookie时间为三个月
-			String sessiontime=request.getParameter("cookietime");
-			if(sessiontime!=null && sessiontime.equals("true"))//&&左边为假，右边不执行
+			//设置cookie时间为三个月
+			String cookietime=request.getParameter("cookietime");
+			if(cookietime!=null && cookietime.equals("true"))//&&左边为假，右边不执行
 			{
-				HttpSession sess=request.getSession(true);
-				sess.setMaxInactiveInterval(90*24*3600);//三个月的时间
+				//HttpSession sess=request.getSession(true);取消了session的持久化设置
+				//sess.setMaxInactiveInterval(90*24*3600);//设置session的时间为三个月
 				
 				Cookie cookun=new Cookie("username",username);//密码和账号都要写到cookie内
 				Cookie cookpw=new Cookie("password",password);//由于cookie数组是存放在栈中，所以是先进后出，后进先出
 				cookun.setMaxAge(90*24*3600);//先存放的username，取出时的角标反而是靠后的
-				
+				cookun.setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookun.setPath("C:/Users/Administrator/AppData/Local/Temp");
 				cookpw.setMaxAge(90*24*3600);//后存放的password，取出时的角标反而靠前
-				
+				cookpw.setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookpw.setPath("C:/Users/Administrator/AppData/Local/Temp");
 				System.out.println(cookun.getValue()+"---"+cookpw.getValue());
 				response.addCookie(cookun);
 				response.addCookie(cookpw);
@@ -70,7 +72,7 @@
 			
 			if(url!=null && url.equals("index"))
 			{	
-				response.sendRedirect("Index1.jsp");
+				response.sendRedirect("/Gouwu/");
 %>
 			<script type="text/javascript">
 				window.history.go(1);//表单提交相当于又一次页面请求，所以是回到上一个页面的上一个页面.进入上一个缓存页面，读取缓存
@@ -107,25 +109,6 @@
 			
 			session.setAttribute("yscxadmin", "admin");
 			//管理员获得权限别忘了写，因为后面的页面需要确认是否有管理员权限，会用到session
-			//设置session、cookie时间为三个月
-			String sessiontime=request.getParameter("cookietime");
-			if(sessiontime!=null && sessiontime.equals("true"))//&&左边为假，右边不执行
-			{
-				HttpSession sess=request.getSession(true);
-				sess.setMaxInactiveInterval(90*24*3600);//三个月的时间
-				
-				Cookie cookun=new Cookie("username",username);//密码和账号都要写到cookie内
-				Cookie cookpw=new Cookie("password",password);//由于cookie数组是存放在栈中，所以是先进后出，后进先出
-				cookun.setMaxAge(90*24*3600);//先存放的username，取出时的角标反而是靠后的
-				cookun.setDomain("/");
-				cookun.setPath("/");
-				cookpw.setMaxAge(90*24*3600);//后存放的password，取出时的角标反而靠前
-				cookpw.setDomain("/");
-				cookpw.setPath("/");
-				System.out.println(cookun.getValue()+"---"+cookpw.getValue());
-				response.addCookie(cookun);
-				response.addCookie(cookpw);
-			}
 			
 			response.sendRedirect("admin/AdminIndex1.jsp");	
 		}

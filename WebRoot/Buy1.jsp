@@ -16,8 +16,8 @@
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		session.removeAttribute("user");
-		response.sendRedirect("Index1.jsp");
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 	}
 	Cart c = (Cart)session.getAttribute("cart");//getAttribute获得的是object类
 	if(c==null)

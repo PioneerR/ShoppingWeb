@@ -35,12 +35,13 @@
 //		String name=ia.getHostName().toString();
 //		System.out.println(ip+"--"+name);
 //	}	
-	
+	System.out.println(session.getId());
+
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		session.removeAttribute("yscxadmin");
-		response.sendRedirect("/Gouwu/Index1.jsp");
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 		return;
 	}
 	

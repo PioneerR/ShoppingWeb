@@ -17,8 +17,8 @@
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		session.removeAttribute("user");
-		response.sendRedirect("Index1.jsp");
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 	}
 	
 	

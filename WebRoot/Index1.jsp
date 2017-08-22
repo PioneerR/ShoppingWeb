@@ -16,19 +16,19 @@
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		//移除session
-		session.removeAttribute("user");
-		response.sendRedirect("Index1.jsp");
+		//销毁session
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 		//移除cookie
 		Cookie [] cookies=request.getCookies();
 		if(cookies!=null)
 		{
 			for(int i=0;i<cookies.length;i++)
 			{
-				System.out.println(cookies[i].getValue()+"-----");
+				//System.out.println(cookies[i].getValue()+"-----");
 				cookies[i].setMaxAge(0);
-				cookies[i].setDomain("/");
-				cookies[i].setPath("/");
+				cookies[i].setDomain("C:/Users/Administrator/AppData/Local/Temp");
+				cookies[i].setPath("C:/Users/Administrator/AppData/Local/Temp");
 				response.addCookie(cookies[i]);
 			}
 		}	
@@ -267,7 +267,7 @@
 			else
 			{
 		%>
-				<div class="itemshow flol marlr15" style="margin-top:17px;" >
+				<div class="itemshow flol" style="margin-top:17px;margin-left:15px;" >
 					<a href="" style="color:white;">
 						<img src="/Gouwu/images/icon/user.png" class="wida" 
 							 style="height:20px;margin-right:5px;">

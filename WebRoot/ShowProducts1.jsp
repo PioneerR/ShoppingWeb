@@ -15,17 +15,19 @@
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		session.removeAttribute("user");
-		response.sendRedirect("Index1.jsp");
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 	}
 
 	String id=request.getParameter("categoryId");
 	List<Product> products=null;
-	if(id!=null)
+	int cgid=0;//将类别id传给产品详情页，让其可以返回类别页面
+	if(id!=null && !id.equals("0"))
 	{
 		try
 		{
 			int categoryId=Integer.parseInt(id);
+			cgid=categoryId;
 			products=ProductMgr.getInstance().getProducts(categoryId);
 		}
 		catch(NumberFormatException e)
@@ -33,10 +35,13 @@
 			e.printStackTrace();
 		}
 	}
-	else
+	else 
 	{
 		products=ProductMgr.getInstance().getProducts();
 	}
+	
+	
+	
 	
 	//从登录页面返回时能够强制刷新
 	response.setHeader("Pragma","No-cache"); 		
@@ -171,7 +176,7 @@
 			<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
 				<tr>
 					<td colspan="2">
-						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" target="_blank" style="float:left;" >
+						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" target="_blank" style="float:left;" >
 							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
 						</a>
 					</td>
@@ -181,7 +186,7 @@
 					<table style="margin-top:15%;">
 						<tr>
 							<td style="text-align:left;">
-								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>" style="text-decoration: none;font-size:20; ">
+								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" style="text-decoration: none;font-size:20; ">
 									<b class="fonts20 colb" style="width:25%;font-family:Microsoft Yahei;"><%= p.getName() %></b>
 								</a>
 							</td>

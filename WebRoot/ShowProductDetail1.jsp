@@ -17,8 +17,8 @@
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
-		session.removeAttribute("user");
-		response.sendRedirect("Index1.jsp");
+		session.invalidate();
+		response.sendRedirect("/Gouwu/");
 	}
 	String id=request.getParameter("id");
     Product p=null;
@@ -270,7 +270,12 @@
 			    	
 			   </div>
 			 </div>
-			 <a href="javascript:window.history.go(-1)" class="flor marpc1 backgb padlr30 boxs5 textc borr5" 
+					<%
+						String cgidStr=request.getParameter("cgid");//如果cgid!=0,那么点击返回时，就会回到对应的类别产品页面
+						int cgid=0;                      //拿到上一页的课程类别id，如果cgid=0，那么点击返回时，就返回所有产品页      
+						if(cgidStr!=null){cgid=Integer.parseInt(cgidStr);}					
+					%>			 			 
+			 <a href="ShowProducts1.jsp?categoryId=<%= cgid %>" class="flor marpc1 backgb padlr30 boxs5 textc borr5" 
 			   style="margin-right:30px;padding-bottom:5px;color:#fff;" >
 				返回
 			 </a>
