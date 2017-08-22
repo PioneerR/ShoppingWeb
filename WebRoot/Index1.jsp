@@ -12,40 +12,72 @@
 	User u=(User)session.getAttribute("user");
 	
 	//仅仅设置首页可以读取cookie的密码和账号
-	Cookie [] cookies=request.getCookies();
-	if(cookies!=null)
-	{
-		String username=cookies[1].getValue();
-		String password=cookies[0].getValue();
-		//System.out.println(username+password);
-		try
-		{
-			u=User.check(username,password);
-		}
-		catch(UserNotFoundException e)
-		{
-			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
-			out.println("<div style=''>");
-			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
-			out.println("</div></div>");
-			return;
-		}
-		catch(PasswordNotCorrectException e1)
-		{
-			out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
-			out.println("<div style=''>");
-			out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
-			out.println("</div></div>");
-			return;
-		}
-		session.setAttribute("user", u);
-	}
 	
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
 	{
+		//移除session
 		session.removeAttribute("user");
 		response.sendRedirect("Index1.jsp");
+		//移除cookie
+		Cookie [] cookies=request.getCookies();
+		if(cookies!=null)
+		{
+			for(int i=0;i<cookies.length;i++)
+			{
+				System.out.println(cookies[i].getValue()+"-----");
+				cookies[i].setMaxAge(0);
+				cookies[i].setDomain("/");
+				cookies[i].setPath("/");
+				response.addCookie(cookies[i]);
+			}
+		}	
+	}
+	else if(action==null )
+	{
+		Cookie [] cookies=request.getCookies();
+		if(cookies!=null)
+		{
+			String username=null;
+			String password=null;
+			for(int i=0;i<cookies.length;i++)
+			{
+				String str=cookies[i].getName();
+				if(str.equals("username"))
+				{
+					username=cookies[i].getValue();	
+				}
+				else if(str.equals("password"))
+				{
+					password=cookies[i].getValue();
+				}
+			}
+			
+			if(username != null && password !=null)
+			{
+				try
+				{
+					u=User.check(username,password);
+				}
+				catch(UserNotFoundException e)
+				{
+					out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+					out.println("<div style=''>");
+					out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e.getMessage()+"</h2>");
+					out.println("</div></div>");
+					return;
+				}
+				catch(PasswordNotCorrectException e1)
+				{
+					out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:300px;margin-left:5%;margin-top:5%;'");
+					out.println("<div style=''>");
+					out.println("<h2 style='color:#03a9f4;text-align:center;padding:8%;'>"+e1.getMessage()+"</h2>");
+					out.println("</div></div>");
+					return;
+				}
+				session.setAttribute("user", u);
+			}
+		}		
 	}
 	
 	//不论是第一次进入该页面，还是第二次返回该页面，都刷新页面，不保留表单信息
