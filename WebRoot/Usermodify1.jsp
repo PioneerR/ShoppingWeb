@@ -21,10 +21,15 @@
 		String username=request.getParameter("username");
 		String phone=request.getParameter("phone");
 		String address=request.getParameter("address");
+		String email=request.getParameter("email");
+		String qq=request.getParameter("qq");
 		
 		u.setUsername(username);
 		u.setPhone(phone);
 		u.setAddress(address);
+		u.setQQ(qq);
+		u.setEmail(email);
+		
 		u.update();
 		response.sendRedirect("Usermodifywell1.jsp");
 	}
@@ -150,6 +155,11 @@
 								我的订单
 							</div>
 						</a>
+						<a href="Userinfo1.jsp">
+							<div class="item textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								个人信息
+							</div>
+						</a>
 						<a href="Index1.jsp?action=exit">
 							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 								退出
@@ -191,7 +201,39 @@
 								手机号码：
 							</td>							
 							<td class="wid100 textl">
-								<input type="text" name="phone" value="<%= u.getPhone() %>" style="width:100px;"/>
+								<input type="text" name="phone" value="<%= u.getPhone() %>" style="width:150px;"/>
+							</td>							
+						</tr>
+						<tr>
+							<td class="colb fonts16 textl" style="margin-left:13px;">
+								微信/QQ：
+							</td>							
+							<td class="wid100 textl">
+								<input type="text" name="qq" value="<% 
+									if(u.getQQ()==null)
+									{										
+										out.print("尚未填写");
+									}
+									else
+									{
+										out.print(u.getQQ());
+									}%>" style="width:150px;"/>
+							</td>							
+						</tr>
+						<tr>
+							<td class="colb fonts16 textl" style="margin-left:13px;">
+								邮箱地址：
+							</td>							
+							<td class="wid100 textl">
+								<input type="text" name="email" value="<% 
+									if(u.getEmail()==null)
+									{										
+										out.print("尚未填写");
+									}
+									else
+									{
+										out.print(u.getEmail());
+									}%>" style="width:150px;"/>
 							</td>							
 						</tr>
 						<tr>

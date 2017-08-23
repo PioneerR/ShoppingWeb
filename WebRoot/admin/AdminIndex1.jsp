@@ -213,7 +213,7 @@
 	  <div class="heia wida " style="padding:8% 5% 5% 5%;">
 	   	<div class="boxs10 widpc100 borr10">
 	   	    <div class="flol" style="">
-				<a href="/Gouwu/Index1.jsp" class="fontw700" style="color:#03a9f4;">				
+				<a href="/Gouwu/Index1.jsp" class="fontw700" target="_blank" style="color:#03a9f4;">				
 					<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:100px;">艺术创想  享你所想
 				</a>
 			</div>	

@@ -224,6 +224,11 @@
 								我的订单
 							</div>
 						</a>
+						<a href="Userinfo1.jsp">
+							<div class="item textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								个人信息
+							</div>
+						</a>
 						<a href="Index1.jsp?action=exit">
 							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 								退出

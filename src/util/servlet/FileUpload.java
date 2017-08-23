@@ -106,8 +106,8 @@ public class FileUpload extends HttpServlet {
 						//文件对象.getString()用户获取文件对象的值，类似request.getParameter()
 					}
 				}
-				System.out.println(item.getContentType());//获取上传文件类型
-				System.out.println(item.isInMemory());//判断文件是保存在内存(true)中还是硬盘(false)中
+				System.out.println("上传文件类型："+item.getContentType());//获取上传文件类型
+				System.out.println("是否保存在内存中："+item.isInMemory());//判断文件是保存在内存(true)中还是硬盘(false)中
 				
 				//忽略错误类型的文件对象
 				if(!item.isFormField())

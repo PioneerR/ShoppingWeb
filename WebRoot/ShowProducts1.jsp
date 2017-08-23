@@ -154,6 +154,11 @@
 								我的订单
 							</div>
 						</a>
+						<a href="Userinfo1.jsp">
+							<div class="item textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								个人信息
+							</div>
+						</a>
 						<a href="Index1.jsp?action=exit">
 							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 								退出
@@ -176,18 +181,22 @@
 			<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
 				<tr>
 					<td colspan="2">
-						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" target="_blank" style="float:left;" >
+						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" 
+							target="_blank" style="float:left;">
 							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
 						</a>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<table style="margin-top:15%;">
+					<table style="margin-top:10%;">
 						<tr>
 							<td style="text-align:left;">
-								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" style="text-decoration: none;font-size:20; ">
-									<b class="fonts20 colb" style="width:25%;font-family:Microsoft Yahei;"><%= p.getName() %></b>
+								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" 
+									style="text-decoration: none;font-size:20;">
+									<b class="fonts20 colb" style="width:25%;font-family:Microsoft Yahei;">
+										<%= p.getName() %>
+									</b>
 								</a>
 							</td>
 							<td class="textr colr fonts20" style="width:5%;" >
@@ -195,8 +204,12 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="cols2 textl" style="color:#696969;font-family:Microsoft Yahei;" >
+							<td class="textl flol overfh" style="color:#696969;font-family:Microsoft Yahei;height:20px;">
 								<%= p.getDescribe() %>
+							</td>
+							<td class="textr">
+								<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>"
+								   style="color:#03a9f4;">详情</a>
 							</td>
 						</tr>
 					</table>

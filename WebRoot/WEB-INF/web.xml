@@ -18,7 +18,7 @@
     <init-param>
     	<param-name>uploadPath</param-name>
     	<param-value>	
-    		E:\\3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目\\source\\Gouwu\\WebRoot\\images\\product\\
+    		E:/3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目/source/Gouwu/WebRoot/images/product/
     	</param-value>
     </init-param>
   </servlet>

@@ -27,7 +27,25 @@ public class User {
 	private String password;//为什么用String类型
 	private String phone;//为什么用String类型
 	private Date rdate;
+	private String email;
+	private String qq;
 	
+	public void setQQ(String qq)
+	{
+		this.qq=qq;
+	}
+	public String getQQ()
+	{
+		return qq;
+	}
+	public void setEmail(String email)
+	{
+		this.email=email;
+	}
+	public String getEmail()
+	{
+		return email;
+	}
 	public void setUsername(String username)
 	{
 		this.username=username;
@@ -84,13 +102,15 @@ public class User {
 	
 	public void update() {
 		Connection conn = DB.getConn();
-		String sql = "update user set username=?,phone=?,addr=? where id =?";
+		String sql = "update user set username=?,phone=?,addr=?,email=?,qq=? where id =?";
 		PreparedStatement pstmt = DB.getPstmt(conn, sql);
 		try {
 			pstmt.setString(1, this.getUsername());
 			pstmt.setString(2, this.getPhone());
 			pstmt.setString(3, this.getAddress());
-			pstmt.setInt(4, this.getId());
+			pstmt.setString(4, this.getEmail());
+			pstmt.setString(5, this.getQQ());
+			pstmt.setInt(6, this.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,7 +122,7 @@ public class User {
 	public void save()
 	{
 		Connection conn=DB.getConn();
-		String sql="insert into user values(null,?,?,?,?,?)";
+		String sql="insert into user values(null,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt=DB.getPstmt(conn, sql);
 		try
 		{
@@ -111,6 +131,8 @@ public class User {
 			pstmt.setString(3, phone);
 			pstmt.setString(4, address);
 			pstmt.setTimestamp(5, new Timestamp(rdate.getTime()));
+			pstmt.setString(6, email);
+			pstmt.setString(7, qq);
 			//rdate是普通的Date时间类实例，Timestamp是JDBC中的时间且覆盖了Date中的getTime()方法
 			//创建Timestamp实例，需要用毫秒时间值构造Timestamp对象，Date中的getTime()方法返回的就是毫秒时间值
 			pstmt.executeUpdate();
@@ -143,6 +165,8 @@ public class User {
 				u.setAddress(rs.getString("addr"));
 				u.setPassword(rs.getString("password"));
 				u.setUsername(rs.getString("username"));
+				u.setEmail(rs.getString("email"));
+				u.setQQ(rs.getString("qq"));
 				u.setDate(rs.getTimestamp("rdate"));
 				users.add(u);				
 			}
@@ -194,6 +218,8 @@ public class User {
 				u.setPassword(rs.getString("password"));
 				u.setPhone(rs.getString("phone"));
 				u.setAddress(rs.getString("addr"));
+				u.setEmail(rs.getString("email"));
+				u.setQQ(rs.getString("qq"));
 				u.setDate(rs.getTimestamp("rdate"));
 				users.add(u);
 			}
@@ -260,6 +286,8 @@ public class User {
 				u.setPassword(rs.getString("password"));
 				u.setPhone(rs.getString("phone"));
 				u.setAddress(rs.getString("addr"));
+				u.setEmail(rs.getString("email"));
+				u.setQQ(rs.getString("qq"));
 				u.setDate(rs.getTimestamp("rdate"));
 			}
 		}

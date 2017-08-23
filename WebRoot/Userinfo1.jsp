@@ -129,6 +129,11 @@
 								我的订单
 							</div>
 						</a>
+						<a href="Userinfo1.jsp">
+							<div class="item textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								个人信息
+							</div>
+						</a>
 						<a href="Index1.jsp?action=exit">
 							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 								退出
@@ -174,6 +179,40 @@
 									else
 									{
 										out.print(u.getPhone());
+									}
+								%>
+							</td>							
+						</tr>
+						<tr>
+							<td class="colb fonts16 textl" style="margin-left:13px;">
+								微信/QQ：
+							</td>
+							<td class="wid200 textl">
+								<%
+									if(u.getQQ()==null)
+									{										
+										out.print("<font style='color:#ff9632;'>尚未填写</font>");
+									}
+									else
+									{
+										out.print(u.getQQ());
+									}
+								%>
+							</td>							
+						</tr>						
+						<tr>
+							<td class="colb fonts16 textl" style="margin-left:13px;">
+								邮箱地址：
+							</td>
+							<td class="wid200 textl">
+								<%
+									if(u.getEmail()==null)
+									{
+										out.print("<font style='color:#ff9632;'>尚未填写</font>");
+									}
+									else
+									{
+										out.print(u.getEmail());
 									}
 								%>
 							</td>							

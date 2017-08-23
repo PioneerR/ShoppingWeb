@@ -107,8 +107,7 @@
 				if(a<0) a=0;
 				document.getElementById("count").value=a;	
 			}
-		</script>	
-		
+		</script>		
 	</head>
 	<body >
 		<div class="widpc100 backgb" style="position:fixed;top:0;height:70px;
@@ -197,6 +196,11 @@
 								我的订单
 							</div>
 						</a>
+						<a href="Userinfo1.jsp">
+							<div class="item textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
+								个人信息
+							</div>
+						</a>
 						<a href="Index1.jsp?action=exit">
 							<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 								退出
@@ -225,7 +229,7 @@
 							<b class="colb" style="font-size:40px;"><%= p.getName() %></b>
 						</div>
 						<div style="height:200px;">
-							<p class="textl colgys fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<p class="textl colb fontw700 fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<%= p.getDescribe() %>
 							</p>
 						</div>
