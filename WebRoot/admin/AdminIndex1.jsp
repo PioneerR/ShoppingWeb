@@ -219,10 +219,10 @@
 			</div>	
 	   	  <div class="header borr10">
 	      </div>	     
-	      <iframe frameborder=0   style="padding:5% 5% 5% 5%;height:500px;width:90%;" id="a"
+	      <iframe frameborder=0   style="padding:5% 5% 5% 5%;height:300px;width:90%;" id="a"
 	      		  src="OrderList1.jsp" class="boxs10" scrolling="yes" name="main"></iframe>
 	      
-	      <iframe style="" frameborder=0 height=500px width=100% class="boxs10" 
+	      <iframe style="" frameborder=0 height=200px width=100% class="boxs10" 
 	      		  src="" scrolling="yes" name="detail"></iframe>
 	      <div class="header1 borr10">
 	      </div>		  

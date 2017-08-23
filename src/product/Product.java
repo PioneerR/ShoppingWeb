@@ -9,8 +9,8 @@ public class Product {
 	private int id;
 	private String name;
 	private String describe;
-	private double normalPrice;//价格一般用double
-	private double memberPrice;
+	private int normalPrice;//价格一般用double
+	private int memberPrice;
 	private Date pdate;
 	private int categoryId;
 	private Category category;
@@ -27,11 +27,11 @@ public class Product {
 	{
 		this.describe=describe;
 	}
-	public void setNormalPrice(double normalPrice)
+	public void setNormalPrice(int normalPrice)
 	{
 		this.normalPrice=normalPrice;
 	}
-	public void setMemberPrice(double memberPrice)
+	public void setMemberPrice(int memberPrice)
 	{
 		this.memberPrice=memberPrice;
 	}

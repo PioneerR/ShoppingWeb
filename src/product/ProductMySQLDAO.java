@@ -86,8 +86,8 @@ public class ProductMySQLDAO implements ProductDAO{
 					p.setId(rs.getInt("productid"));
 					p.setName(rs.getString("pname"));
 					p.setDescribe(rs.getString("pdescr"));
-					p.setNormalPrice(rs.getDouble("normalprice"));
-					p.setMemberPrice(rs.getDouble("memberprice"));
+					p.setNormalPrice(rs.getInt("normalprice"));
+					p.setMemberPrice(rs.getInt("memberprice"));
 					p.setDate(rs.getTimestamp("pdate"));
 					p.setCategoryId(rs.getInt("categoryid"));
 					
@@ -253,8 +253,8 @@ public class ProductMySQLDAO implements ProductDAO{
 				p.setId(rs.getInt("productid"));
 				p.setName(rs.getString("pname"));
 				p.setDescribe(rs.getString("pdescr"));
-				p.setNormalPrice(rs.getDouble("normalprice"));
-				p.setMemberPrice(rs.getDouble("memberprice"));
+				p.setNormalPrice(rs.getInt("normalprice"));
+				p.setMemberPrice(rs.getInt("memberprice"));
 				p.setDate(rs.getTimestamp("pdate"));
 				p.setCategoryId(rs.getInt("categoryid"));
 				
@@ -293,8 +293,8 @@ public class ProductMySQLDAO implements ProductDAO{
 			p.setId(rs.getInt("id"));
 			p.setName(rs.getString("name"));
 			p.setDescribe(rs.getString("descr"));
-			p.setNormalPrice(rs.getDouble("normalprice"));
-			p.setMemberPrice(rs.getDouble("memberprice"));
+			p.setNormalPrice(rs.getInt("normalprice"));
+			p.setMemberPrice(rs.getInt("memberprice"));
 			p.setDate(rs.getTimestamp("pdate"));
 			p.setCategoryId(rs.getInt("categoryid"));
 		}

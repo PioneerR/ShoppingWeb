@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="user.UserNotFoundException"%>
 <%@page import="user.PasswordNotCorrectException"%>
@@ -49,6 +50,7 @@
 				if(str.equals("username"))
 				{
 					username=cookies[i].getValue();
+					username=URLDecoder.decode(username);//对中文用户名转回原码
 				}
 				else if(str.equals("password"))
 				{

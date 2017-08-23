@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td style="border:1px;background-color:#fff1cc;">市场价格：</td>
-					<td><input type="text" size=155% name="normalPrice" value="<%= p.getNormalPrice()  %>" /></td>
+					<td><input type="text" size=155% name="normalPrice" value="<%= p.getNormalPrice() %>" /></td>
 				</tr>
 				<tr>
 					<td style="border:1px;background-color:#fff1cc;">会员价格：</td>

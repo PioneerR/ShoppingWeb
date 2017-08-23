@@ -229,7 +229,7 @@
 							<b class="colb" style="font-size:40px;"><%= p.getName() %></b>
 						</div>
 						<div style="height:200px;">
-							<p class="textl colb fontw700 fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<p class="textl colgys fonts20" style="padding:0;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<%= p.getDescribe() %>
 							</p>
 						</div>

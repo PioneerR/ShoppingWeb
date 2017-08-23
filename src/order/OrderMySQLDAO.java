@@ -318,8 +318,8 @@ public class OrderMySQLDAO implements OrderDAO {
 				p.setName(rs.getString("pname"));
 				p.setDescribe(rs.getString("pdescr"));
 				p.setDate(rs.getTimestamp("pdate"));
-				p.setNormalPrice(rs.getDouble("normalprice"));
-				p.setMemberPrice(rs.getDouble("memberprice"));
+				p.setNormalPrice(rs.getInt("normalprice"));
+				p.setMemberPrice(rs.getInt("memberprice"));
 				
 				SalesItem si=new SalesItem();
 				si.setId(rs.getInt("itemid"));

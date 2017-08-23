@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page import="category.Category"%>
 <%@ page import="category.CategoryService"%>
 <%@ page import="java.util.List"%>
@@ -72,6 +73,7 @@
 			String cookietime=request.getParameter("cookietime");
 			if(cookietime!=null && cookietime.equals("true"))//&&左边为假，右边不执行
 			{
+				username=URLEncoder.encode(username);//对中文进行转码，cookie读取时只能读取英文
 				Cookie cookun=new Cookie("username",username);//密码和账号都要写到cookie内
 				Cookie cookpw=new Cookie("password",password);//由于cookie数组是存放在栈中，所以是先进后出，后进先出
 				cookun.setMaxAge(90*24*3600);//先存放的username，取出时的角标反而是靠后的

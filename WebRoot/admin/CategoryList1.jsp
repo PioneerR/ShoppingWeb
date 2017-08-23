@@ -4,7 +4,7 @@
 <%
 	request.setCharacterEncoding("utf8");
     int pageNo=1;
-    final int pageSize=5;
+    final int pageSize=8;
     String strPageNo=request.getParameter("pageNo");
     if(strPageNo !=null && !strPageNo.trim().equals(""))
     {

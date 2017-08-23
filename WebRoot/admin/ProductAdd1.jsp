@@ -21,8 +21,8 @@
 	if(action!=null && action.trim().equals("pruductadd"))
 	{	
 		String name=request.getParameter("product");
-		double normalPrice=Integer.parseInt(request.getParameter("normalPrice"));
-		double memberPrice=Integer.parseInt(request.getParameter("memberPrice"));	
+		int normalPrice=Integer.parseInt(request.getParameter("normalPrice"));
+		int memberPrice=Integer.parseInt(request.getParameter("memberPrice"));	
 		String describe=request.getParameter("describe");
 		
 		Product p=new Product();
