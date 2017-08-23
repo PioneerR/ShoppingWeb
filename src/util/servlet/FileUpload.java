@@ -74,7 +74,7 @@ public class FileUpload extends HttpServlet {
 		//使用ServletFileUpload()默认构造器创建未初始化的实
 		//需要以factory作为构造函数或者setFileItemFactory()方法对factory进行配置
 		ServletFileUpload upload=new ServletFileUpload(factory);//在upload包
-		upload.setSizeMax(1000000);//设置上传文件最大值
+		upload.setSizeMax(2000000);//设置上传文件最大值
 		
 		try
 		{

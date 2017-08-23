@@ -10,7 +10,7 @@
 	String normal=request.getParameter("normalprice");
 	if(normal !=null)
 	{
-		double normalPrice=Double.parseDouble(normal);
+		int normalPrice=Integer.parseInt(normal);
 		p.setNormalPrice(normalPrice);
 		ProductMgr.getInstance().update(p);
 	}
@@ -19,7 +19,7 @@
 	//System.out.println(member);
 	if(member !=null)
 	{
-		double memberPrice=Double.parseDouble(member);	
+		int memberPrice=Integer.parseInt(member);	
 		p.setMemberPrice(memberPrice);
 		ProductMgr.getInstance().update(p);
 	}

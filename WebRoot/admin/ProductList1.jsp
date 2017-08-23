@@ -186,7 +186,7 @@
 				<td><input type="checkbox" name="delete" value="<%= p.getId() %>" /></td>
 				<td><%= p.getId() %></td>
 				<td><%= p.getName() %></td>
-				<td><%= p.getDescribe() %></td> 
+				<td style="text-align:left;"><%= p.getDescribe() %></td> 
 				<td>			
 					<input type="text" id="<%= p.getId() %>" onclick="changeToInputNP(this.id)" value="<%= p.getNormalPrice() %>" >
 					</input>

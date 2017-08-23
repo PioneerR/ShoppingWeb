@@ -180,7 +180,7 @@
 	%>
 			<table class="hei400 boxs10 borr10 pad15 flol backgw" style="width:330px;margin:1.5%;">
 				<tr>
-					<td colspan="2">
+					<td colspan="2">					
 						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" 
 							target="_blank" style="float:left;">
 							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />

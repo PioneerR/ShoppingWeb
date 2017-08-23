@@ -57,11 +57,11 @@ public class Product {
 	{
 		return describe;
 	}
-	public double getNormalPrice()
+	public int getNormalPrice()
 	{
 		return normalPrice;
 	}
-	public double getMemberPrice()
+	public int getMemberPrice()
 	{
 		return memberPrice;
 	}
