@@ -125,8 +125,8 @@
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
 				<a href="UserList1.jsp" class="" target="main" style="color:#fff;">用户管理</a>
-				<div class="ishide " style="line-height:35px;  ">						
-					<a href="UserList1.jsp" target="main" class="" onclick="window.location.href='#a'" >
+				<div class="ishide " style="line-height:35px;">						
+					<a href="UserList1.jsp" target="main" class=""  onclick="window.location.href='#a'">
 						<div class="is colgy backgw" style="line-height:34px">用户列表</div>						
 					</a>		
 				</div>
@@ -219,7 +219,7 @@
 			</div>	
 	   	  <div class="header borr10">
 	      </div>	     
-	      <iframe frameborder=0   style="padding:5% 5% 5% 5%;height:500px;width:90%;" 
+	      <iframe frameborder=0   style="padding:5% 5% 5% 5%;height:500px;width:90%;" id="a"
 	      		  src="OrderList1.jsp" class="boxs10" scrolling="yes" name="main"></iframe>
 	      
 	      <iframe style="" frameborder=0 height=500px width=100% class="boxs10" 

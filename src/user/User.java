@@ -82,6 +82,23 @@ public class User {
 		return rdate;
 	}
 	
+	public void update() {
+		Connection conn = DB.getConn();
+		String sql = "update user set username=?,phone=?,addr=? where id =?";
+		PreparedStatement pstmt = DB.getPstmt(conn, sql);
+		try {
+			pstmt.setString(1, this.getUsername());
+			pstmt.setString(2, this.getPhone());
+			pstmt.setString(3, this.getAddress());
+			pstmt.setInt(4, this.getId());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(pstmt);
+			DB.close(conn);
+		}
+	}
 	public void save()
 	{
 		Connection conn=DB.getConn();
