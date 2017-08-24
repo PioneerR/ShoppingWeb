@@ -153,13 +153,17 @@
 					<img src="/Gouwu/images/background/info.png" />
 				</div>
 				
-				<div class="pad20" style="margin-left:50px; ">	
+				<div class="pad20 overfh" style="margin-left:100px; ">	
 					<div>
 						<div class="colb fonts20 fontw700 textl" style="margin-left:13px;">
 							个人信息
 						</div>						
-					</div>
-					<table style="margin-top:2%;padding-left:10px;padding-right:10px;margin-bottom:3%;">
+					</div>											
+					<div class="flol" style="margin-right:120px;margin-top:30px;margin-left:13px; " >
+						<img src="/Gouwu/images/user/<%= u.getId()+".jpg" %>" style="width:120px;height:120px;"
+							 onerror="javascript:this.src='/Gouwu/images/user/moren.jpg'" />
+					</div>						
+					<table style="margin-top:20px;padding-left:10px;padding-right:10px;margin-bottom:3%;" class="flol">						
 						<tr style="height:30px; ">
 							<td class="colb fonts16 textl" style="margin-left:13px;">
 								家长姓名：

@@ -63,10 +63,10 @@
 			  font-size: 16px;
 			  border: none;
 			  border-bottom: solid #B5B4B4 1px;
-			  margin: 6% 0 3% 0;
+			  margin: 5px 0 0px 0;
 			  padding-bottom:5px; 
-			}		
-		</style>
+			}					
+		</style>		
 	</head>
 	<body>
 		<div class="widpc100 backgb" style="position:fixed;top:0;height:70px;
@@ -122,8 +122,7 @@
 							</div>
 						</a>
 					</div>
-				</div>
-				
+				</div>				
 		<%
 			if(u==null)
 			{
@@ -143,12 +142,17 @@
 			else
 			{
 		%>
-				<div class="itemshow flol marlr15" style="margin-top:17px;" >
-					<a href="" style="color:white;">
-						<img src="/Gouwu/images/icon/user.png" class="wida" 
-							 style="height:20px;margin-right:5px;">
-						<%= u.getUsername() %>
-					</a>
+				<div class="itemshow flol marlr15 curp overfh" >
+					<div href="" style="">
+						<img src="/Gouwu/images/user/<%= u.getId()+".jpg" %>" class="wida" 
+							 style="height:30px;margin-right:5px;margin-top:28px;"
+							 onerror="javascript:this.src='/Gouwu/images/icon/user.png'">						
+					</div>
+					
+						<a style="color:white;" >	 
+							<%= u.getUsername() %>
+						</a>
+					
 					<div class="itemhide" style="width:150px;padding-bottom:5px;">
 						<a href="Orderstatus1.jsp">
 							<div class="item borrt5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
@@ -179,15 +183,29 @@
 					<img src="/Gouwu/images/background/info.png" />
 				</div>
 				
-				<div class="pad20" style="margin-left:50px; ">	
+				<div class="pad20 overfh" style="margin-left:100px; ">	
 					<div>
 						<div class="colb fonts20 fontw700 textl" style="margin-left:13px;">
 							个人信息修改
 						</div>						
-					</div>
-					<form method="post" action="Usermodify1.jsp" name="form1" >
-					<input type="hidden" name="action" value="modify">
-					<table style="margin-top:2%;padding-left:10px;padding-right:10px;margin-bottom:3%;">
+					</div>	
+					
+					<form action="/Gouwu/servlet/UserUpload" method="post" name="form2" class="flol" 
+						  style="margin-right:120px;margin-top:30px; " encTYPE="multipart/form-data">							
+						<input type="hidden" name="id" value="<%= u.getId() %>">					
+						<img  style="width:120px;height:120px;margin-top:3%;margin-left:13px;"
+							  src="/Gouwu/images/user/<%= u.getId()+".jpg" %>" 
+							  onerror="javascript:this.src='/Gouwu/images/user/moren.jpg'" />
+						<input type="file" name="img" style="width:160px;border-bottom:none;display:block;margin:10px 0px 10px 13px "/>	
+						<a href="javascript:window.form2.submit()" class="backgw padlr30 colgys boxs5 textc borr5" 
+						   style="padding-bottom:2px;padding-top:2px;display:block;width:55px;margin-top:0px;margin-left:13px;" >
+							上传
+						</a>
+					</form>	
+								
+					<form method="post" action="Usermodify1.jsp" name="form1" class="flol">
+					<input type="hidden" name="action" value="modify">					
+					<table style="margin-top:20px;padding-left:10px;padding-right:10px;margin-bottom:3%;">						
 						<tr style="">
 							<td class="colb fonts16 textl" style="margin-left:13px;">
 								家长姓名：
@@ -241,7 +259,15 @@
 								收货地址：
 							</td>
 							<td class="wid200 textl">
-								<input type="text" name="address" value="<%= u.getAddress() %>" style="width:200px;"/>
+								<input type="text" name="address" value="<% 
+									if(u.getAddress()==null)
+									{										
+										out.print("尚未填写");
+									}
+									else
+									{
+										out.print(u.getAddress());
+									}%>" style="width:200px;"/>
 							</td>							
 						</tr>
 					</table>	

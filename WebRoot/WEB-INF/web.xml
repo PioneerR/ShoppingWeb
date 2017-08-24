@@ -22,6 +22,20 @@
     	</param-value>
     </init-param>
   </servlet>
+  
+  <servlet>
+    <description>User head picture</description>
+    <display-name>User head picture</display-name>
+    <servlet-name>UserUpload</servlet-name>
+    <servlet-class>util.servlet.UserUpload</servlet-class>
+    <init-param>
+    	<param-name>uploadPath</param-name>
+    	<param-value>	
+    		E:/3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目/source/Gouwu/WebRoot/images/user/
+    	</param-value>
+    </init-param>
+  </servlet>
+  
   <servlet>
     <description>Statistics about products</description>
     <display-name>Statistics</display-name>
@@ -32,9 +46,10 @@
     	<param-value>
     	E:\\3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目\\source\\Gouwu\\WebRoot\\admin\\images\\stat\\
     	</param-value>
-    </init-param>
-    
+    </init-param>   
   </servlet>
+  
+
 
   
 
@@ -51,6 +66,10 @@
   <servlet-mapping>
     <servlet-name>SalesCountServlet</servlet-name>
     <url-pattern>/servlet/SalesCountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserUpload</servlet-name>
+    <url-pattern>/servlet/UserUpload</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>  
