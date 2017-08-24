@@ -1,17 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf8" %>
 <%@ page import="user.*,java.util.*" %>
 
+<%!
+	public int check(int a)
+	{
+		int n=0;
+		if(a>10)
+		{
+			a=a-10;
+			n++;
+			check(a);//递归计算56中的整十数5
+		}
+		return n;
+	}
+%>
+
+
 <%
 	request.setCharacterEncoding("utf8"); 
-	final int PAGE_SIZE=5;//每个页面最多显示的条数
+	final int PAGE_SIZE=4;//每个页面最多显示的条数
 	int pageNo=1;//pageNo默认值是第一页
-	
 	String strPageNo=request.getParameter("pageNo");
 	if(strPageNo!=null && !strPageNo.trim().equals(""))
 	{
 		try
 		{
-			pageNo=Integer.parseInt(strPageNo.trim());
+			pageNo=Integer.parseInt(strPageNo.trim());			
 		}
 		catch(NumberFormatException e)
 		{
@@ -53,11 +67,11 @@
 	</style>
 </head>
 <body>
-	<div class="flol colb fonts18 fontw700 martb15">
+	<div class="flol colb fonts18 fontw700 martb15" style="margin-left:25px; ">
 		用户列表
 	</div>
 	
-	<div class="pad10 borr10">
+	<div class="pad10 borr10" style="margin-bottom:30px; ">
 		<table class="widpc100">
 			<tr>				
 				<td class="colgy">用户名</td>
@@ -69,27 +83,62 @@
 				<td></td>
 			</tr>
 			<tr><td colspan="7"><hr></td></tr>
-			<%				
-				User u=null;
+			<%		
+				//当页面的数据都没了的时候，跳到上一页，此时的pageNO已经是上一页的了，但是浏览器自动跳转会出错，我们需要人工跳转刷新
+				if(users.size()==0)
+				{
+					response.sendRedirect("UserList1.jsp?pageNo="+(pageNo));
+					return;
+				}
+			
+				int total=0;
 				for(int i=0;i<users.size();i++)
 				{
-					u = users.get(i);
+					User u = users.get(i);
+					total=u.getTotalCount();
 			%>
 			<tr>				
 				<td style="width:100px;" class="colb fontw700">
 					<%= u.getUsername() %>
 				</td>
-				<td style="width:150px;">					
-					<%= u.getPhone() %>
+				<td style="width:150px;" class="colb">					
+					<%= u.getPhone() %>					
 				</td>
 				<td style="width:150px;">
-					<%= u.getQQ() %>
+					<%
+						if(u.getQQ()==null)
+						{										
+							out.print("<font style='color:#696969;'>/</font>");
+						}
+						else
+						{
+							out.print(u.getQQ());
+						}
+					%>
 				</td>
 				<td style="width:200px;">
-					<%= u.getEmail() %>
+					<%
+						if(u.getEmail()==null)
+						{										
+							out.print("<font style='color:#696969;'>/</font>");
+						}
+						else
+						{
+							out.print(u.getEmail());
+						}
+					%>
 				</td>
 				<td style="width:250px;">
-					<%= u.getAddress() %>
+					<%
+						if(u.getAddress()==null)
+						{										
+							out.print("<font style='color:#696969;'>/</font>");
+						}
+						else
+						{
+							out.print(u.getAddress());
+						}
+					%>
 				</td>
 				<td style="width:100px;">
 					<%= u.getDate() %>
@@ -97,7 +146,8 @@
 				<td>
 					<% String url=request.getRequestURL()
 					+(request.getQueryString()==null?"":"?"+request.getQueryString()); %>
-					<a href="UserDelete1.jsp?id=<%=u.getId()%>&from=<%=url%>" class="colgy fonts24">x</a>
+					<a href="UserDelete1.jsp?id=<%=u.getId()%>&from=<%=url%>" class="colgy fonts24" 
+					   onclick="return confirm('真的要删除吗？')">x</a>
 				</td>
 			</tr>
 			<tr><td colspan="7"><hr></td></tr>							
@@ -106,15 +156,70 @@
 			%>
 			<tr>				
 				<td colspan="4"></td>	
-				<td class="colb fontw700 fonts20">总人数</td>			
-				<td class="colb fontw700 fonts20" colspan="2"><%= u.getTotalCount() %></td>
+				<td class="colb fontw700 fonts20 textr">总人数</td>			
+				<td class="colb fontw700 fonts20" colspan="2"><%= total %></td>
 			</tr>
 		</table>		
 	</div>
 	
+	<form name="form1" method=post action="UserList1.jsp" style="float:left" >
+		<select name="pageNo" onchange="document.form1.submit()" class="textc" >
+			<% 
+				for(int i=1;i<=totalPages;i++)
+				{
+			%>
+				<option value=<%=i%> <%=(pageNo==i)?"selected":""%>>第<%=i%>页</option>
+			<%
+				}
+			%>
+		</select>
+	</form>
+	<div style="margin-left:25%;" class="flol">
+		<a href="UserList1.jsp?pageNo=<%
+						if(pageNo-1>0)
+						{
+							out.println(pageNo-1);
+						}
+						%>" class="boxs5 borr5 colgys" style="padding:3px 8px 3px 8px;">上一页</a>
+			<%
+				int a=1,b=totalPages;//如果不符合以下两个if,那么a=1,b==totalpages,此时
+				int m=0;
+				m=check(pageNo);
+				if(totalPages>10 && m==0)
+				{
+					a=1;
+					b=10;
+				}
+				else if(totalPages>10 && m>=1)
+				{
+					a=1+m*10;
+					b=(m+1)*10;
+					if(b>totalPages)
+					{
+						b=totalPages;
+					}	
+				}
+				for(int i=a;i<=b;i++)
+				{
+			%>
+				<a href="UserList1.jsp?pageNo=<%= i %>" class="fonts18" 
+					style="color:#03a9f4;margin-left:15px;"><%= i %></a>
+			<%
+				}
+			%>
+		<a href="UserList1.jsp?pageNo=<%
+						if(pageNo+1<=totalPages)
+						{
+							out.println(pageNo+1);
+						}
+						%>" class="boxs5 borr5 colgys pad5" 
+			style="margin-left:15px;padding:3px 8px 3px 8px;">下一页</a>	
+	</div>
 	
-	
-	
+	<form name="form2" method=post action="UserList1.jsp" style="float:right" >
+		<input type="text" name="pageNo" class="textc" value="<%= pageNo %>" size=6 />
+		<input type="submit" name="submit" value="提交" />
+	</form>	
 	
 </body>
 </html>
