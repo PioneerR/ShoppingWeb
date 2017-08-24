@@ -317,10 +317,12 @@
 	img{
 		border:none;
 	}
-	/*-------------------------------------*/
-	a:visited { 
-		color:#B5B4B4;
-	}
+	/*------------以下伪类在需要的页面使用-------------*/
+	
+	/*a:link {color:#696969;}  /* grays  */
+	a:visited {color:#B5B4B4;} /* gray   */
+	/*a:hover {color:#03a9f4;} /* blue   */
+	/*a:active {color:#ff0;}   /* yellow */
 	
 	/*-----------checkbox与label组合---------------*/
 	/* 每个想更换checkbox样式的input标签，都要在input标签后增加一个label标签  */

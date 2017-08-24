@@ -1,3 +1,4 @@
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf8" %>
 <%@ page import="user.*,java.util.*" %>
 
@@ -140,8 +141,8 @@
 						}
 					%>
 				</td>
-				<td style="width:100px;">
-					<%= u.getDate() %>
+				<td style="width:100px;" class="fonts14">
+					<%= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(u.getDate()) %>
 				</td>
 				<td>
 					<% String url=request.getRequestURL()

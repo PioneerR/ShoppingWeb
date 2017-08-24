@@ -1,6 +1,21 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="product.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="category.*,java.util.*"  %>
+
+<%!
+	public int check(int a)
+	{
+		int n=0;
+		if(a>10)
+		{
+			a=a-10;
+			n++;
+			check(a);//递归计算56中的整十数5
+		}
+		return n;
+	}
+%>
 
 <%
 	request.setCharacterEncoding("utf8");
@@ -32,6 +47,11 @@
 		pageNo=totalPages;
 	}
 	
+	//点击浏览器后退按钮时，不读取该页缓存，并自动刷新本页面
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,19 +62,16 @@
 	  	<title>艺术创想校园管理中心</title> 
 	    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 		<style type="text/css">
-			td{
-				text-align:center;
-				border:3px solid #fff1cc;
-			}
-			a{
-				text-decoration: none;
-			}
-			input{ 
-				text-align:center;
-				width:70px;
+			hr{		
 				border:none;
-				height: 25px;
-				font-size:16px; 
+				border-top:1px dashed #03a9f4;
+			}
+			.input{
+				border:none;
+				width:50px;
+				color:#03a9f4;
+				font-size:16px;
+				text-align:center;
 			}
 		</style>
 		<script type="text/javascript">
@@ -155,6 +172,154 @@
 		</script>
 	</head>
 	<body>
+		<div class="flol colb fonts18 fontw700 martb10" style="margin-left:25px;">
+			课程列表
+		</div>
+		
+		<div class="flol martb15" style="margin-left:300px;">
+			<form action="ProductList1.jsp" method="post" name="form3" >
+				<input type="text" name="search" style="width:150px;border-bottom:solid 1px #03a9f4; "/>
+				<a href="javascript:document.form3.submit();" style="padding:3px 8px;" 
+					class="boxs5 borr5 colw backgb fonts16" >搜索</a>
+			</form>
+		</div>
+		
+		<div class="flor fonts16" style="margin-right:25px;margin-top:20px; ">
+			<a href="ProductAdd1.jsp" style="color:#fff;padding:3px 8px;" 
+			   class="borr5 boxs5 backgb" target="detail">添加新课程</a>
+		</div>
+				
+		<div class="pad10 borr10" style="margin-bottom:30px; ">
+			<table class="widpc100">
+				<tr>				
+					<td class="colgy">课程名称</td>
+					<td class="colgy">课程描述</td>
+					<td class="colgy">价格</td>
+					<td class="colgy">会员价格</td>					
+					<td class="colgy">所属类别</td>
+					<td class="colgy">上架时间</td>
+					<td></td>
+				</tr>
+				<tr><td colspan="7"><hr></td></tr>
+				<%
+					for(int i=0;i<products.size();i++)
+					{
+						Product p=products.get(i);//集合取出的方式是 get，数组取出方式是[]
+						Category c=ProductMgr.getInstance().getCategory(p.getCategoryId());
+						//通过产品类别的id号，取得产品类别，进而获取类别属性
+				%>
+				<tr>				
+					<td style="width:150px;" class="colb fontw700">
+						<%= p.getName() %>
+					</td>
+					<td style="width:300px;" class="textl">					
+						<%= p.getDescribe() %>					
+					</td>
+					<td style="width:80px;">						
+						<input type="text" id="<%= p.getId() %>" onclick="changeToInputNP(this.id)" 
+						    value="<%= p.getNormalPrice() %>" style="width:50px;" class="textc fonts16 colb input" >
+					    </input>
+					</td>
+					<td style="width:80px;">
+						<input type="text" name="<%= p.getId() %>" onclick="changeToInputMP(this.name)" 
+							value="<%= p.getMemberPrice() %>" style="width:50px;" class="textc fonts16 colb input">
+						</input>
+					</td>					
+					<td style="width:80px;">
+						<%= c.getName() %>
+					</td>
+					<td style="width:100px;" class="fonts14">
+						<%= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(p.getDate()) %>
+					</td>
+					<td style="">
+					
+						<a name="modify" href="ProductModify1.jsp?id=<%= p.getId() %>&action=modify" 
+						   style="padding:3px 8px;color:#fff;"
+						   class="backgb borr5 boxs5" target="detail" >修改</a>
+						   &nbsp;
+						<a name="delete1" href="ProductDelete1.jsp?id=<%= p.getId() %>&parameter=1" 
+						   onclick="return confirm('真的要删除吗？')" class="borr5 boxs5 backgb" 
+						   style="padding:3px 8px;color:#fff;" target="detail">删除</a>						
+						   &nbsp;  						   
+					    <a name="upload" href="ProductUpload1.jsp?id=<%= p.getId() %>" 
+						   style="padding:3px 8px;color:#fff;"
+						   class="backgb borr5 boxs5" target="detail" >上传图片</a>
+					</td>
+				</tr>
+				<tr><td colspan="7"><hr></td></tr>							
+				<%
+					}
+				%>				
+			</table>		
+		</div>
+		
+		<form name="form1" method=post action="ProductList1.jsp" style="float:left" >
+			<select name="pageNo" onchange="document.form1.submit()" class="textc" >
+				<% 
+					for(int i=1;i<=totalPages;i++)
+					{
+				%>
+					<option value=<%=i%> <%=(pageNo==i)?"selected":""%>>第<%=i%>页</option>
+				<%
+					}
+				%>
+			</select>
+		</form>
+		<div style="margin-left:33%;" class="flol">
+			<a href="ProductList1.jsp?pageNo=<%
+							if(pageNo-1>0)
+							{
+								out.println(pageNo-1);
+							}
+							%>" class="boxs5 borr5 colgys" style="padding:3px 8px 3px 8px;">上一页</a>
+				<%
+					int a=1,b=totalPages;//如果不符合以下两个if,那么a=1,b==totalpages,此时
+					int m=0;
+					m=check(pageNo);
+					if(totalPages>10 && m==0)
+					{
+						a=1;
+						b=10;
+					}
+					else if(totalPages>10 && m>=1)
+					{
+						a=1+m*10;
+						b=(m+1)*10;
+						if(b>totalPages)
+						{
+							b=totalPages;
+						}	
+					}
+					for(int i=a;i<=b;i++)
+					{
+				%>
+					<a href="ProductList1.jsp?pageNo=<%= i %>" class="fonts18" 
+						style="color:#03a9f4;margin-left:15px;"><%= i %></a>
+				<%
+					}
+				%>
+			<a href="ProductList1.jsp?pageNo=<%
+							if(pageNo+1<=totalPages)
+							{
+								out.println(pageNo+1);
+							}
+							%>" class="boxs5 borr5 colgys pad5" 
+				style="margin-left:15px;padding:3px 8px 3px 8px;">下一页</a>	
+		</div>
+		
+		<form name="form2" method=post action="ProductList1.jsp" style="float:right" >
+			<input type="text" name="pageNo" class="textc" value="<%= pageNo %>" size=6 />
+			<input type="submit" name="submit" value="提交" />
+		</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		<div class="flol colb fonts18 fontw700 martb15">
 			课程列表
 		</div>
@@ -188,12 +353,12 @@
 				<td><%= p.getName() %></td>
 				<td style="text-align:left;"><%= p.getDescribe() %></td> 
 				<td>			
-					<input type="text" id="<%= p.getId() %>" onclick="changeToInputNP(this.id)" value="<%= p.getNormalPrice() %>" >
-					</input>
+					<input type="text" id="<%= p.getId() %>" onclick="changeToInputNP(this.id)" 
+					value="<%= p.getNormalPrice() %>" ></input>
 				</td>
 				<td>
-					<input type="text" name="<%= p.getId() %>" onclick="changeToInputMP(this.name)" value="<%= p.getMemberPrice() %>" >
-					</input>
+					<input type="text" name="<%= p.getId() %>" onclick="changeToInputMP(this.name)" 
+					value="<%= p.getMemberPrice() %>" ></input>
 				</td>
 				<td><%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 					.format(p.getDate()) %></td>
