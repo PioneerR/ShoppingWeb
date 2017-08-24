@@ -30,6 +30,12 @@
 	
 	if (pageNo > totalPages)
 		pageNo = totalPages;
+	
+	//点击浏览器后退按钮时，不读取该页缓存，并自动刷新本页面
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0);
 %>  
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,14 +46,9 @@
   	<title>艺术创想校园管理中心</title> 
     <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 	<style type="text/css">
-		table
-		{
-		 	border-collapse:collapse;
-		 	text-align:center;	 	
-		}	
-		th,td{
-			text-align:center;
-			border:3px solid #fff1cc;
+		hr{		
+			border:none;
+			border-top:1px dashed #03a9f4;
 		}
 	</style>
 </head>
@@ -56,54 +57,64 @@
 		用户列表
 	</div>
 	
-	<table border=1 width=100% >
-		<tr style="background-color:#fff1cc">
-			<th>用户名</th>
-			<th>UID</th>
-			<th>联系电话</th>
-			<th>注册时间</th>
-			<th>送货地址</th>
-			<th>处理</th>
-		</tr>
-	<%
-		for(int i=0;i< users.size();i++)
-		{
-			User u = users.get(i);
-	%>	
-		<tr>
-			<td><%= u.getUsername() %></td>
-			<td><%= u.getId() %></td>
-			<td><%= u.getPhone() %></td>
-			<td><%= u.getDate() %></td>
-			<td><%= u.getAddress() %></td>
-			<td>
-				<% String url=request.getRequestURL()
-					+(request.getQueryString()==null?"":"?"+request.getQueryString()); %>
-				<!-- 以上就是为了获得本页面的URL以及参数，将该URL整个传给UserDelete页面 -->	
-				<a target="detail" href="UserDelete1.jsp?id=<%=u.getId()%>&from=<%=url%>" 
-					onclick="return confirm('真的要删除?')">删除</a>
-				<!-- from只是一个参数的参数名 -->
-			</td>
-		</tr>
-	<% 
-		}
-	%>
-	</table>
-	<form name="form1" method=post action="UserList1.jsp" style="float:left" >
-		<select name="pageNo" onchange="document.form1.submit()" >
-			<%
-				for(int i=1;i<=totalPages;i++)
+	<div class="pad10 borr10">
+		<table class="widpc100">
+			<tr>				
+				<td class="colgy">用户名</td>
+				<td class="colgy">手机号码</td>
+				<td class="colgy">微信/QQ</td>
+				<td class="colgy">Email</td>
+				<td class="colgy">收货地址</td>
+				<td class="colgy">注册时间</td>
+				<td></td>
+			</tr>
+			<tr><td colspan="7"><hr></td></tr>
+			<%				
+				User u=null;
+				for(int i=0;i<users.size();i++)
 				{
+					u = users.get(i);
 			%>
-				<option value=<%=i%> <%=(pageNo==i)?"selected":""%> >第<%=i%>页</option>
+			<tr>				
+				<td style="width:100px;" class="colb fontw700">
+					<%= u.getUsername() %>
+				</td>
+				<td style="width:150px;">					
+					<%= u.getPhone() %>
+				</td>
+				<td style="width:150px;">
+					<%= u.getQQ() %>
+				</td>
+				<td style="width:200px;">
+					<%= u.getEmail() %>
+				</td>
+				<td style="width:250px;">
+					<%= u.getAddress() %>
+				</td>
+				<td style="width:100px;">
+					<%= u.getDate() %>
+				</td>
+				<td>
+					<% String url=request.getRequestURL()
+					+(request.getQueryString()==null?"":"?"+request.getQueryString()); %>
+					<a href="UserDelete1.jsp?id=<%=u.getId()%>&from=<%=url%>" class="colgy fonts24">x</a>
+				</td>
+			</tr>
+			<tr><td colspan="7"><hr></td></tr>							
 			<%
 				}
 			%>
-		</select>
-	</form>
-	<form name="form2" method=post action="UserList1.jsp" style="float:right" >
-		<input type="text" name="pageNo" value="<%= pageNo %>" size=6 />
-		<input type="submit" name="submit" value="提交" />
-	</form>
+			<tr>				
+				<td colspan="4"></td>	
+				<td class="colb fontw700 fonts20">总人数</td>			
+				<td class="colb fontw700 fonts20" colspan="2"><%= u.getTotalCount() %></td>
+			</tr>
+		</table>		
+	</div>
+	
+	
+	
+	
+	
 </body>
 </html>

@@ -163,10 +163,11 @@
 			else
 			{
 		%>
-				<div class="itemshow flol marlr15" style="margin-top:17px;" >
+				<div class="itemshow flol marlr15"  >
 					<a href="" style="color:white;">
-						<img src="/Gouwu/images/icon/user.png" class="wida" 
-							 style="height:20px;margin-right:5px;">
+						<img src="/Gouwu/images/user/<%= u.getId()+".jpg" %>" class="wida" 
+							 style="height:30px;width:30px;margin-right:5px;margin-top:25px;margin-bottom:-8px; "
+							 onerror="javascript:this.src='/Gouwu/images/icon/user.png'">
 						<%= u.getUsername() %>
 					</a>
 					<div class="itemhide" style="width:150px;padding-bottom:5px;">
@@ -197,6 +198,16 @@
 			<div class="backgb flol" style="height:50px;width:50px;padding-left:5px;padding-top:5px;">
 				<img src="/Gouwu/images/background/info.png" />
 			</div>
+		<%
+			int userid=-1;
+			for(int i=0;i<orders.size();i++)
+			{
+				SalesOrder so=orders.get(i);
+				userid=so.getUser().getId();
+			}
+			if(userid==u.getId())
+			{
+		%>	
 			<div class="boxs10 borr10 pad10">
 				<table class="widpc100">
 					<tr>
@@ -308,6 +319,21 @@
 			%>
 				</table>
 			</div>
+		<%
+			}
+			else if(userid!=u.getId())
+			{
+		%>
+			<div class="widpc100 textc colb fontw700 fonts22 boxs10 borr10 padtbpc10" style="height:200px;">
+				<img src="/Gouwu/images/background/cart1.png"/>暂时没有您的订单!~<br>
+				<a class="borr20 fonts18 marlrpc5 backgb boxs5 curp padtb5" href="ShowProducts1.jsp"
+					 style="width:200px;margin-top:70px;margin-left:43%;display:block;color:#fff;">快去选购课程吧~
+				</a>
+			</div>
+		<%		
+			}
+		%>	
+		
 		</div>	
 		
 		<div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;margin-top:50px; ">

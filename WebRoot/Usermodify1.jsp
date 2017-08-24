@@ -142,17 +142,13 @@
 			else
 			{
 		%>
-				<div class="itemshow flol marlr15 curp overfh" >
-					<div href="" style="">
+				<div class="itemshow flol marlr15"  >
+					<a href="" style="color:white;">
 						<img src="/Gouwu/images/user/<%= u.getId()+".jpg" %>" class="wida" 
-							 style="height:30px;margin-right:5px;margin-top:28px;"
-							 onerror="javascript:this.src='/Gouwu/images/icon/user.png'">						
-					</div>
-					
-						<a style="color:white;" >	 
-							<%= u.getUsername() %>
-						</a>
-					
+							 style="height:30px;width:30px;margin-right:5px;margin-top:25px;margin-bottom:-8px; "
+							 onerror="javascript:this.src='/Gouwu/images/icon/user.png'">
+						<%= u.getUsername() %>
+					</a>
 					<div class="itemhide" style="width:150px;padding-bottom:5px;">
 						<a href="Orderstatus1.jsp">
 							<div class="item borrt5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
@@ -170,7 +166,7 @@
 							</div>
 						</a>					
 					</div>
-				</div>
+				</div>									
 		<%
 			}
 		%>	

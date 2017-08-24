@@ -10,7 +10,9 @@ username varchar(40),
 password varchar(16),
 phone varchar(40),
 addr varchar(255),
-rdate datetime
+rdate datetime,
+email varchar(20),
+qq varchar(20)
 );
 
 create table category
@@ -23,13 +25,22 @@ cno int, #最多三层, 每层占两位, 最多99个子节点
 grade int #代表级别, 从1开始
 );
 
+create table cart
+(
+id int primary key auto_increment,
+productid int,
+userid int,
+count int,
+cdate datetime
+);
+
 create table product
 (
 id int primary key auto_increment,
 name varchar(255),
 descr varchar(255),
-normalprice double,
-memberprice double,
+normalprice int,
+memberprice int,
 pdate datetime,
 categoryid int references catetory(id)
 );

@@ -5,7 +5,51 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Cart {
-
+	
+//	private int productid;
+//	private int userid;
+//	private int count;
+//	private Date cdate;
+//	
+//	public void setProductId(int productid)
+//	{
+//	   this.productid=productid;	
+//	}
+//	public int getProductId()
+//	{
+//		return productid;
+//	}
+//	
+//	public void setUserId(int userid)
+//	{
+//	   this.productid=productid;	
+//	}
+//	public int getUserId()
+//	{
+//		return userid;
+//	}
+//	
+//	public void setCount(int count)
+//	{
+//	   this.count=count;	
+//	}
+//	public int getCount()
+//	{
+//		return count;
+//	}
+//	
+//	public void setCdate(Date cdate)
+//	{
+//		this.cdate=cdate;
+//	}
+//	public Date getCdate()
+//	{
+//		return cdate;
+//	}
+	
+	
+	
+	
 	List<CartItem> items=new ArrayList<CartItem>();
 	
 	public List<CartItem> getItems()

@@ -309,10 +309,11 @@
 			else
 			{
 		%>
-				<div class="itemshow flol" style="margin-top:17px;margin-left:15px;" >
+				<div class="itemshow flol marlr15"  >
 					<a href="" style="color:white;">
-						<img src="/Gouwu/images/icon/user.png" class="wida" 
-							 style="height:20px;margin-right:5px;">
+						<img src="/Gouwu/images/user/<%= u.getId()+".jpg" %>" class="wida" 
+							 style="height:30px;width:30px;margin-right:5px;margin-top:25px;margin-bottom:-8px; "
+							 onerror="javascript:this.src='/Gouwu/images/icon/user.png'">
 						<%= u.getUsername() %>
 					</a>
 					<div class="itemhide" style="width:150px;padding-bottom:5px;">

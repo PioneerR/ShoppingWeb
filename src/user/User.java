@@ -100,6 +100,35 @@ public class User {
 		return rdate;
 	}
 	
+	public int getTotalCount()
+	{
+		Connection conn=DB.getConn();
+		String sql=null;
+		Statement stmt=DB.getStmt(conn);
+		ResultSet rs=null;
+		int totalCount=0;
+		try
+		{
+			sql="select count(*) from user";
+			rs=DB.getRs(stmt, sql);
+			while(rs.next())
+			{
+				totalCount=rs.getInt(1);//resultset并没有0这个位置，拿到结果集后，从第一个结果往后数
+			}				
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(rs);
+			DB.close(stmt);
+			DB.close(conn);
+		}
+		return totalCount;
+	}
+	
 	public void update() {
 		Connection conn = DB.getConn();
 		String sql = "update user set username=?,phone=?,addr=?,email=?,qq=? where id =?";
