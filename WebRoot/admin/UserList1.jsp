@@ -68,7 +68,7 @@
 	</style>
 </head>
 <body>
-	<div class="flol colb fonts18 fontw700 martb15" style="margin-left:25px; ">
+	<div class="flol colb fonts24 fontw700 martb15" style="margin-left:25px; ">
 		用户列表
 	</div>
 	

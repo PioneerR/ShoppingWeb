@@ -192,9 +192,9 @@
 					管理员
 				</a>
 				<div class="itemhide" style="width:150px;padding-bottom:5px;">
-					<a href="Orderstatus1.jsp">
+					<a href="OrderList1.jsp">
 						<div class="item borrt5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
-							待处理订单
+							待处理预报名
 						</div>
 					</a>
 					<a href="AdminIndex1.jsp?action=exit">

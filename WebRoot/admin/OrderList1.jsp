@@ -71,7 +71,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="flol colb fonts18 fontw700 martb10" style="margin-left:25px;">
+		<div class="flol colb fonts24 fontw700 martb10" style="margin-left:25px;">
 			报名列表
 		</div>		
 				
@@ -124,10 +124,10 @@
 					</td>
 					<td style="">					
 						<a name="modify" href="OrderModify1.jsp?id=<%=so.getId()%>" style="padding:3px 8px;color:#fff;"
-						   class="backgb borr5 boxs5" target="detail" >订单修改</a>
+						   class="backgb borr5 boxs5">修改状态</a>
 						   &nbsp;
 						<a name="delete1" href="OrderDetailShow1.jsp?id=<%=so.getId()%>" class="borr5 boxs5 backgb" 
-						   style="padding:3px 8px;color:#fff;" target="detail">订单明细</a>	
+						   style="padding:3px 8px;color:#fff;">报名详情</a>	
 					</td>
 				</tr>
 				<tr><td colspan="7"><hr></td></tr>							
@@ -197,7 +197,7 @@
 		
 		<form name="form2" method=post action="OrderList1.jsp" style="float:right" >
 			<input type="text" name="pageNo" class="textc" value="<%= pageNo %>" size=6 />
-			<input type="submit" name="submit" value="提交" />
+			<input type="submit" name="submit" value="Go" />
 		</form>
 	
 	</body>

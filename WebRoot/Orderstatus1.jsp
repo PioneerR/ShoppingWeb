@@ -214,7 +214,7 @@
 						<td class="colb fonts20 fontw700">我的订单</td>
 						<td>课程名称</td>
 						<td>总价</td>
-						<td>订单状态</td>
+						<td>报名状态</td>
 						<td>修改</td>
 						<td>详情</td>
 					</tr>
@@ -295,7 +295,7 @@
 						%>
 							<a class="borr5 fonts16 marlrpc5 backgb boxs5 pad2"  style="color:#fff;"
 								href="OrderDetail1.jsp?orderId=<%= so.getId() %>" >
-								订单详情
+								报名详情
 							</a>
 						<%
 							}
@@ -304,7 +304,7 @@
 						%>	
 							<a class="borr5 fonts16 marlrpc5 backggy boxs5 pad2"  style="color:#fff;"
 								href="OrderDetail1.jsp?orderId=<%= so.getId() %>" >
-								订单详情
+								报名详情
 							</a>
 						</td>
 					</tr>

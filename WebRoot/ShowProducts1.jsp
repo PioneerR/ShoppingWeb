@@ -184,7 +184,8 @@
 					<td colspan="2">					
 						<a href="ShowProductDetail1.jsp?id=<%= p.getId() %>&cgid=<%= cgid %>" 
 							target="_blank" style="float:left;">
-							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" />
+							<img src="images/product/<%= p.getId()+".jpg" %>" class="wid300 hei300" 
+								 onerror="javascript:this.src='/Gouwu/images/product/yscx.png'"/>
 						</a>
 					</td>
 				</tr>

@@ -212,13 +212,13 @@
 					<table class="widpc100" style="padding-left:10px;padding-right:10px; ">
 						<tr>
 							<td class="colb fonts20 fontw700 textl" colspan=5 style="margin-left:13px;">
-								订单列表
+								报名详情
 							</td>
 						</tr>
 						<tr>
 							<td></td>
 							<td>课程名称</td>
-							<td>课程单价</td>
+							<td>课程价格</td>
 							<td>购买数量</td>
 							<td>总价</td>
 						</tr>

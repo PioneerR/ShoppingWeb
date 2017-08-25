@@ -220,7 +220,8 @@
 			   
 			    <div class="flol hei400 wid500" style="overflow:hidden;padding-top:50px;">
 				    <div>
-					  <img src="images/product/<%= p.getId()+".jpg" %>" class="wida" style="height:450px;"/>
+					  <img src="images/product/<%= p.getId()+".jpg" %>" class="wida" style="height:450px;"
+					  		onerror="javascript:this.src='/Gouwu/images/product/yscx.png'"/>
 					</div>
 				</div>
 				

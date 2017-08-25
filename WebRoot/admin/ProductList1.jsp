@@ -176,16 +176,8 @@
 		</script>
 	</head>
 	<body>
-		<div class="flol colb fonts18 fontw700 martb10" style="margin-left:25px;">
+		<div class="flol colb fonts24 fontw700 martb10" style="margin-left:25px;">
 			课程列表
-		</div>
-		
-		<div class="flol martb15" style="margin-left:300px;">
-			<form action="ProductList1.jsp" method="post" name="form3" >
-				<input type="text" name="search" style="width:150px;border-bottom:solid 1px #03a9f4; "/>
-				<a href="javascript:document.form3.submit();" style="padding:3px 8px;" 
-					class="boxs5 borr5 colw backgb fonts16" >搜索</a>
-			</form>
 		</div>
 		
 		<div class="flor fonts16" style="margin-right:25px;margin-top:20px; ">
@@ -195,7 +187,8 @@
 				
 		<div class="pad10 borr10" style="margin-bottom:30px; ">
 			<table class="widpc100">
-				<tr>				
+				<tr>	
+					<td></td>			
 					<td class="colgy">课程名称</td>
 					<td class="colgy">课程描述</td>
 					<td class="colgy">价格</td>
@@ -204,7 +197,7 @@
 					<td class="colgy">上架时间</td>
 					<td></td>
 				</tr>
-				<tr><td colspan="7"><hr></td></tr>
+				<tr><td colspan="8"><hr></td></tr>
 				<%
 					for(int i=0;i<products.size();i++)
 					{
@@ -212,7 +205,14 @@
 						Category c=ProductMgr.getInstance().getCategory(p.getCategoryId());
 						//通过产品类别的id号，取得产品类别，进而获取类别属性
 				%>
-				<tr>				
+				<tr>
+					<td style="width:100px;">
+						<a name="modify" href="ProductModify1.jsp?id=<%= p.getId() %>&action=modify">						
+							<img src="/Gouwu/images/product/<%= p.getId()+".jpg" %>" class="borr10 boxs5"
+							 	  style="height:80px;width:80px;" 
+							 	  onerror="javascript:this.src='/Gouwu/images/product/yscx.png'"/>	
+						</a> 	  				
+					</td>				
 					<td style="width:150px;" class="colb fontw700">
 						<%= p.getName() %>
 					</td>
@@ -230,7 +230,16 @@
 						</input>
 					</td>					
 					<td style="width:80px;">
-						<%= c.getName() %>
+						<% 
+							if(c.getName()==null)
+							{
+								out.println("/");
+							}
+							else
+							{
+								out.println(c.getName());
+							}
+						%>
 					</td>
 					<td style="width:100px;" class="fonts14">
 						<%= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(p.getDate()) %>
@@ -242,13 +251,10 @@
 						   &nbsp;
 						<a name="delete1" href="ProductDelete1.jsp?id=<%= p.getId() %>&parameter=1" 
 						   onclick="return confirm('真的要删除吗？')" class="borr5 boxs5 backgb" 
-						   style="padding:3px 8px;color:#fff;">删除</a>						
-						   &nbsp;  						   
-					    <a name="upload" href="ProductUpload1.jsp?id=<%= p.getId() %>" 
-						   style="padding:3px 8px;color:#fff;"class="backgb borr5 boxs5">上传图片</a>
+						   style="padding:3px 8px;color:#fff;">删除</a>			
 					</td>
 				</tr>
-				<tr><td colspan="7"><hr></td></tr>							
+				<tr><td colspan="8"><hr></td></tr>							
 				<%
 					}
 				%>				
@@ -311,100 +317,7 @@
 		
 		<form name="form2" method=post action="ProductList1.jsp" style="float:right" >
 			<input type="text" name="pageNo" class="textc" value="<%= pageNo %>" size=6 />
-			<input type="submit" name="submit" value="提交" />
-		</form>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		<div class="flol colb fonts18 fontw700 martb15">
-			课程列表
-		</div>
-		
-		<div style="text-align:center">
-			<span><a href="ProductAdd1.jsp" target="detail" >添加新产品</a></span>
-		</div>
-		<table width=100% style="border:3px solid #fff1cc;border-collapse:collapse; ">
-			<tr style="background-color:#fff1cc;" >
-				<th>选择</th>
-				<th>产品ID</th>
-				<th>产品名称</th>
-				<th>产品描述</th>
-				<th>市场价格</th>
-				<th>会员价格</th>
-				<th>上架时间</th>
-				<th>所属类别</th>
-				<th>处理</th>
-			</tr>
-			<form action="ProductDelete1.jsp?parameter=x" target="detail" method="post" >
-		<%
-			for(int i=0;i<products.size();i++)
-			{
-				Product p=products.get(i);//集合取出的方式是 get，数组取出方式是[]
-				Category c=ProductMgr.getInstance().getCategory(p.getCategoryId());
-				//通过产品类别的id号，取得产品类别，进而获取类别属性
-		%>
-			<tr>
-				<td><input type="checkbox" name="delete" value="<%= p.getId() %>" /></td>
-				<td><%= p.getId() %></td>
-				<td><%= p.getName() %></td>
-				<td style="text-align:left;"><%= p.getDescribe() %></td> 
-				<td>			
-					<input type="text" id="<%= p.getId() %>" onclick="changeToInputNP(this.id)" 
-					value="<%= p.getNormalPrice() %>" ></input>
-				</td>
-				<td>
-					<input type="text" name="<%= p.getId() %>" onclick="changeToInputMP(this.name)" 
-					value="<%= p.getMemberPrice() %>" ></input>
-				</td>
-				<td><%= new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-					.format(p.getDate()) %></td>
-				<td><%= c.getName()+c.getCno() %></td>
-				<td>
-					<a name="delete1" href="ProductDelete1.jsp?id=<%= p.getId() %>&parameter=1" target="detail" onclick="return confirm('真的要删除吗？')">删</a>
-					&nbsp;&nbsp;
-					<a name="modify" href="ProductModify1.jsp?id=<%= p.getId() %>&action=modify" target="detail" >改</a>
-					&nbsp;&nbsp;
-					<a name="upload" href="ProductUpload1.jsp?id=<%= p.getId() %>" target="detail" >上传</a>
-				</td>
-			</tr>	
-		<%
-			}
-		%>	
-		<tr>
-			<td>		
-				<input type="checkbox" id="deleteall" />
-				<input type="submit" value="删除" onclick="return confirm('真的要删除吗?')" />		
-			</td>
-			</form>	<!-- 注意，要提交的数据，一定要放在form表单内部，比如checkbox，否则会空指针异常 -->
-			<td colspan=8 >
-				<form action="ProductList1.jsp" method="post" >
-					<input type="text" name="search" />搜索
-					<input type="submit" value="提交" />
-				</form>
-			</td>			
-		</tr>
-		</table>
-		<form name="form1" action="ProductList1.jsp" method="post" style="float:left;">
-			<select name="pageNo" onchange="document.form1.submit()"><!-- 别忘了onchange -->
-		<%
-			for(int i=1;i<=totalPages;i++)
-			{
-		%>	
-			<option value="<%= i %>" <%= pageNo==i?"selected":"" %>>第<%= i %>页</option>
-		<%
-			}
-		%>	
-			</select>
-		</form>
-		<form name="form2" action="ProductList1.jsp" method="post" style="float:right;">
-			<input type="text" name="pageNo" value="<%= pageNo %>" style="width:50px;"/>
-			<input type="submit" name="submit" value="提交">
+			<input type="submit" name="submit" value="Go" />
 		</form>
 	</body>
 </html>

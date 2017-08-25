@@ -9,93 +9,28 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>产品搜索</title>
-		<style type="text/css">
-		 	th{
-				text-align:center;
-				border:3px solid #fff1cc;
-			}
-			td{
-				border:3px solid #fff1cc;
-			}
-			a{
-				text-decoration: none;
-			}	
-			input{
-				margin-right: 20px; 			
-			}
-		</style>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+		<title>艺术创想</title>
+		<link type="text/css" rel="stylesheet" href="/Gouwu/css/base.css" />		
 	</head>
 	<body>
-		<form action="SearchResult1.jsp" method="post" style="margin-bottom:0px" name="simple">
-			<input type="hidden" name="search" value="simplesearch" />
-			<table style="border-collapse: collapse;border:3px #fff1cc;" width=100%>
-				<th style="background-color:#fff1cc;">简单搜索</th>
-				<tr style="text-align:center;">
-					<td><input type="text" name="keyword" size=50 style="margin-right:0px;"/>
-					<input type="submit" value="搜索"  ></td>
-				</tr>	
-			</table>
-		</form>
-		<form action="ComplexSearchResult1.jsp" method="post" name="complex">
-			<input type="hidden" name="search" value="complexsearch" />
-			<table  style="border-collapse: collapse;border:3px #fff1cc;" width=100% >
-				<th style="background-color:#fff1cc;" colspan=2>
-					高级搜索
-				</th>
-				<tr>
-					<td width="100px">产品类别：</td>
-					<td>
-						<select name="categoryId"/>
-							<option value="-1" >----所有商品----</option>
-						<%
-							List<Category>categories=CategoryService.getInstance().getCategories();
-							for(int i=0;i<categories.size();i++)
-							{
-								Category c=categories.get(i);
-								int grade=c.getGrade();
-								String preStr="";
-								for(int j=1;j<grade;j++)
-								{
-									preStr+="----";
-								}
-						%>
-							<option value="<%= c.getId() %>"><%= preStr+c.getName() %></option>
-						<%
-							}
-						%>	
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>产品名称：</td>
-					<td><input type="text" name="productName"/></td>
-				</tr>
-				<tr>
-					<td>市场价格：</td>
-					<td>From：<input type="text" name="lowNormalPrice"/>
-					      To：<input type="text" name="highNormalPrice"/>
-					</td>
-				</tr>
-				<tr>
-					<td>会员价格：</td>
-					<td>From：<input type="text" name="lowMemberPrice"/>
-					      To：<input type="text" name="highMemberPrice"/>
-					</td>
-				</tr>
-				<tr>
-					<td>日期时间：</td>
-					<td>From：<input type="text" name="startDate"/>
-					      To：<input type="text" name="endDate"/>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="padding-left: 200px;" >
-						<input type="submit" value="搜索" style="margin-right: 100px"/>
-						<input type="reset" value="重置" />					
-					</td>
-				</tr>
-			</table>
-		</form>		
+		<div class="textc colb fontw700 fonts24" style="margin-left:0%;margin-bottom:30px;">
+			<img src="/Gouwu/images/product/yscx.png" style="height:100px;" class=""/>课程搜索
+		</div>
+		<div style="margin-left:33%; ">
+			<form action="SearchResult1.jsp" method="post" target="search"
+				  style="margin-bottom:0px" name="simpleform">
+				<input type="hidden" name="search" value="simplesearch" />
+				<input type="text" name="keyword" size=50 style="margin-right:0px;height:25px;"/>
+				<a href="javascript:document.simpleform.submit();" class="colw backgb boxs5 borr5"
+				   style="padding:5px 12px;" >搜索</a>
+				<a href="ProductComplexSearch1.jsp" class="colgy boxs5 borr5"
+				   style="padding:5px 12px;" >高级搜索</a>   
+			</form>
+		</div>
+		
+		<iframe frameborder=0  style="padding:0% 2% 0% 2%;height:500px;width:96%;"
+	      		  src="" class="" scrolling="auto" name="search"></iframe>
+		
 	</body>
 </html>

@@ -71,7 +71,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="flol colb fonts18 fontw700 martb15" style="margin-left:25px;">
+		<div class="flol colb fonts24 fontw700 martb15" style="margin-left:25px;">
 			课程类别
 		</div>
 		<div class="flor fonts16" style="margin-right:25px;margin-top:20px; ">
@@ -101,8 +101,11 @@
 						}
 				%>
 				<tr>				
-					<td style="width:100px;" class="colb fontw700">
-						<%= c.getName() %>
+					<td style="width:100px;">
+						<a name="modify" href="CategoryModify1.jsp?id=<%= c.getId() %>"
+							 class="fontw700" style="color:#03a9f4;">						
+							<%= c.getName() %>
+						</a>
 					</td>
 					<td style="width:300px;" class="textl">					
 						<%= c.getDescribe() %>					
@@ -121,7 +124,7 @@
 					</td>
 					<td style="width:150px;">
 						<a name="modify" href="CategoryModify1.jsp?id=<%= c.getId() %>" 
-						   style="padding:3px 8px;color:#fff;"class="backgb borr5 boxs5">修改类别</a>
+						   style="padding:3px 8px;color:#fff;"class="backgb borr5 boxs5">修改</a>
 						&nbsp;&nbsp;
 					
 						<% if(c.getGrade()<Category.MAX_GRADE)
@@ -197,7 +200,7 @@
 		
 		<form name="form2" method=post action="CategoryList1.jsp" style="float:right" >
 			<input type="text" name="pageNo" class="textc" value="<%= pageNo %>" size=6 />
-			<input type="submit" name="submit" value="提交" />
+			<input type="submit" name="submit" value="Go" />
 		</form>		
 	</body>
 </html>
