@@ -1,9 +1,23 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page import="order.OrderMgr"%>
 <%@ page import="order.SalesOrder"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%!
+	public int check(int a)
+	{
+		int n=0;
+		if(a>10)
+		{
+			a=a-10;
+			n++;
+			check(a);//递归计算56中的整十数5
+		}
+		return n;
+	}
+%>
 
 <%
 	request.setCharacterEncoding("utf8"); 
@@ -34,6 +48,12 @@
 	
 	if (pageNo > totalPages)
 		pageNo = totalPages;
+	
+	//点击浏览器后退按钮时，不读取该页缓存，并自动刷新本页面
+	response.setHeader("Pragma","No-cache"); 		
+	response.setHeader("Cache-Control","no-cache"); 
+	response.setHeader("Cache-Control", "No-store");
+	response.setDateHeader("Expires", 0);
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,80 +64,141 @@
 	  	<title>艺术创想校园管理中心</title> 
 	    <link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css"> 
 		<style type="text/css">
-			table
-			{
-			 	border-collapse:collapse;
-			 	text-align:center;	 	
-			}	
-			th,td{
-				text-align:center;
-				border:3px solid #fff1cc;
-			}
-			a{
-				text-decoration: none;
+			hr{		
+				border:none;
+				border-top:1px dashed #03a9f4;
 			}
 		</style>
 	</head>
 	<body>
-		<div class="flol colb fonts18 fontw700 martb15">
+		<div class="flol colb fonts18 fontw700 martb10" style="margin-left:25px;">
 			报名列表
-		</div>
-	
-		<table border=1 width=100% >
-			<tr style="background-color:#fff1cc">
-				<th>ID</th>
-				<th>用户名</th>
-				<th>发货地址</th>
-				<th>下单时间</th>
-				<th>订单状态</th>
-				<th>处理</th>
-			</tr>
-		<%
-			String [] arr={"待付款","请求取消课程","待排课","已排课","课程已取消"};
-		
-			for(int i=0;i< orders.size();i++)
-			{
-				SalesOrder so = orders.get(i);
-		%>	
-			<tr>
-				<td><%= so.getId() %></td>
-				<td><%= so.getUser().getUsername() %></td>
-				<td><%= so.getAddress() %></td>
-				<td><%= so.getODate() %></td>
-				<td><%= arr[so.getStatus()] %></td>
-				<td>
-					<a target="detail" href="OrderDetailShow1.jsp?id=<%=so.getId()%>" 
-					   style="margin-right:20px;">订单明细</a>
-					<a target="detail" href="OrderModify1.jsp?id=<%=so.getId()%>">订单修改</a>
-				</td>
-			</tr>
-		<% 
-			}
-		%>
-		</table>
-		<form name="form1" method=post action="OrderList1.jsp" style="float:left" >
-			<select name="pageNo" onchange="document.form1.submit()" >
+		</div>		
+				
+		<div class="pad10 borr10" style="margin-bottom:30px; ">
+			<table class="widpc100">
+				<tr>				
+					<td class="colgy">用户名</td>
+					<td class="colgy">手机号码</td>
+					<td class="colgy">发货地址</td>					
+					<td class="colgy">OrderID</td>
+					<td class="colgy">报名状态</td>
+					<td class="colgy">报名时间</td>
+					<td></td>
+				</tr>
+				<tr><td colspan="7"><hr></td></tr>
 				<%
+					String [] arr={"待付款","请求取消课程","待排课","已排课","课程已取消"};
+				
+					for(int i=0;i< orders.size();i++)
+					{
+						SalesOrder so = orders.get(i);
+				%>
+				<tr>				
+					<td style="width:150px;" class="colb fontw700">
+						<%= so.getUser().getUsername() %>
+					</td>
+					<td style="width:100px;">					
+						<%= so.getUser().getPhone() %>					
+					</td>
+					<td style="width:250px;">	
+						<%
+							if(so.getAddress()==null)
+							{										
+								out.print("<font style='color:#696969;'>/</font>");
+							}
+							else
+							{
+								out.print(so.getAddress());
+							}
+						%>
+					</td>
+					<td style="width:80px;">
+						<%= so.getId() %>
+					</td>					
+					<td style="width:100px;" class="colb">
+						<%= arr[so.getStatus()] %>
+					</td>
+					<td style="width:100px;" class="fonts14">
+						<%= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(so.getODate()) %>
+					</td>
+					<td style="">					
+						<a name="modify" href="OrderModify1.jsp?id=<%=so.getId()%>" style="padding:3px 8px;color:#fff;"
+						   class="backgb borr5 boxs5" target="detail" >订单修改</a>
+						   &nbsp;
+						<a name="delete1" href="OrderDetailShow1.jsp?id=<%=so.getId()%>" class="borr5 boxs5 backgb" 
+						   style="padding:3px 8px;color:#fff;" target="detail">订单明细</a>	
+					</td>
+				</tr>
+				<tr><td colspan="7"><hr></td></tr>							
+				<%
+					}
+				%>				
+			</table>		
+		</div>
+		
+		<form name="form1" method=post action="OrderList1.jsp" style="float:left" >
+			<select name="pageNo" onchange="document.form1.submit()" class="textc" >
+				<% 
 					for(int i=1;i<=totalPages;i++)
 					{
 				%>
-					<option value=<%=i%> <%=(pageNo==i)?"selected":""%> >第<%=i%>页</option>
+					<option value=<%=i%> <%=(pageNo==i)?"selected":""%>>第<%=i%>页</option>
 				<%
 					}
 				%>
 			</select>
 		</form>
-		&nbsp;
-		<span>共<%= totalPages %>页</span>
-		&nbsp;
-		<a href="OrderList1.jsp?pageNo=<%= pageNo-1 %>">上一页</a>
-		&nbsp;
-		<a href="OrderList1.jsp?pageNo=<%= pageNo+1 %>">下一页</a>
-		&nbsp;
-		<a href="OrderList1.jsp?pageNo=<%= totalPages %>">最后一页</a>
+		<div style="margin-left:33%;" class="flol">
+			<a href="OrderList1.jsp?pageNo=1" class="boxs5 borr5 colgys pad5" 
+				style="padding:3px 8px 3px 8px;">首页</a>	
+			<a href="OrderList1.jsp?pageNo=<%
+							if(pageNo-1>0)
+							{
+								out.println(pageNo-1);
+							}
+							%>" class="boxs5 borr5 colgys" style="padding:3px 8px 3px 8px;">上一页</a>
+				<%
+					int a=1,b=totalPages;//如果不符合以下两个if,那么a=1,b==totalpages,此时
+					int m=0;
+					m=check(pageNo);
+					if(totalPages>10 && m==0)
+					{
+						a=1;
+						b=10;
+					}
+					else if(totalPages>10 && m>=1)
+					{
+						a=1+m*10;
+						b=(m+1)*10;
+						if(b>totalPages)
+						{
+							b=totalPages;
+						}	
+					}
+					for(int i=a;i<=b;i++)
+					{
+				%>
+					<a href="OrderList1.jsp?pageNo=<%= i %>" class="fonts18" 
+						style="color:#03a9f4;margin-left:15px;"><%= i %></a>
+				<%
+					}
+				%>
+			<a href="OrderList1.jsp?pageNo=<%
+							if(pageNo+1<=totalPages)
+							{
+								out.println(pageNo+1);
+							}
+							%>" class="boxs5 borr5 colgys pad5" 
+				style="margin-left:15px;padding:3px 8px 3px 8px;">下一页</a>	
+			<a href="OrderList1.jsp?pageNo=<%= totalPages %>" class="boxs5 borr5 colgys pad5" 
+				style="padding:3px 8px 3px 8px;">尾页</a>	
+		</div>
+		
 		<form name="form2" method=post action="OrderList1.jsp" style="float:right" >
-			<input type="text" name="pageNo" value="<%= pageNo %>" size=6 />
+			<input type="text" name="pageNo" class="textc" value="<%= pageNo %>" size=6 />
 			<input type="submit" name="submit" value="提交" />
-		</form>	
+		</form>
+	
 	</body>
 </html>

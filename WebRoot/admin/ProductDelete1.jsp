@@ -11,41 +11,17 @@
 	if(parameter!=null & parameter.equals("1"))
 	{
 		int id1=Integer.parseInt(request.getParameter("id"));
-		//System.out.println(id1);
 		ProductMgr.getInstance().delete(id1);
-%>
-		<script type="text/javascript">
-			parent.main.location.reload();
-		</script>
-<%
-		return;
-	}
-	else if(parameter!=null & parameter.equals("x"))
-	{
-		String [] ids=request.getParameterValues("delete");
-		for(int i=0;ids!=null & i<ids.length;i++)
-		{
-			int id=Integer.parseInt(ids[i].trim());
-			ProductMgr.getInstance().delete(id);
-		}
-%>
-		<script type="text/javascript">
-			parent.main.location.reload();
-	//parent.document.main.location.reload();刷新后会把整个页面刷新，并不会刷新main
-		</script>
-<%
+		
+		out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:200px;margin-left:5%;margin-top:5%;'");
+		out.println("<div style=''>");
+		out.println("<h2 style='color:#03a9f4;text-align:center;padding:6%;'>"+"删除课程成功！~"+"</h2>");
+		out.println("</div></div>");
+		
+		out.println("<a href='javascript:window.history.go(-2)' style='text-decoration:none;");
+		out.println("background:#03a9f4;padding-bottom:5px;padding-top:5px;color:#fff;float:right;");
+		out.println("margin:2% 5% 5% 5%;padding-left:30px;padding-right:30px;text-align:center;border-radius:5px;'>");
+		out.println("返回</a>");
 		return;
 	}
 %>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>删除产品</title>		
-	</head>
-	<body>
-		<span>恭喜您，删除成功，1秒钟后自动跳转.....</span>	
-	</body>
-</html>

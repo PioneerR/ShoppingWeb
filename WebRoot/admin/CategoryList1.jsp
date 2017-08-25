@@ -76,7 +76,7 @@
 		</div>
 		<div class="flor fonts16" style="margin-right:25px;margin-top:20px; ">
 			<a href="CategoryAdd1.jsp" style="color:#fff;padding:3px 8px;" 
-			   class="borr5 boxs5 backgb" target="detail">添加新类别</a>
+			   class="borr5 boxs5 backgb">添加新类别</a>
 		</div>
 		<div class="pad10 borr10" style="margin-bottom:30px; ">
 			<table class="widpc100">
@@ -121,14 +121,14 @@
 					</td>
 					<td style="width:150px;">
 						<a name="modify" href="CategoryModify1.jsp?id=<%= c.getId() %>" 
-						   style="padding:3px 8px;color:#fff;"
-						   class="backgb borr5 boxs5" target="detail" >修改类别</a>&nbsp;&nbsp;
+						   style="padding:3px 8px;color:#fff;"class="backgb borr5 boxs5">修改类别</a>
+						&nbsp;&nbsp;
 					
 						<% if(c.getGrade()<Category.MAX_GRADE)
 							{
 						%>	
 							<a name="add" href="CategoryAddChild1.jsp?pid=<%=c.getId()%>&grade=<%= c.getGrade() %>" 
-							   class="borr5 boxs5 backgb" style="padding:3px 8px;color:#fff;" target="detail">添加子类别</a>
+							   class="borr5 boxs5 backgb" style="padding:3px 8px;color:#fff;">添加子类别</a>
 						<%
 							}
 						%>

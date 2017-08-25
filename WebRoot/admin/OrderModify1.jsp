@@ -30,7 +30,9 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>订单修改</title>
+		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
+  		<title>艺术创想校园管理中心</title> 
+    	<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css">
 	</head>
 	<body>
 		<span style="margin-right:25px;float:left;">订单号：<%= so.getId() %></span><br>

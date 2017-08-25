@@ -109,7 +109,8 @@
 			{
 				var productid=document.getElementById(id);
 				var value=productid.value;
-				productid.outerHTML="<input type='text' style='color:#03a9f4' id='"+id+"' value='"+value+"' size='5' onblur='changeNP(this.id)' />";
+				productid.outerHTML="<input type='text' style='color:#03a9f4' id='"+id
+								   +"' value='"+value+"' size='5' onblur='changeNP(this.id)' />";
 				document.getElementById(id).focus();			
 			}
 			function changeToInputMP(name)
@@ -117,7 +118,8 @@
 				var productids=document.getElementsByName(name);
 				var productid=productids[0];
 				var value=productid.value;
-				productid.outerHTML="<input type='text' style='color:#03a9f4' name='"+name+"' value='"+value+"' size='5' onblur='changeMP(this.name)' />";
+				productid.outerHTML="<input type='text' style='color:#03a9f4' name='"+name
+								   +"' value='"+value+"' size='5' onblur='changeMP(this.name)' />";
 				document.getElementsByName(name)[0].focus();			
 			}	
 			
@@ -133,7 +135,8 @@
 				{
 					if(request.readyState==4 && request.status==200)
 					{
-						productid.outerHTML="<input type='text' id='"+ id +"' value="+value+" onclick='changeToInputNP(this.id)'></input>";
+						productid.outerHTML="<input type='text' style='border:none;font-size:16px;width:50px;color:#03a9f4;color:#03a9f4;text-align:center;'"
+											+" id='"+ id +"' value="+value+" onclick='changeToInputNP(this.id)'></input>";
 					}
 				}
 				request.send(null);
@@ -152,7 +155,8 @@
 				{
 					if(request.readyState==4 && request.status==200)
 					{
-						productid.outerHTML="<input type='text' name='"+ name +"' value="+value+" onclick='changeToInputMP(this.name)'></input>";
+						productid.outerHTML="<input type='text'style='border:none;width:50px;font-size:16px;color:#03a9f4;text-align:center;'"
+											+" name='"+ name +"' value="+value+" onclick='changeToInputMP(this.name)'></input>";									
 					}
 				}
 				request.send(null);
@@ -186,7 +190,7 @@
 		
 		<div class="flor fonts16" style="margin-right:25px;margin-top:20px; ">
 			<a href="ProductAdd1.jsp" style="color:#fff;padding:3px 8px;" 
-			   class="borr5 boxs5 backgb" target="detail">添加新课程</a>
+			   class="borr5 boxs5 backgb">添加新课程</a>
 		</div>
 				
 		<div class="pad10 borr10" style="margin-bottom:30px; ">
@@ -234,16 +238,14 @@
 					<td style="">
 					
 						<a name="modify" href="ProductModify1.jsp?id=<%= p.getId() %>&action=modify" 
-						   style="padding:3px 8px;color:#fff;"
-						   class="backgb borr5 boxs5" target="detail" >修改</a>
+						   style="padding:3px 8px;color:#fff;" class="backgb borr5 boxs5">修改</a>
 						   &nbsp;
 						<a name="delete1" href="ProductDelete1.jsp?id=<%= p.getId() %>&parameter=1" 
 						   onclick="return confirm('真的要删除吗？')" class="borr5 boxs5 backgb" 
-						   style="padding:3px 8px;color:#fff;" target="detail">删除</a>						
+						   style="padding:3px 8px;color:#fff;">删除</a>						
 						   &nbsp;  						   
 					    <a name="upload" href="ProductUpload1.jsp?id=<%= p.getId() %>" 
-						   style="padding:3px 8px;color:#fff;"
-						   class="backgb borr5 boxs5" target="detail" >上传图片</a>
+						   style="padding:3px 8px;color:#fff;"class="backgb borr5 boxs5">上传图片</a>
 					</td>
 				</tr>
 				<tr><td colspan="7"><hr></td></tr>							

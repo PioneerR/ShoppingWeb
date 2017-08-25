@@ -51,7 +51,7 @@
 				<th>订单状态</th>
 			</tr>
 			<%
-				String arr[]={"待发货","已发货","订单取消"};
+				String [] arr={"待付款","请求取消课程","待排课","已排课","课程已取消"};
 				for(int i=0;i<items.size();i++)
 				{
 					SalesItem si=items.get(i);
