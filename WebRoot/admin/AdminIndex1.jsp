@@ -28,14 +28,6 @@
 		response.sendRedirect("/Gouwu/UserLogin1.jsp");
 		return;
 	}
-//	else 
-//	{
-//		InetAddress ia=InetAddress.getLocalHost();
-//		String ip=ia.getHostAddress().toString();
-//		String name=ia.getHostName().toString();
-//		System.out.println(ip+"--"+name);
-//	}	
-//	System.out.println(session.getId());
 
 	String action=request.getParameter("action");
 	if(action !=null && action.equals("exit"))
@@ -50,6 +42,12 @@
 	response.setHeader("Cache-Control", "No-store");
 	response.setDateHeader("Expires", 0);
 	
+	
+//	InetAddress ia=InetAddress.getLocalHost();
+//	String ip=ia.getHostAddress().toString();
+//	String name=ia.getHostName().toString();
+//	System.out.println(ip+"--"+name);	
+//	System.out.println(session.getId());
 %>	
 
 <%
@@ -107,11 +105,6 @@
 			color:#fff;
 		}
   	</style>
-    <script type="text/javascript">
-    	state=0;
-    	menuState=0;
-    	mainState=0;    
-    </script>
   </head>
   <body>
   	    <div class="widpc100 backgb" style="position:fixed;top:0;height:50px;
@@ -147,8 +140,11 @@
 					<a href="ProductList1.jsp" target="main" class="" onclick="window.location.href='#a'">
 						<div class="is colgy backgw"style="line-height:34px">课程列表</div>
 					</a>
-					<a href="ProductSearch1.jsp" target="main" class="" onclick="window.location.href='#a'">
+					<a href="ProductSearch1.jsp" class="" onclick="">
 						<div class="is colgy backgw"style="line-height:34px">课程搜索</div>
+					</a>
+					<a href="ProductComplexSearch1.jsp" class="" onclick="">
+						<div class="is colgy backgw"style="line-height:34px">高级搜索</div>
 					</a>		
 				</div>
 			</div>
