@@ -27,83 +27,64 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
 		<title>艺术创想</title>
-		<link type="text/css" rel="stylesheet" href="/Gouwu/css/base.css" />	
-		<style type="text/css">
-			.ishide{
-			 	display:none;  
-			 	color:#B5B4B4;
-			}
-			/* 在navs被hover的时候list2的hidden属性被覆盖，就会显现出下拉菜单  */
-			.isshow:hover >.ishide{
-			 	display:block;
-			 	
-			}
-			/* 导航刚开始的样子   */
-			.isshow{
-				line-height:50px;/* 让navs在hover的时候 不会使下拉菜单消失 */
-				
-			}		
-			.isshow:hover{
-				background-color:#009de6;		
-			}
-			/* item被呼出的效果   */
-			.is{
-				box-shadow:1px 1px 2px #B5B4B4,1px 1px 2px #B5B4B4;
-			}
-			/* item被hover后的效果  */
-			.is:hover{
-				background:#03a9f4;
-				color:#fff;
-			}
-		</style>	
+		<link type="text/css" rel="stylesheet" href="/Gouwu/css/base.css" />		
 	</head>
 	<body>
 		<div class="widpc100 backgb" style="position:fixed;top:0;height:50px;
 			 box-shadow:5px 5px 8px #B5B4B4,-5px 5px 8px #B5B4B4;" id="nav">
 		  <nav style="" class="overfh">
-			<div class="flol" style="margin-right:13%;margin-left:7%;">
-				<a href="AdminIndex1.jsp" style="color:white;" class="fontw700">				
+			<div class="flol" style="margin-right:10%;margin-left:7%;">
+				<a href="/Gouwu/admin/AdminIndex1.jsp" style="color:white;" class="fontw700">				
 					<img src="/Gouwu/images/icon/yscx.png" class="wida" style="height:30px;">艺术创想管理中心
 				</a>
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="UserList1.jsp" class="" target="main" style="color:#fff;">用户管理</a>
+				<a href="/Gouwu/admin/AdminIndex1.jsp" style="color:#fff;">首页</a>
 				<div class="ishide " style="line-height:35px;">						
-					<a href="UserList1.jsp" target="main" class=""  onclick="window.location.href='#a'">
+					<a href="/Gouwu/Index1.jsp"  class=""  >
+						<div class="is colgy backgw" style="line-height:34px">用户首页</div>						
+					</a>		
+				</div>
+			</div>
+			
+			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
+				<a href="/Gouwu/admin/UserList1.jsp" style="color:#fff;">用户管理</a>
+				<div class="ishide " style="line-height:35px;">						
+					<a href="/Gouwu/admin/UserList1.jsp"  class=""  >
 						<div class="is colgy backgw" style="line-height:34px">用户列表</div>						
 					</a>		
 				</div>
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="CategoryList1.jsp" class="" target="main" style="color:#fff;">课程类别</a>
+				<a href="/Gouwu/admin/CategoryList1.jsp" class="" target="main" style="color:#fff;">课程类别</a>
 				<div class="ishide " style="line-height:35px;  ">						
-					<a href="CategoryList1.jsp" target="main" class="" onclick="window.location.href='#a'">
+					<a href="/Gouwu/admin/CategoryList1.jsp" >
 						<div class="is colgy backgw"style="line-height:34px">类别列表</div>
 					</a>		
 				</div>
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="ProductList1.jsp" class="" target="main" style="color:#fff;">课程管理</a>
+				<a href="/Gouwu/admin/ProductList1.jsp" style="color:#fff;">课程管理</a>
 				<div class="ishide " style="line-height:35px;  ">						
-					<a href="ProductList1.jsp" target="main" class="" onclick="window.location.href='#a'">
+					<a href="/Gouwu/admin/ProductList1.jsp">
 						<div class="is colgy backgw"style="line-height:34px">课程列表</div>
 					</a>
-					<a href="ProductSearch1.jsp" class="" onclick="">
+					<a href="/Gouwu/admin/ProductSearch1.jsp" class="" onclick="">
 						<div class="is colgy backgw"style="line-height:34px">课程搜索</div>
 					</a>
-					<a href="ProductComplexSearch1.jsp" class="" onclick="">
+					<a href="/Gouwu/admin/ProductComplexSearch1.jsp" class="" onclick="">
 						<div class="is colgy backgw"style="line-height:34px">高级搜索</div>
 					</a>		
 				</div>
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="OrderList1.jsp" class="" target="main" style="color:#fff;">报名管理</a>
+				<a href="/Gouwu/admin/OrderList1.jsp" class="" target="main" style="color:#fff;">报名管理</a>
 				<div class="ishide " style="line-height:35px;  ">						
-					<a href="OrderList1.jsp" target="main" class="" onclick="window.location.href='#a'">
+					<a href="/Gouwu/admin/OrderList1.jsp">
 						<div class="is colgy backgw"style="line-height:34px">报名列表</div>
 					</a>		
 				</div>
@@ -112,7 +93,7 @@
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
 				<a href="/Gouwu/servlet/SalesCountServlet" class="" target="main" style="color:#fff;">数据统计</a>
 				<div class="ishide " style="line-height:35px;  ">						
-					<a href="/Gouwu/servlet/SalesCountServlet" target="main" class="" onclick="window.location.href='#a'" >
+					<a href="/Gouwu/servlet/SalesCountServlet">
 						<div class="is colgy backgw"style="line-height:34px">分类统计</div>
 					</a>		
 				</div>
@@ -123,7 +104,7 @@
 			{
 		%>					
 				<div class="flol marlr15" style="margin-top:25px;" >
-					<a href="UserLogin1.jsp" style="color:white;">
+					<a href="/Gouwu/UserLogin1.jsp" style="color:white;">
 						<img src="/Gouwu/images/icon/signin.png" class="wida" style="height:20px;">登录
 					</a>
 				</div>
@@ -139,12 +120,12 @@
 					管理员
 				</a>
 				<div class="itemhide" style="width:150px;padding-bottom:5px;">
-					<a href="OrderList1.jsp">
+					<a href="/Gouwu/admin/OrderList1.jsp">
 						<div class="item borrt5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 							待处理预报名
 						</div>
 					</a>
-					<a href="AdminIndex1.jsp?action=exit">
+					<a href="/Gouwu/admin/AdminIndex1.jsp?action=exit">
 						<div class="item borrb5 textc backgw colgy fonts16" style="line-height:37px;margin-right:10%;">
 							退出
 						</div>
