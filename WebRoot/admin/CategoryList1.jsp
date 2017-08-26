@@ -97,7 +97,7 @@
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
 				<a href="/Gouwu/admin/AdminIndex1.jsp" style="color:#fff;">首页</a>
 				<div class="ishide " style="line-height:35px;">						
-					<a href="/Gouwu/Index1.jsp"  class=""  >
+					<a href="/Gouwu/Index1.jsp">
 						<div class="is colgy backgw" style="line-height:34px">用户首页</div>						
 					</a>		
 				</div>
@@ -113,7 +113,7 @@
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="/Gouwu/admin/CategoryList1.jsp" class="" target="main" style="color:#fff;">课程类别</a>
+				<a href="/Gouwu/admin/CategoryList1.jsp" class="" style="color:#fff;">课程类别</a>
 				<div class="ishide " style="line-height:35px;  ">						
 					<a href="/Gouwu/admin/CategoryList1.jsp" >
 						<div class="is colgy backgw"style="line-height:34px">类别列表</div>
@@ -137,7 +137,7 @@
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="/Gouwu/admin/OrderList1.jsp" class="" target="main" style="color:#fff;">报名管理</a>
+				<a href="/Gouwu/admin/OrderList1.jsp" class="" style="color:#fff;">报名管理</a>
 				<div class="ishide " style="line-height:35px;  ">						
 					<a href="/Gouwu/admin/OrderList1.jsp">
 						<div class="is colgy backgw"style="line-height:34px">报名列表</div>
@@ -146,7 +146,7 @@
 			</div>
 			
 			<div class="isshow flol textc" style="margin-top:0px;width:100px;padding-bottom:1px;">
-				<a href="/Gouwu/servlet/SalesCountServlet" class="" target="main" style="color:#fff;">数据统计</a>
+				<a href="/Gouwu/servlet/SalesCountServlet" class="" style="color:#fff;">数据统计</a>
 				<div class="ishide " style="line-height:35px;  ">						
 					<a href="/Gouwu/servlet/SalesCountServlet">
 						<div class="is colgy backgw"style="line-height:34px">分类统计</div>
@@ -232,7 +232,7 @@
 									<%= c.getName() %>
 								</a>
 							</td>
-							<td style="width:300px;" class="textl">					
+							<td style="width:200px;" class="textl">					
 								<%= c.getDescribe() %>					
 							</td>
 							<td style="width:50px;">
@@ -251,7 +251,10 @@
 								<a name="modify" href="CategoryModify1.jsp?id=<%= c.getId() %>" 
 								   style="padding:3px 8px;color:#fff;"class="backgb borr5 boxs5">修改</a>
 								&nbsp;&nbsp;
-							
+								<a name="delete" href="CategoryDelete1.jsp?id=<%= c.getId() %>" 
+									   class="borr5 boxs5 backgw colgy boxs5" style="padding:3px 8px;"
+									   onclick="return confirm('真的要删除吗？');">删除</a>
+								&nbsp;&nbsp;	   
 								<% if(c.getGrade()<Category.MAX_GRADE)
 									{
 								%>	

@@ -1,7 +1,7 @@
-<%@page import="java.net.URLDecoder"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="user.UserNotFoundException"%>
-<%@page import="user.PasswordNotCorrectException"%>
+<%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="user.UserNotFoundException"%>
+<%@ page import="user.PasswordNotCorrectException"%>
 <%@ page import="user.User"%>
 <%@ page import="category.CategoryService"%>
 <%@ page import="category.Category"%>
@@ -138,7 +138,7 @@
 	    <link type="text/css" rel="stylesheet" href="/Gouwu/css/base.css" /> 
 	    <style type="text/css">
 			.header{
-			background:url("/Gouwu/images/background/timg.jpg") no-repeat;
+			background:url("/Gouwu/images/background/background.jpg") no-repeat;
 			background-position: 50% 40%;
 			position: absolute;
 			top:0;
@@ -151,7 +151,7 @@
 			font-weight: 600;
 			}
 			.header-filter{
-			background-color:rgba(0,0,0,0.3);
+			background-color:rgba(0,0,0,0.1);
 			position: absolute;
 			top:0;
 			left:0;
@@ -207,9 +207,10 @@
 						-10px 25px 15px #B5B4B4;
 			}
 			.section-bottom{
-			background:url("https://ws3.sinaimg.cn/large/006tKfTcly1fg2cterovzj31kw0fge7n.jpg")no-repeat;
-			background-size: cover;
-			margin: 0px 50px 100px;
+			background:url("/Gouwu/images/background/bottom.jpg")no-repeat;
+			background-size:cover;
+			background-position:50% 50%;
+			margin: 0px 50px 50px;
 			box-shadow:10px 25px 15px #B5B4B4,
 						-10px 25px 15px #B5B4B4;
 			}
@@ -288,8 +289,7 @@
 							</div>
 						</a>
 					</div>
-				</div>
-				
+				</div>				
 		<%
 			if(u==null)
 			{
@@ -342,7 +342,7 @@
 		
 		<div class="widpc100 heipc100 header">
 	      <div class="widpc100 heipc100 header-filter">
-	          <div class="heia wida textc" style="padding-top:15%">
+	          <div class="heia wida textc" style="padding-top:10%">
 	            <h1 class="title coly" >与孩子有关的一切，都充满意义 </h1>
 	            <p class="title-text coly">艺术创想，带孩子到属于他的绘画王国，与大师结盟，开启充满想象的艺术之旅</p>
 	          </div>
@@ -361,132 +361,91 @@
 	    <div class="section-top section-photo borrt20 fonts30 padtbpc10">
 	      <div class="heia widpc100">
 	        <div class="heia wida textc colb">
-	          <h3 style="margin:0px;">不仅要「得到」，还要「做到」</h3>
+	          <h3 style="margin:0px;">不仅要「教」，还要「育」</h3>
 		        <p style="font-size:20px;" >
-		          <br>以认知科学原理为基础，我们打造了科学高效的认知学习法
-		          <br>帮助人们快速提升学习效率，完成认知升级
-		          <br>同时，我们以认知学习法重塑了职业技能教育
-		          <br>不仅要「得到」，还要让你快速从零到「做到」
+		          <br>根据孩子的天性及领先的教育理念，我们打造了科学高效的教学方法
+		          <br>帮助孩子快乐学习，快速学会，全面提升综合素质
+		          <br>同时，我们融入 “ 好奇心呵护计划 ”
+		          <br>让孩子不仅学得好，学得快，学得更起劲
 		        </p>
 	        </div>
 	      </div>
 	    </div>
 
 	    <div class="section-mid heipc100 wida backgw" style="overflow:hidden;">
-	        <div class="heia widpc30 flol colb" style="margin-left:9%;margin-right:1%;">
-	          <h3 style="margin:20px;" class="fonts30" >手把手极简教程</h3>
+	        <div class="heia widpc30 flol colb" 
+	        	 style="margin-left:12%;margin-right:9%;margin-top:20px;">
+	          <h3 style="margin:20px;" class="fonts30" >手把手教学</h3>
 		        <p  style="font-size:20px;">
-		          <br>以「做到」为原则的教程体系，第一件事就是输出完整作品。
+		          <br>以「学会」为原则的教程体系，第一件事就是绘画出完整作品。
 		          <br>
-		          <br>传统的教程一开始就教你基础理论和原理，但通常来说，这样的学习很容易让你从入门到放弃，这不符合认知原理。
+		          <br>在教学的过程中，学会对构图设计、色理知识、绘画工具的精准掌握。
 		          <br>
-		          <br>我们的教学根据认知原理重塑，详细到无需思考仅需照做，第一件事就是让你学习做出完成作品。
+		          <br>我们的教学根据认知原理重塑，让孩子每一节课，都绘出一幅充满想象力的作品。
 		        </p>
 	        </div>
-			<div class="flol widpc50">
-				<img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fg02h3qy53j31b30z1wi9.jpg" style="width:100%;"/>
+			<div class="flol" style="width:35%;" >
+				<img src="/Gouwu/images/background/11.jpg" style="width:100%;" class="borr15"/>
 	        </div>
 	    </div>
 
 
       <div  class="heia wida section-mid backgw" style="overflow:hidden;">
-		<div style="margin-left:5%;margin-right:10%;width:45%" class="heia flol">
-			<img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fg02glp0h3j310b0m5jvk.jpg" class="widpc100" />
+		<div style="margin-left:12%;margin-right:9%;width:35%" class="heia flol">
+			<img src="/Gouwu/images/background/22.jpg" class="widpc100 borr15" />
         </div>
-        <div class="heia widpc30 flol colb" > <!--块级宽度会影响排版-->
+        <div class="heia widpc30 flol colb" style="margin-top:70px; "> <!--块级宽度会影响排版-->
           <h3 style="margin:25px;" class="fonts30">学习游戏化</h3>
 	        <p style="font-size:20px;">
-	          <br>为什么学习不可以像游戏一样，让人沉迷上瘾呢？
+	          <br>为什么学习不可以像游戏一样，让孩子沉迷上瘾呢？
 	          <br>
-	          <br>课程内容，将被设计成不同的策略、竞技、对抗游戏，让大家通过游戏速成新技能。
+	          <br>课程内容，将被设计成生动有趣的游戏，符合孩子充满好奇的天性。
 	        </p>
         </div>
       </div>
 
 	    <div class="section-mid heipc100 wida backgw" style="overflow:hidden;">
-	  		<div class="heia widpc30 flol colb" style="margin-left:9%;margin-right:7%;">
-	          <h3 style="margin-top:50px;" class="fonts30">全面辅导</h3>
+	  		<div class="heia widpc30 flol colb" style="margin-left:12%;margin-right:9%;">
+	          <h3 style="margin-top:20px;" class="fonts30">全面辅导</h3>
 		        <p style="font-size:20px;">
-		          <br>一切的学习均是社交。
+		          <br>一切的学习均是拼图游戏。
 		          <br>
-		          <br>认知科学认为，越是社会化的学习，你能获取信息量越多，理解得越深。
+		          <br>每一次的课程，都让孩子获取更多的科普知识，拓展孩子的视野。
 		          <br>
-		          <br>我们不定期邀请牛人分享，通过线下聚会、及线上社群进行社会化学习，学习的过程与同学交流切磋。
+		          <br>每一次的课程，都让孩子获得一小片拼图，让孩子学习一次，运用千遍。
 		          <br>
-		          <br>同时，老师以及助教会全程答疑。
+		          <br>同时，针对孩子不同的特点，老师以及助教会全程给予差异化教学。
 		        </p>
 	        </div>
-			<div class="flol" style="width:45%">
-				<img src="https://ws1.sinaimg.cn/large/006tNbRwgy1fg02gidqsbj314010bn0k.jpg" style="width:100%;"/>
+			<div class="flol" style="width:35%">
+				<img src="/Gouwu/images/background/33.jpg" class="borr15" style="width:100%;"/>
 	        </div>
 	      </div>
 
 
 	    <div class="section-mid section-photo" style="overflow:hidden;">
-	        <div class="heia wida colb fonts30 textc">
-		       <h5 style="margin:0 0 100px 0" class="fonts30">牛 人 推 荐</h5>
-		
-		       <div class="heipc70 wida padtbpc1 padlrpc2" >
-		
-		        <div class=" heipc100 widpc20 flol padtb10 marlrpc2" style="margin-left:3%">
-		          <div class="heia wida colb fonts30 textc">
-		            <img src="http://odau7u92l.bkt.clouddn.com/%E6%9D%8E%E7%AC%91%E6%9D%A5.jpg" class="widpc70 heia"
-								 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-		            <p style="font-size:18px">李笑来</p>
-		            <p style="font-size:16px;">中国比特币首富</p>
-		            </div>
-		            <div class="heia wida fonts30 colb textl">
-		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;老朋友了解，‘认知’是我多年研究的主题。不搞清楚‘大脑’如何运作，
-									再努力也是无用。刘传这小伙儿相当Sharp，不仅自己摸透了‘大脑’，还总结出了体系化的课程。</p>
-		          </div>
-		        </div>
-		
-		        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
-		          <div class="heia wida colb fonts30 textc">
-		            <img src="http://odau7u92l.bkt.clouddn.com/%E6%9D%8E%E5%8F%AB%E5%85%BD.jpg" class="widpc70 heia"
-		                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-		            <p style="font-size:18px ">李靖</p>
-		            <p style="font-size:16px;">百度副总裁</p>
-		          </div>
-		          <div class="heia wida fonts30 colb textl">
-		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;谁也不能否认，在这个每天都在变化的时代里，学习的质量和速度已然成为了决定人价值的重要因素。
-		              	可大部分人这么多年一直在学习，却从没学习过如何学习。推荐千古刘传的《认知学习法》，你应该重新学习下，如何学习！</p>
-		          </div>
-		        </div>
-		
-		        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
-		          <div class="heia wida colb fonts30 textc">
-		            <img src="http://odau7u92l.bkt.clouddn.com/xdite.jpg" class="widpc70 heia"
-		                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-		            <p style="font-size:18px ">Xdite</p>
-		            <p style="font-size:16px;">全栈营创始人</p>
-		          </div>
-		          <div class="heia wida fonts30 colb textl">
-		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;千古刘传的认知学习法，是我接触认知心理学的第一道契机。
-		              	他的课深入浅出，让我从此一头钻进认知心理学的领域，此后我将认知心理学应用在教学上，设计出了全栈营学习生态体系。</p>
-		          </div>
-		        </div>
-		
-		        <div class="heipc100 widpc20 flol padtb10 marlrpc2">
-		          <div class="heia wida colb fonts30 textc">
-		            <img src="http://odau7u92l.bkt.clouddn.com/%E6%88%90%E7%94%B2.jpg" class="widpc70 heia"
-		                 style="border-radius:80%;box-shadow:0px 0px 5px 5px #B5B4B4"/>
-		            <p style="font-size:18px ">成甲</p>
-		            <p style="font-size:16px;">《好好学习》作者</p>
-		          </div>
-		          <div class="heia wida fonts30 colb textl">
-		            <p style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;掌握学习的认知原理是具备科学学习能力的关键。
-		            	刘传一直致力于研究认知科学，推荐你学习《认知学习法》，掌握高效学习背后的原理！</p>
-		          </div>
-		        </div>
-		
+	        <div class="heia wida colb textc">
+		       <h5 style="margin:0 0 50px 0;font-size:30px;">艺 术 创 想</h5>		
+		       <div class="heipc70 wida fonts22 colb textl" 
+		       	    style="padding-left:25%;padding-right:25%;" >
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					艺术创想致力于3-14岁幼少儿美术教育的研究开发及项目整体运营，
+					我们希望与托辅机构及幼少儿教育培训机构达成战略合作伙伴关系，
+					共同践行教育的本质，做面向未来的教育。
+					<br><br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				         艺术创想以创意美术为特色，为中国幼少儿提供完整的进阶课程体系，
+				         致力于开发儿童观察力、想象力、创造力、专注力等，
+				         强调对孩子“ 保护好奇心 ”的教育理念。 	
 		       </div>
 	        </div>
 	    </div>
-	    <div class="section-bottom borrb20 padtbpc5 fonts30 colb textc">
-	      <h3>现在开始认知升级</h3>
+	    <div class="section-bottom borrb20 padtbpc10">
 	    </div>
-	    
+	    <div style="margin-bottom:50px;">
+		    <a href="ShowProducts1.jsp" class="boxs5 borr10 padtb10 backgw padlr20 fonts24 fontw700 textc" 
+		    	style="margin-left:42%;color:#03a9f4;">马上开始绘画创作</a>
+	    </div>
 	    <div class="widpc100 backgbs" style="height:100px;padding-top:30px;background-color:#eafbf6;">
 	    	<div class="widpc100 heia">
 		    	<div class="flol backgr" style="margin-right:20px;margin-left:45%;border-radius:60%;height:40px;width:40px;">

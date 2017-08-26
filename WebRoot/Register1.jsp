@@ -103,13 +103,13 @@
 		  padding-bottom:10px; 
 		}		
 		.header-filter{
-			background-color:rgba(0,0,0,0.3);
-			position: absolute;
-			top:0;
-			left:0;
-			}
+		  background-color:rgba(0,0,0,0.2);
+		  position: absolute;
+		  top:0;
+		  left:0;
+		}
 		.header{
-		  background:url("/Gouwu/images/background/timg.jpg") no-repeat;
+		  background:url("/Gouwu/images/background/background.jpg") no-repeat;
 		  background-position: 50% 40%;
 		  position: absolute;
 		  top:0;

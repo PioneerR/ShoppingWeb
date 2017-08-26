@@ -1,21 +1,18 @@
-<%@ page import="product.ProductMgr"%>
-<%@ page import="product.Product"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="category.CategoryService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <%
 	request.setCharacterEncoding("utf8");
-	String parameter=request.getParameter("parameter");
-	if(parameter!=null & parameter.equals("1"))
+	String idStr=request.getParameter("id");
+	if(idStr != null)
 	{
-		int id1=Integer.parseInt(request.getParameter("id"));
-		ProductMgr.getInstance().delete(id1);
+		int id=Integer.parseInt(idStr);
+		CategoryService.getInstance().delete(id);
 		
 		out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:200px;margin-left:5%;margin-top:5%;'");
 		out.println("<div style=''>");
-		out.println("<h2 style='color:#03a9f4;text-align:center;padding:6%;'>"+"删除课程成功！~"+"</h2>");
+		out.println("<h2 style='color:#03a9f4;text-align:center;padding:6%;'>"+"删除类别成功！~"+"</h2>");
 		out.println("</div></div>");
 		
 		out.println("<a href='javascript:window.history.go(-1)' style='text-decoration:none;");
@@ -24,4 +21,5 @@
 		out.println("返回</a>");
 		return;
 	}
+	
 %>

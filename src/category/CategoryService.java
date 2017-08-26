@@ -323,12 +323,26 @@ public class CategoryService {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
+	public void delete(int id)
+	{
+		Connection conn=DB.getConn();
+		String sql="delete from category where id="+id;
+		Statement stmt=DB.getStmt(conn);
+		
+		try
+		{
+			stmt.executeUpdate(sql);
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			DB.close(stmt);
+			DB.close(conn);
+		}
+	}
 	
 	
 	
