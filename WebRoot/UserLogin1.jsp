@@ -151,6 +151,7 @@
 			.header{
 			background:url("/Gouwu/images/background/background.jpg") no-repeat;
 			background-position: 50% 40%;
+			background-size:cover;
 			position: absolute;
 			top:0;
 			left:0;

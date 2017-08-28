@@ -1,3 +1,4 @@
+<%@ page import="java.net.InetAddress"%>
 <%@ page import="java.net.URLDecoder"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="user.UserNotFoundException"%>
@@ -122,6 +123,10 @@
 		}		
 	}
 	
+	String ip=InetAddress.getLocalHost().getHostAddress();
+	System.out.println(ip);
+	
+	
 	//不论是第一次进入该页面，还是第二次返回该页面，都刷新页面，不保留表单信息
 	response.setHeader("Pragma","No-cache"); 		
 	response.setHeader("Cache-Control","no-cache"); 
@@ -140,10 +145,11 @@
 			.header{
 			background:url("/Gouwu/images/background/background.jpg") no-repeat;
 			background-position: 50% 40%;
+			background-size:cover;
 			position: absolute;
 			top:0;
 			left:0;
-			z-index: -1;
+			z-index:-1;
 			}
 			.title{
 			text-shadow:10px 10px 20px #373638;
@@ -155,6 +161,7 @@
 			position: absolute;
 			top:0;
 			left:0;
+			margin:0;
 			}
 			.title-text{
 			font-size: 21px;
