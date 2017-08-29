@@ -42,8 +42,8 @@
 	
 	if(action !=null && action.trim().equals("add"))
 	{
-		int id=Integer.parseInt(request.getParameter("id"));
-		int count=Integer.parseInt(request.getParameter("count"));
+		int id=Integer.parseInt(request.getParameter("productid"));
+		int count=1;
 		session.setAttribute("count", count);//为了产品详情页提交表单后数量不变
 		Product p=ProductMgr.getInstance().getProduct(id);
 		CartItem ci=new CartItem();
@@ -57,8 +57,9 @@
 			ci.setCount(0);
 		}
 		c.add(ci);
-		return;
+		session.setAttribute("cart", c);
 	}
+
 	if(action != null && action.trim().equals("delete"))
 	{
 		int id=Integer.parseInt(request.getParameter("id"));

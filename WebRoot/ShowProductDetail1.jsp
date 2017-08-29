@@ -38,7 +38,15 @@
 	}
 	else
 	{
-		out.println("<h3>没有您要找的商品！~</h3>");
+		out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:200px;margin-left:5%;margin-top:5%;'");
+		out.println("<div style=''>");
+		out.println("<h2 style='color:#03a9f4;text-align:center;padding:6%;'>"+"没有您要找的课程！~"+"</h2>");
+		out.println("</div></div>");
+		
+		out.println("<a href='javascript:window.history.go(-1)' style='text-decoration:none;");
+		out.println("background:#03a9f4;padding-bottom:5px;padding-top:5px;color:#fff;float:right;");
+		out.println("margin:2% 5% 5% 5%;padding-left:30px;padding-right:30px;text-align:center;border-radius:5px;'>");
+		out.println("返回</a>");
 		return;
 	}
 
@@ -53,41 +61,67 @@
 	response.setHeader("Cache-Control", "No-store");
 	response.setDateHeader("Expires", 0);
 	
+	
+	if(action !=null && action.trim().equals("add"))
+	{
+		String idStr=request.getParameter("productid");
+		String countStr=request.getParameter("count");
+		int productid=Integer.parseInt(idStr);
+		int counts=Integer.parseInt(countStr);
+		//session.setAttribute("count", counts);//为了产品详情页提交表单后数量不变
+		Product pro=ProductMgr.getInstance().getProduct(productid);
+		CartItem ci=new CartItem();
+		ci.setProduct(pro);
+		if(counts>=0)
+		{
+			ci.setCount(counts);
+		}
+		else
+		{
+			ci.setCount(0);
+		}
+		
+		Cart c = (Cart)session.getAttribute("cart");//getAttribute获得的是object类
+		if(c==null)
+		{
+			c=new Cart();
+		}
+		c.add(ci);
+		session.setAttribute("cart", c);
+	}
+	
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">		
 		<link rel="shortcut icon" href="/Gouwu/images/icon/yscx.ico" type="image/x-icon"/>
 		<title>艺术创想</title>
 		<link rel="stylesheet" type="text/css" href="/Gouwu/css/base.css" />
 		<style type="text/css">
-		.button-1{
-		 border-radius:50px;
-		 width: 200px;
-		 text-align: center;
-		 padding:5px;
-		 margin:0 23px;
-		}
-		td{
-		  text-align:center;
-		}
-		input{
-		  color:#000;
-		  font-size: 18px;
-		  border:none;
-		  width: 25%;
-		  margin:auto;
-		  background-color:white; 
-		}		
+			.button-1{
+			 border-radius:50px;
+			 width: 200px;
+			 text-align: center;
+			 padding:5px;
+			 margin:0 23px;
+			}
+			input{
+			  color:#000;
+			  font-size: 18px;
+			  border:none;
+			  width: 25%;
+			  margin:auto;
+			  background-color:white; 
+			}		
 		</style>
 		<script type="text/javascript">
 			function aler()
 			{
 				alert("已成功加入购物车！~");
-				window.setTimeout(document.form1.submit(),1000);
+				//window.setTimeout(document.form1.submit(),500);
+				//window.history.go(-1);
 				//return false;//提交表单后，不刷新页面,似乎无效
 			}
 			function add()
@@ -240,21 +274,16 @@
 					<div style="margin-left:15%;">
 						<form name="form1" action="Buy1.jsp" method="post">
 						<input type="hidden" name="action" value="add"/>
-						<input type="hidden" name="id" value="<%= p.getId() %>"/>
+						<input type="hidden" name="productid" value="<%= p.getId() %>"/>
 						<table>	
 							<tr style="height:50px;">
 								<td><b class="colr fonts28">¥<%= p.getNormalPrice() %></b></td>
 							</tr>
+							
 							<tr style="height:50px">
 								<td>
-									<input type="button" style="width:20%;font-size:20px;"class="borrl10" value="-" onclick="dele()"/>
-									<input type="text" id="count" name="count" class="textc" value="<%= count %>"/>
-									<input type="button" style="width:20%;font-size:20px;" class="borrr10" value="+" onclick="add()"/>
-								</td>
-							</tr>
-							<tr style="height:50px">
-								<td>
-									<a href="" onclick="aler()" >
+									<a href="ShowProductDetail1.jsp?action=add&productid=<%= p.getId() %>&count=<%= count %>&id=<%= p.getId() %>"
+									   onclick="aler()" >
 										<div class="button-1 backgy" style="cursor:pointer;">				            
 								          	<div class="title-text colgys" style="font-size:16px;">加入购物车</div>
 								        </div>
@@ -263,11 +292,8 @@
 							</tr>
 							<tr style="height:50px">
 								<td>                      
-									<a href="Buy1.jsp" onclick="document.form1.submit();" >
-										<div class="button-1 backgr" style="cursor:pointer;">				     
-								          	<div class="title-text colw" style="font-size:16px;">立刻下单</div>
-								        </div>
-									</a>
+									<input type="submit" value="立刻报名" style="font-size:16px;"
+										class="button-1 backgr title-text colw curp" />					
 								</td>
 							</tr>				
 						</table>
