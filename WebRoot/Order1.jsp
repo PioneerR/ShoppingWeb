@@ -223,9 +223,10 @@
 					</a>
 				</div>
 			</div>
-			<div class="flol heia martbpc1 fonts14" style="margin-left:38%;">
+			<div class="flol heia martbpc1 fonts14" style="margin-left:33%;">
 				Copyright © 2017 艺术创想  Designed by 
-				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a>
+				<a href="https://github.com/PioneerR" target="_blank" style="color:#03a9f4;">PioneerR</a> | 				
+				<a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#03a9f4;">闽ICP备17023054号</a>
 			</div>
 	    </div>
 

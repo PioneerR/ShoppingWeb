@@ -29,6 +29,9 @@ public class User {
 	private Date rdate;
 	private String email;
 	private String qq;
+	double a=3;
+	double b=3.14;
+	float c=3;
 	
 	public void setQQ(String qq)
 	{
