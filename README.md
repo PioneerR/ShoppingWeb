@@ -17,8 +17,8 @@
 	   c、课程报名、付款功能  
 	   d、查询报名详情，取消报名功能  
 	   e、用户个人信息修改功能  
-![用户首页](http://onbtzjomy.bkt.clouddn.com/yscx%20%281%29.png)
-![Image text](https://raw.github.com/yourName/repositpry/master/yourprojectName/img-folder/test.jpg)
+![用户首页](http://onbtzjomy.bkt.clouddn.com/yscx%20%282%29.png)
+
 	2、管理员页面
 	   a、用户注册信息查询功能  
 	   b、课程类别信息的增删改查功能，课程类别分级添加功能  
@@ -26,6 +26,8 @@
 	   d、课程产品的搜索功能、高级搜索功能  
 	   e、报名情况查询及状态修改功能  
 	   f、报名情况统计功能  
+![管理员首页](http://onbtzjomy.bkt.clouddn.com/yscx%20%283%29.png)	 
+  
 	3、其他
 	   a、前端整体界面设计  
 	   b、分页功能  
