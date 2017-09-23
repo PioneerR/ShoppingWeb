@@ -3,6 +3,14 @@
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  
+  <context-param>
+  	<param-name>Temp</param-name>
+  	<param-value>C:/ProgramData/TEMP</param-value>
+  </context-param><!-- 范围是application使用servletcontext取数据 -->
+  
+  
+  
   <servlet>
     <description>ServletToJSPsendRedirect</description>
     <display-name>ServletToJSP</display-name>

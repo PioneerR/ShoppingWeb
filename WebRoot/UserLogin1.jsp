@@ -1,4 +1,4 @@
-<%@page import="java.net.URLEncoder"%>
+<%@ page import="java.net.URLEncoder"%>
 <%@ page import="category.Category"%>
 <%@ page import="category.CategoryService"%>
 <%@ page import="java.util.List"%>
@@ -107,7 +107,7 @@
 		}
 		else
 		{
-			if(!password.equals("239338"))
+			if(!password.equals("123456"))
 			{
 				out.println("<div style='padding:10% 5% 5% 5%;box-shadow:0 0 10px #B5B4B4;border-radius:10px;width:80%;height:250px;margin-left:5%;margin-top:5%;'");
 				out.println("<div style=''>");
@@ -120,13 +120,10 @@
 				out.println("background:#03a9f4;padding-bottom:5px;padding-top:5px;color:#fff;float:right;");
 				out.println("margin:2% 5% 5% 5%;padding-left:30px;padding-right:30px;text-align:center;border-radius:5px;'>");
 				out.println("返回</a>");
-			
 				return;
 			}
-			
 			session.setAttribute("yscxadmin", "admin");
 			//管理员获得权限别忘了写，因为后面的页面需要确认是否有管理员权限，会用到session
-			
 			response.sendRedirect("admin/AdminIndex1.jsp");	
 		}
 	}	
@@ -143,8 +140,9 @@
 		<style type="text/css">
 			td{
 				text-align:center;
-				border:3px solid #fff1cc;
+				border:3px solid #fff1cc;				
 			}
+			table{ border-collapse:collapse;}
 			a{
 				text-decoration: none;
 			}
@@ -325,6 +323,30 @@
 	          </form>	  
 			  
 	      </div>
-	    </div>		
+	    </div>	
+	    
+	    <div class="hei150 wid200 boxs10 backgw borr10 pad10 marlr20"
+	         style="position:absolute;bottom:10px;right:-10px;">
+	    	<div class="colb textc letters1" style="margin-bottom:20px;">欢迎体验</div>
+	    	<table class="fonts14">
+	    		<tr>
+	    			<td style="width:100px;">管理员账号</td>
+	    			<td style="width:100px;">密码</td>
+	    		</tr>
+	    		<tr>
+	    			<td>yscxadmin</td>
+	    			<td>123456</td>
+	    		</tr>
+	    		<tr>
+	    			<td>用户账号</td>
+	    			<td>密码</td>
+	    		</tr>
+	    		<tr>
+	    			<td>贵贵</td>
+	    			<td>123456</td>
+	    		</tr>
+	    	</table>
+	    </div>    
+	    	
 	</body>
 </html>

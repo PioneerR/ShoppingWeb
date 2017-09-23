@@ -35,7 +35,7 @@ public class UserUpload extends HttpServlet {
 	}
 	
 	//File在io包，该路径用于存放临时文件
-	private File tempPath=new File("C:\\Users\\Administrator\\Workspaces\\MyEclipse Professional 2014\\upload\\temp\\");
+	private File tempPath=new File("C:/ProgramData/TEMP");
 	
 	public void destroy()//用于关闭servlet服务进程的一部分
 	{

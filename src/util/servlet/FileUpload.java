@@ -35,7 +35,7 @@ public class FileUpload extends HttpServlet {
 	}
 	
 	//File在io包，该路径用于存放临时文件
-	private File tempPath=new File("C:\\Users\\Administrator\\Workspaces\\MyEclipse Professional 2014\\upload\\temp\\");
+	private File tempPath=new File("C:/ProgramData/TEMP");
 	
 	public void destroy()//用于关闭servlet服务进程的一部分
 	{
@@ -106,8 +106,8 @@ public class FileUpload extends HttpServlet {
 						//文件对象.getString()用户获取文件对象的值，类似request.getParameter()
 					}
 				}
-				System.out.println("上传文件类型："+item.getContentType());//获取上传文件类型
-				System.out.println("是否保存在内存中："+item.isInMemory());//判断文件是保存在内存(true)中还是硬盘(false)中
+				//System.out.println("上传文件类型："+item.getContentType());//获取上传文件类型
+				//System.out.println("是否保存在内存中："+item.isInMemory());//判断文件是保存在内存(true)中还是硬盘(false)中
 				
 				//忽略错误类型的文件对象
 				if(!item.isFormField())
@@ -141,7 +141,7 @@ public class FileUpload extends HttpServlet {
 							//文件名不能包含\，所以upload无法写入文件名。文件名为：id值.jpg
 							//out.print("上传文件"+name+"至路径："+uploadPath + "&nbsp;&nbsp;成功！！&nbsp;文件大小：" + size + "<br>");
 							item.delete();//如果文件保存在临时文件夹中，会清空临时文件，一般写在最后，因为要将文件上传完毕，才能删除临时文件
-							response.sendRedirect("/Gouwu/Productmodify1.jsp");
+							response.sendRedirect("/Gouwu/admin/ProductModify1.jsp?id="+id);
 						}
 						catch(Exception e)
 						{

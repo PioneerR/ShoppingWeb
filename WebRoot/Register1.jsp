@@ -77,8 +77,7 @@
 				out.println("margin:2% 5% 5% 5%;padding-left:30px;padding-right:30px;text-align:center;border-radius:5px;'>");
 				out.println("返回</a>");
 				
-				return;	
-				
+				return;
 			}
 		}	
 	}
@@ -141,11 +140,8 @@
     		else if(password.value==null))
     		{
     			alert("请填写确认密码！")
-    		}
-    		
-    		
+    		} 		    		
     	}
-    
     </script>
   </head>
   <body>
@@ -172,7 +168,7 @@
 					for(int i=1;i<categories.size()-1;i++)
 					{							
 						cg=categories.get(i);							
-				%>	
+				%>
 					<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>">
 						<div class="item backgw textc fonts16 colgy" style="line-height:37px;">
 							<%= cg.getName() %>
@@ -180,7 +176,7 @@
 					</a>
 				<%
 					}
-						cg=categories.get(categories.size()-1);							
+						cg=categories.get(categories.size()-1);
 				%>
 					<a href="ShowProducts1.jsp?categoryId=<%= cg.getId() %>" >
 						<div class="item backgw borrb5 textc fonts16 colgy" style="line-height:37px;">
