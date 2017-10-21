@@ -1,72 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0"
-    xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <context-param>
-  	<param-name>Temp</param-name>
-  	<param-value>C:/ProgramData/TEMP</param-value>
-  </context-param><!-- 范围是application使用servletcontext取数据 -->
-  
-  
-  
+    <param-name>Temp</param-name>
+    <param-value>C:/ProgramData/TEMP</param-value>
+  </context-param>
   <servlet>
     <description>ServletToJSPsendRedirect</description>
     <display-name>ServletToJSP</display-name>
     <servlet-name>Person</servlet-name>
     <servlet-class>com.xm.servlet.Person</servlet-class>
   </servlet>
-  
   <servlet>
     <description>FileUpload</description>
     <display-name>FileUpload</display-name>
     <servlet-name>FileUpload</servlet-name>
     <servlet-class>util.servlet.FileUpload</servlet-class>
     <init-param>
-    	<param-name>uploadPath</param-name>
-    	<param-value>	
+      <param-name>uploadPath</param-name>
+      <param-value>	
     		E:/3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目/source/Gouwu/WebRoot/images/product/
     	</param-value>
     </init-param>
   </servlet>
-  
   <servlet>
     <description>User head picture</description>
     <display-name>User head picture</display-name>
     <servlet-name>UserUpload</servlet-name>
     <servlet-class>util.servlet.UserUpload</servlet-class>
     <init-param>
-    	<param-name>uploadPath</param-name>
-    	<param-value>	
+      <param-name>uploadPath</param-name>
+      <param-value>	
     		E:/3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目/source/Gouwu/WebRoot/images/user/
     	</param-value>
     </init-param>
   </servlet>
-  
   <servlet>
     <description>Statistics about products</description>
     <display-name>Statistics</display-name>
     <servlet-name>SalesCountServlet</servlet-name>
     <servlet-class>stat.SalesCountServlet</servlet-class>
     <init-param>
-    	<param-name>statImagePath</param-name>
-    	<param-value>
+      <param-name>statImagePath</param-name>
+      <param-value>
     	E:\\3、尚学堂科技_马士兵_JAVA_网上商城项目------Javaweb进阶级项目\\source\\Gouwu\\WebRoot\\admin\\images\\stat\\
     	</param-value>
-    </init-param>   
+    </init-param>
   </servlet>
-  
-
-
-  
-
-
   <servlet-mapping>
     <servlet-name>Person</servlet-name>
     <url-pattern>/Person</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
     <servlet-name>FileUpload</servlet-name>
     <url-pattern>/servlet/FileUpload</url-pattern>
@@ -79,10 +62,7 @@
     <servlet-name>UserUpload</servlet-name>
     <url-pattern>/servlet/UserUpload</url-pattern>
   </servlet-mapping>
-  
-  <welcome-file-list>  
-    <welcome-file>Index1.jsp</welcome-file>  
-  </welcome-file-list> 
-  
-
+  <welcome-file-list>
+    <welcome-file>Index1.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

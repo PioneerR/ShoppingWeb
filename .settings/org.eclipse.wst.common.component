@@ -2,7 +2,7 @@
     <wb-module deploy-name="Gouwu">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="Gouwu"/>
         <property name="java-output-path" value="/Gouwu/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="Gouwu"/>
     </wb-module>
 </project-modules>

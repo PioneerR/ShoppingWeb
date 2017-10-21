@@ -81,8 +81,7 @@ public class Category {
 		{
 			pstmt.setString(1, name);
 			pstmt.setString(2, describe);
-			pstmt.setInt(3, id);
-			
+			pstmt.setInt(3, id);			
 			pstmt.executeUpdate();
 		}
 		catch(SQLException e)
@@ -94,22 +93,5 @@ public class Category {
 			DB.close(pstmt);
 			DB.close(conn);
 		}
-
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	  
 }
