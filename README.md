@@ -86,8 +86,3 @@
 	  * 缓存技术  
 	  * 提高网页加载速度，尤其是图片加载速度  
 	  
-![Image text](http://onbtzjomy.bkt.clouddn.com/yscx%20%281%29.png)
-
-![Image text](http://onbtzjomy.bkt.clouddn.com/yscx%20%282%29.png)
-
-![Image text](http://onbtzjomy.bkt.clouddn.com/yscx%20%283%29.png)
